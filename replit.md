@@ -14,6 +14,9 @@ ParentPro is a comprehensive digital platform designed to provide expert support
 ✓ Implemented scrollable therapist carousel with auto-scroll functionality
 ✓ Added navigation, contact section, and footer
 ✓ Professional color scheme and responsive design completed
+✓ Added floating chat widget with AI assistant "Kai" 
+✓ Implemented human agent handoff functionality
+✓ Added persistent "Chat with our team" support link
 
 ## User Preferences
 

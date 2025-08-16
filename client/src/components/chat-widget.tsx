@@ -9,13 +9,25 @@ export default function ChatWidget() {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Hi there! 👋 Welcome to ParentPro. I'm here to help you find the perfect specialist for your family's needs.",
+      text: "Hi! I'm Kai, your ParentPro AI assistant 👋",
       sender: "bot",
       timestamp: new Date()
     },
     {
       id: 2,
-      text: "Tell me what kind of support you're looking for, and I'll match you with our best specialists who can help.",
+      text: "I'm here to help you find the right specialist for your family - whether it's learning challenges, behavioral support, or family guidance.",
+      sender: "bot", 
+      timestamp: new Date()
+    },
+    {
+      id: 3,
+      text: "Feel free to ask me anything: about our specialists, pricing, how our process works, or what to expect.",
+      sender: "bot", 
+      timestamp: new Date()
+    },
+    {
+      id: 4,
+      text: "What brings you here today?",
       sender: "bot", 
       timestamp: new Date()
     }
