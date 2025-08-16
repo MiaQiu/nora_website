@@ -16,14 +16,9 @@ export default function HeroSection() {
             <h1 className="text-4xl lg:text-6xl font-bold text-primary leading-tight mb-4">
               Your Extended Parenting Village
             </h1>
-            <h2 className="text-xl lg:text-2xl font-semibold text-secondary mb-6">
+            <h2 className="text-xl lg:text-2xl font-semibold text-secondary mb-8">
               Evidence-based expert support network providing personalized 1:1 guidance across every stage of parenting. Navigate challenges and milestones with confidence whether it's small or large
             </h2>
-            <p className="text-xl text-charcoal mb-8 leading-relaxed">
-              AskFellow offers the only global, proactive care model that supports 
-              all stages of family life. Members receive expert support and guidance, 
-              resulting in improved mental health and increased productivity.
-            </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 onClick={() => window.location.href = '/book-session'}
