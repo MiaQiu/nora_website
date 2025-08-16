@@ -73,6 +73,19 @@ export default function Footer() {
             </div>
           </div>
           <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+            <div className="mb-4">
+              <p className="text-sm">
+                Prefer human support? 
+                <a 
+                  href="#contact" 
+                  onClick={scrollToContact}
+                  className="text-secondary hover:text-secondary/80 ml-1 underline transition duration-300"
+                  data-testid="link-human-support"
+                >
+                  Chat with our team
+                </a>
+              </p>
+            </div>
             <p data-testid="text-copyright">&copy; 2024 ParentPro. All rights reserved.</p>
           </div>
         </div>
