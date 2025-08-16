@@ -1,10 +1,10 @@
 export default function ServicesGrid() {
   const services = [
     {
-      title: "Mental Health Support",
-      description: "Professional counseling and emotional wellness support for parents navigating life changes.",
+      title: "Postpartum Care",
+      description: "Comprehensive support for new mothers navigating physical recovery, emotional adjustment, and early bonding with baby.",
       image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
-      alt: "Woman in therapy session showing mental health support"
+      alt: "New mother receiving postpartum care support and guidance"
     },
     {
       title: "Return to Work",
