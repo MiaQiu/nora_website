@@ -322,8 +322,8 @@ export default function TherapistCarousel() {
               {Array.from({ length: totalSlides }).map((_, slideIndex) => (
                 <div 
                   key={slideIndex} 
-                  className="w-full flex"
-                  style={{ width: `${100 / totalSlides}%` }}
+                  className="w-full flex flex-shrink-0"
+                  style={{ width: '100%' }}
                 >
                   {therapists.slice(slideIndex * 4, (slideIndex + 1) * 4).map((therapist, index) => (
                     <div key={index} className="flex-shrink-0 w-full sm:w-1/2 lg:w-1/4 px-4">
