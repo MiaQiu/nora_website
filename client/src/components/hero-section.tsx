@@ -47,7 +47,7 @@ export default function HeroSection() {
               <div className="flex items-center space-x-2 sm:space-x-3">
                 <div className="bg-secondary w-2 h-2 sm:w-3 sm:h-3 rounded-full animate-pulse"></div>
                 <span className="text-xs sm:text-sm font-medium" data-testid="text-support-available">
-                  Expert support available 24/7
+                  Support designed around you
                 </span>
               </div>
             </div>
