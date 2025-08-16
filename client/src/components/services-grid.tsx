@@ -1,0 +1,93 @@
+export default function ServicesGrid() {
+  const services = [
+    {
+      title: "Mental Health Support",
+      description: "Professional counseling and emotional wellness support for parents navigating life changes.",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
+      alt: "Woman in therapy session showing mental health support"
+    },
+    {
+      title: "Return to Work",
+      description: "Guidance and strategies for successfully balancing career responsibilities with family needs.",
+      image: "https://images.unsplash.com/photo-1531983412531-1f49a365ffed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
+      alt: "Father working on laptop while caring for toddler at home"
+    },
+    {
+      title: "Child Care & Enrichment",
+      description: "Expert advice on child development, education, and creating enriching experiences.",
+      image: "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
+      alt: "Mother reading picture book with young daughter on floor"
+    },
+    {
+      title: "Best Birth Plan",
+      description: "Comprehensive prenatal support and birth planning with experienced professionals.",
+      image: "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
+      alt: "Pregnant woman in kitchen preparing healthy meal"
+    },
+    {
+      title: "College & Future Planning",
+      description: "Strategic guidance for educational pathways and long-term family goal setting.",
+      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
+      alt: "Family meeting around table discussing future plans"
+    },
+    {
+      title: "Neurodivergence Support",
+      description: "Specialized resources and strategies for supporting neurodivergent family members.",
+      image: "https://images.unsplash.com/photo-1600298881974-6be191ceeda1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
+      alt: "Multi-racial family cooking together in kitchen showing inclusive support"
+    },
+    {
+      title: "Inclusive Support",
+      description: "Culturally sensitive guidance that honors diverse family structures and backgrounds.",
+      image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
+      alt: "Happy diverse family playing together in park"
+    },
+    {
+      title: "Special Health Care Needs",
+      description: "Expert coordination for families managing complex health and medical requirements.",
+      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
+      alt: "Healthcare professional consulting with parents and child"
+    }
+  ];
+
+  return (
+    <section id="services" className="py-16 lg:py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4">
+            Comprehensive Family Support Services
+          </h2>
+          <p className="text-xl text-charcoal max-w-3xl mx-auto">
+            From mental health support to child development, we provide expert 
+            guidance across all aspects of family life.
+          </p>
+        </div>
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {services.map((service, index) => (
+            <div 
+              key={index}
+              className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden"
+              data-testid={`card-service-${index}`}
+            >
+              <img
+                src={service.image}
+                alt={service.alt}
+                className="w-full h-48 object-cover"
+                data-testid={`img-service-${index}`}
+              />
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-primary mb-2" data-testid={`text-service-title-${index}`}>
+                  {service.title}
+                </h3>
+                <p className="text-charcoal text-sm" data-testid={`text-service-description-${index}`}>
+                  {service.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

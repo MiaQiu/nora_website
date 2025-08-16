@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(44, 33%, 98%);
+  --foreground: hsl(217, 19%, 27%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(217, 19%, 27%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(217, 19%, 27%);
+  --primary: hsl(265, 25%, 30%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(183, 50%, 40%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --muted: hsl(190, 50%, 97%);
+  --muted-foreground: hsl(217, 19%, 27%);
+  --accent: hsl(190, 50%, 97%);
+  --accent-foreground: hsl(183, 50%, 40%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(214, 32%, 91%);
+  --input: hsl(214, 32%, 91%);
+  --ring: hsl(183, 50%, 40%);
+  --warm: hsl(44, 33%, 98%);
+  --charcoal: hsl(217, 19%, 27%);
+  --font-sans: 'Inter', sans-serif;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: hsl(0, 0%, 0%);
+  --foreground: hsl(0, 0%, 98%);
+  --card: hsl(0, 0%, 9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --popover: hsl(0, 0%, 9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --primary: hsl(265, 25%, 30%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(183, 50%, 40%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --muted: hsl(0, 0%, 9%);
+  --muted-foreground: hsl(0, 0%, 63%);
+  --accent: hsl(0, 0%, 9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62%, 30%);
+  --destructive-foreground: hsl(0, 85%, 97%);
+  --border: hsl(0, 0%, 15%);
+  --input: hsl(0, 0%, 15%);
+  --ring: hsl(183, 50%, 40%);
+  --warm: hsl(0, 0%, 9%);
+  --charcoal: hsl(0, 0%, 98%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-warm text-charcoal font-sans antialiased;
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold;
+  }
+}
+
+@layer utilities {
+  .text-primary {
+    color: var(--primary);
+  }
+  
+  .text-secondary {
+    color: var(--secondary);
+  }
+  
+  .text-charcoal {
+    color: var(--charcoal);
+  }
+  
+  .bg-primary {
+    background-color: var(--primary);
+  }
+  
+  .bg-secondary {
+    background-color: var(--secondary);
+  }
+  
+  .bg-warm {
+    background-color: var(--warm);
+  }
+  
+  .bg-accent {
+    background-color: var(--accent);
+  }
+  
+  .border-primary {
+    border-color: var(--primary);
+  }
+  
+  .border-secondary {
+    border-color: var(--secondary);
+  }
+}
