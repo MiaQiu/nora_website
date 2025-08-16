@@ -15,7 +15,7 @@ export default function Footer() {
             Ready to support your family's journey?
           </h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto opacity-90">
-            Join thousands of families who have found expert support and guidance through ParentCompass. 
+            Join thousands of families who have found expert support and guidance through AskFellow. 
             Start your personalized care journey today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -41,7 +41,7 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-2xl font-bold mb-4" data-testid="text-footer-brand">ParentCompass</h3>
+              <h3 className="text-2xl font-bold mb-4" data-testid="text-footer-brand">AskFellow</h3>
               <p className="text-gray-400" data-testid="text-footer-description">
                 Expert support for every working parents, wherever they are along their journey.
               </p>

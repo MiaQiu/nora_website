@@ -55,7 +55,7 @@ export default function BookSession() {
                   Session Request Submitted!
                 </h1>
                 <p className="text-lg text-charcoal mb-6">
-                  Thank you for booking your session with ParentCompass. Our team will review your request and get back to you within 1 business day.
+                  Thank you for booking your session with AskFellow. Our team will review your request and get back to you within 1 business day.
                 </p>
                 <p className="text-md text-charcoal mb-8">
                   We'll contact you at <strong>{formData.email}</strong> or <strong>{formData.phone}</strong> to schedule your personalized consultation.

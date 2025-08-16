@@ -17,7 +17,7 @@ export default function HeroSection() {
               An expert support system for every working parent
             </h1>
             <p className="text-xl text-charcoal mb-8 leading-relaxed">
-              ParentCompass offers the only global, proactive care model that supports 
+              AskFellow offers the only global, proactive care model that supports 
               all stages of family life. Members receive expert support and guidance, 
               resulting in improved mental health and increased productivity.
             </p>

@@ -81,7 +81,7 @@ export default function HowItWorks() {
               </div>
               
               <h3 className="text-xl font-bold mb-6" data-testid="text-welcome-message">
-                Welcome to ParentCompass, Margaret
+                Welcome to AskFellow, Margaret
               </h3>
               
               <div className="bg-white rounded-xl p-4 text-charcoal mb-4">
