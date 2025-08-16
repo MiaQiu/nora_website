@@ -35,18 +35,6 @@ export default function ServicesGrid() {
       description: "Support for parental mental health and family harmony with expert guidance on emotional wellness and healthy relationships.",
       image: "https://images.unsplash.com/photo-1600298881974-6be191ceeda1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
       alt: "Family experiencing emotional wellbeing and healthy relationships"
-    },
-    {
-      title: "Inclusive Support",
-      description: "Culturally sensitive guidance that honors diverse family structures and backgrounds.",
-      image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
-      alt: "Happy diverse family playing together in park"
-    },
-    {
-      title: "Special Health Care Needs",
-      description: "Expert coordination for families managing complex health and medical requirements.",
-      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
-      alt: "Healthcare professional consulting with parents and child"
     }
   ];
 
