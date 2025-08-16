@@ -218,8 +218,26 @@ export default function TherapistCarousel() {
 
         {/* Therapist Carousel Container */}
         <div className="relative" data-testid="therapist-carousel-container">
+          {/* Left Arrow */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors"
+            data-testid="button-carousel-prev"
+          >
+            <ChevronLeft className="w-5 h-5 text-primary" />
+          </button>
+
+          {/* Right Arrow */}
+          <button
+            onClick={nextSlide}
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors"
+            data-testid="button-carousel-next"
+          >
+            <ChevronRight className="w-5 h-5 text-primary" />
+          </button>
+
           {/* Carousel */}
-          <div className="overflow-hidden">
+          <div className="overflow-hidden mx-12">
             <div 
               className="flex transition-transform duration-300 ease-in-out"
               style={{ 
@@ -270,26 +288,7 @@ export default function TherapistCarousel() {
             </div>
           </div>
 
-          {/* Carousel Navigation */}
-          <div className="flex justify-center space-x-4 mt-8">
-            <Button
-              variant="outline" 
-              onClick={prevSlide}
-              className="border-primary text-primary hover:bg-primary hover:text-white"
-              data-testid="button-carousel-prev"
-            >
-              <ChevronLeft className="w-4 h-4 mr-2" />
-              Previous
-            </Button>
-            <Button
-              onClick={nextSlide}
-              className="bg-primary text-white hover:bg-primary/90"
-              data-testid="button-carousel-next"
-            >
-              Next
-              <ChevronRight className="w-4 h-4 ml-2" />
-            </Button>
-          </div>
+
 
           {/* Carousel Indicators */}
           <div className="flex justify-center space-x-2 mt-6" data-testid="carousel-indicators">
