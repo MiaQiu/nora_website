@@ -58,8 +58,7 @@ export default function ServicesGrid() {
             Comprehensive Parenting Support Services
           </h2>
           <p className="text-xl text-charcoal max-w-3xl mx-auto">
-            From mental health support to child development, we provide expert 
-            guidance across all stages of parenting.
+            From pregnancy to teen years, get personalized guidance from vetted experts who understand your family's unique journey.
           </p>
         </div>
         
