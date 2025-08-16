@@ -19,10 +19,10 @@ export default function ServicesGrid() {
       alt: "Student receiving academic guidance and educational planning support"
     },
     {
-      title: "Best Birth Plan",
-      description: "Comprehensive prenatal support and birth planning with experienced professionals.",
+      title: "Parenting Skills & Child Development",
+      description: "From toddler play to screentime management to teenage communication - expert guidance for every developmental stage.",
       image: "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
-      alt: "Pregnant woman in kitchen preparing healthy meal"
+      alt: "Parent and child engaged in developmental activities and communication"
     },
     {
       title: "College & Future Planning",
