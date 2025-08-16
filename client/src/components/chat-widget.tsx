@@ -123,6 +123,27 @@ export default function ChatWidget() {
                   <Send className="w-4 h-4" />
                 </Button>
               </div>
+              
+              {/* Human Support Link */}
+              <div className="mt-3 text-center">
+                <p className="text-xs text-gray-500">
+                  Prefer human support?{" "}
+                  <button 
+                    className="text-secondary hover:text-secondary/80 underline"
+                    data-testid="button-human-support"
+                    onClick={() => {
+                      // Scroll to contact section
+                      const element = document.getElementById('contact');
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        setIsOpen(false);
+                      }
+                    }}
+                  >
+                    Chat with our team
+                  </button>
+                </p>
+              </div>
             </div>
           </div>
         )}
