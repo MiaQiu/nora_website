@@ -4,6 +4,17 @@
 
 ParentPro is a comprehensive digital platform designed to provide expert support for working families at every stage of their journey. The application serves as a global, proactive care model offering personalized guidance, expert consultations, and community connections. The platform features a modern React-based frontend with a clean, professional design showcasing services like mental health support, return-to-work guidance, child care assistance, and specialized support for neurodivergent families.
 
+## Recent Changes (August 16, 2025)
+
+✓ Complete parenting coach landing page built based on Cleo-inspired design screenshots
+✓ Implemented hero section with compelling headline and call-to-action buttons  
+✓ Created services grid with 8 different support categories
+✓ Built timeline journey component showing family support stages
+✓ Added "How it Works" section with mobile app mockup
+✓ Implemented scrollable therapist carousel with auto-scroll functionality
+✓ Added navigation, contact section, and footer
+✓ Professional color scheme and responsive design completed
+
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
