@@ -168,6 +168,86 @@ export default function TherapistCarousel() {
       languages: ["English", "French"],
       specialties: ["Early childhood development", "Developmental delays", "Autism spectrum assessment", "Sensory processing issues", "School readiness", "Milestone tracking"],
       cancellationPolicy: "48-hour notice required for developmental assessments"
+    },
+    {
+      name: "Dr. Sarah Chen",
+      title: "Adolescent Psychiatrist",
+      experience: "18 years experience",
+      image: "https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&h=200",
+      about: "Adolescent Psychiatrists specialize in diagnosing and treating mental health conditions in teenagers. They understand the unique challenges of adolescent development and provide both therapy and medication management when appropriate. Dr. Chen focuses on evidence-based treatments for teen mental health.",
+      workExperience: [
+        "Seattle Children's Hospital Psychiatry Department",
+        "University of Washington Adolescent Medicine",
+        "Northwest Teen Mental Health Center"
+      ],
+      education: [
+        "M.D. in Psychiatry - University of Washington",
+        "Residency in Child & Adolescent Psychiatry - Seattle Children's",
+        "B.S. in Neuroscience - Stanford University"
+      ],
+      languages: ["English", "Mandarin", "Spanish"],
+      specialties: ["Teen depression", "Anxiety disorders", "ADHD management", "Eating disorders", "Self-harm prevention", "Medication management"],
+      cancellationPolicy: "24-hour notice required; emergency consultations available"
+    },
+    {
+      name: "Dr. Michael Rodriguez",
+      title: "Behavioral Analyst",
+      experience: "14 years experience",
+      image: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&h=200",
+      about: "Behavioral Analysts use applied behavior analysis (ABA) to help individuals develop positive behaviors and reduce challenging ones. They work extensively with children on the autism spectrum and those with developmental disabilities. Dr. Rodriguez creates personalized behavior intervention plans.",
+      workExperience: [
+        "Austin Center for Applied Behavior Analysis",
+        "Texas Children's Hospital Developmental Pediatrics",
+        "Autism Spectrum Solutions"
+      ],
+      education: [
+        "Ph.D. in Applied Behavior Analysis - University of North Texas",
+        "M.S. in Special Education - Texas State University",
+        "B.A. in Psychology - University of Texas at Austin"
+      ],
+      languages: ["English", "Spanish"],
+      specialties: ["Applied behavior analysis", "Autism spectrum interventions", "Challenging behaviors", "Social skills training", "Communication development", "Parent coaching"],
+      cancellationPolicy: "48-hour notice required for behavior assessments"
+    },
+    {
+      name: "Dr. Jennifer Park",
+      title: "Learning Disability Specialist",
+      experience: "20 years experience",
+      image: "https://images.unsplash.com/photo-1594824278171-187f5086b962?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&h=200",
+      about: "Learning Disability Specialists assess and support individuals with various learning differences. They conduct comprehensive evaluations to identify specific learning challenges and develop targeted intervention strategies. Dr. Park works with students of all ages to maximize their learning potential.",
+      workExperience: [
+        "Los Angeles Learning Center",
+        "UCLA Neuropsychology Assessment Clinic",
+        "California Department of Education Special Services"
+      ],
+      education: [
+        "Ph.D. in Learning Disabilities - UCLA",
+        "M.A. in Educational Psychology - USC",
+        "B.A. in Cognitive Science - UC San Diego"
+      ],
+      languages: ["English", "Korean", "Japanese"],
+      specialties: ["Dyslexia assessment", "Reading comprehension", "Math learning disabilities", "Executive functioning", "Memory processing", "Accommodation planning"],
+      cancellationPolicy: "72-hour notice required for comprehensive evaluations"
+    },
+    {
+      name: "Dr. Robert Thompson",
+      title: "Parent Counselor",
+      experience: "26 years experience",
+      image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&h=200",
+      about: "Parent Counselors provide guidance and support to parents navigating the challenges of raising children. They offer practical parenting strategies, help resolve family conflicts, and support parents through difficult transitions. Dr. Thompson specializes in positive parenting approaches.",
+      workExperience: [
+        "Denver Family Counseling Center",
+        "Colorado State University Family Studies",
+        "Rocky Mountain Parenting Institute"
+      ],
+      education: [
+        "Ph.D. in Family Therapy - Colorado State University",
+        "M.S.W. in Clinical Social Work - University of Denver",
+        "B.A. in Human Development - University of Colorado"
+      ],
+      languages: ["English", "German"],
+      specialties: ["Positive discipline", "Parent-child relationships", "Behavioral management", "Family communication", "Divorce adjustment", "Blended family dynamics"],
+      cancellationPolicy: "24-hour notice required; flexible rescheduling available"
     }
   ];
 
@@ -195,14 +275,7 @@ export default function TherapistCarousel() {
     setSelectedSpecialist(null);
   };
 
-  // Auto-scroll functionality
-  useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 5000); // Change slide every 5 seconds
-
-    return () => clearInterval(interval);
-  }, []);
+  // Auto-scroll functionality removed per user request
 
   return (
     <section id="therapists" className="py-16 lg:py-24 bg-accent">
