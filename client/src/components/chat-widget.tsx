@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isConnectingToAgent, setIsConnectingToAgent] = useState(false);
+  const [isHumanAgent, setIsHumanAgent] = useState(false);
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -36,17 +38,46 @@ export default function ChatWidget() {
       setMessages([...messages, newMessage]);
       setInputMessage("");
       
-      // Simulate bot response
-      setTimeout(() => {
-        const botResponse = {
-          id: messages.length + 2,
-          text: "Thank you for sharing! Based on what you've told me, I'm connecting you with our specialists who can best support your family. Would you like to schedule a consultation?",
-          sender: "bot",
-          timestamp: new Date()
-        };
-        setMessages(prev => [...prev, botResponse]);
-      }, 1000);
+      // Simulate bot response (only if not connected to human agent)
+      if (!isHumanAgent) {
+        setTimeout(() => {
+          const botResponse = {
+            id: messages.length + 2,
+            text: "Thank you for sharing! Based on what you've told me, I'm connecting you with our specialists who can best support your family. Would you like to schedule a consultation?",
+            sender: "bot",
+            timestamp: new Date()
+          };
+          setMessages(prev => [...prev, botResponse]);
+        }, 1000);
+      }
     }
+  };
+
+  const connectToHumanAgent = () => {
+    setIsConnectingToAgent(true);
+    
+    // Show connecting message
+    const connectingMessage = {
+      id: messages.length + 1,
+      text: "Connecting to our friendly agent...",
+      sender: "system",
+      timestamp: new Date()
+    };
+    setMessages(prev => [...prev, connectingMessage]);
+    
+    // Simulate connection delay and then agent greeting
+    setTimeout(() => {
+      setIsConnectingToAgent(false);
+      setIsHumanAgent(true);
+      
+      const agentGreeting = {
+        id: messages.length + 2,
+        text: "Hi! 👋 I'm Sarah from the ParentPro team. I'm here to personally help you find the perfect specialist for your family. What can I assist you with today?",
+        sender: "agent",
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, agentGreeting]);
+    }, 2000);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -69,8 +100,12 @@ export default function ChatWidget() {
                   <MessageCircle className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-sm" data-testid="text-chat-title">ParentPro Assistant</h3>
-                  <p className="text-xs opacity-90" data-testid="text-chat-status">Online • Ready to help</p>
+                  <h3 className="font-semibold text-sm" data-testid="text-chat-title">
+                    {isHumanAgent ? "Sarah - ParentPro Team" : "ParentPro Assistant"}
+                  </h3>
+                  <p className="text-xs opacity-90" data-testid="text-chat-status">
+                    {isConnectingToAgent ? "Connecting..." : "Online • Ready to help"}
+                  </p>
                 </div>
               </div>
               <button 
@@ -94,6 +129,10 @@ export default function ChatWidget() {
                     className={`max-w-xs px-3 py-2 rounded-lg text-sm ${
                       message.sender === 'user' 
                         ? 'bg-secondary text-white' 
+                        : message.sender === 'system'
+                        ? 'bg-yellow-100 text-yellow-800 italic'
+                        : message.sender === 'agent'
+                        ? 'bg-primary text-white'
                         : 'bg-gray-100 text-charcoal'
                     }`}
                   >
@@ -125,25 +164,21 @@ export default function ChatWidget() {
               </div>
               
               {/* Human Support Link */}
-              <div className="mt-3 text-center">
-                <p className="text-xs text-gray-500">
-                  Prefer human support?{" "}
-                  <button 
-                    className="text-secondary hover:text-secondary/80 underline"
-                    data-testid="button-human-support"
-                    onClick={() => {
-                      // Scroll to contact section
-                      const element = document.getElementById('contact');
-                      if (element) {
-                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        setIsOpen(false);
-                      }
-                    }}
-                  >
-                    Chat with our team
-                  </button>
-                </p>
-              </div>
+              {!isHumanAgent && (
+                <div className="mt-3 text-center">
+                  <p className="text-xs text-gray-500">
+                    Prefer human support?{" "}
+                    <button 
+                      className="text-secondary hover:text-secondary/80 underline"
+                      data-testid="button-human-support"
+                      onClick={connectToHumanAgent}
+                      disabled={isConnectingToAgent}
+                    >
+                      Chat with our team
+                    </button>
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         )}
