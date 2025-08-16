@@ -39,35 +39,35 @@ export default function ServicesGrid() {
   ];
 
   return (
-    <section id="services" className="py-16 lg:py-24 bg-white">
+    <section id="services" className="py-8 sm:py-12 lg:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-4">
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-primary mb-3 sm:mb-4">
             Comprehensive Parenting Support Services
           </h2>
-          <p className="text-lg sm:text-xl text-charcoal max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-charcoal max-w-3xl mx-auto">
             From pregnancy to teen years, get personalized guidance from vetted experts who understand your family's unique journey.
           </p>
         </div>
         
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {services.map((service, index) => (
             <div 
               key={index}
-              className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden"
+              className="bg-white rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden"
               data-testid={`card-service-${index}`}
             >
               <img
                 src={service.image}
                 alt={service.alt}
-                className="w-full h-48 object-cover"
+                className="w-full h-40 sm:h-48 object-cover"
                 data-testid={`img-service-${index}`}
               />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-primary mb-2" data-testid={`text-service-title-${index}`}>
+              <div className="p-4 sm:p-6">
+                <h3 className="text-lg sm:text-xl font-semibold text-primary mb-2" data-testid={`text-service-title-${index}`}>
                   {service.title}
                 </h3>
-                <p className="text-charcoal text-sm" data-testid={`text-service-description-${index}`}>
+                <p className="text-charcoal text-sm sm:text-sm" data-testid={`text-service-description-${index}`}>
                   {service.description}
                 </p>
               </div>

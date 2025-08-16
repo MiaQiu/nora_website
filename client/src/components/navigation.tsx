@@ -16,9 +16,9 @@ export default function Navigation() {
   return (
     <nav className="bg-white shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-14 sm:h-16">
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-primary">AskFellow</h1>
+            <h1 className="text-xl sm:text-2xl font-bold text-primary">AskFellow</h1>
           </div>
           
           {/* Desktop Navigation */}
@@ -55,9 +55,9 @@ export default function Navigation() {
             </div>
           </div>
           
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 sm:space-x-4">
             <Button 
-              className="bg-primary text-white hover:bg-primary/90"
+              className="bg-primary text-white hover:bg-primary/90 text-sm sm:text-base px-3 sm:px-4 py-2"
               data-testid="button-get-started"
             >
               Get Started

@@ -215,16 +215,13 @@ export default function TherapistCarousel() {
   // Auto-scroll functionality removed per user request
 
   return (
-    <section id="therapists" className="py-16 lg:py-24 bg-accent">
+    <section id="therapists" className="py-8 sm:py-12 lg:py-24 bg-accent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          {/* <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4">
-            And 100+ elite psychologists and therapists in your area
-          </h2> */}
-          <h1 className="text-lg sm:text-xl lg:text-2xl font-semibold text-secondary mb-6">
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+          <h1 className="text-base sm:text-lg lg:text-xl xl:text-2xl font-semibold text-secondary mb-4 sm:mb-6">
             Get matched with our carefully selected team of professionals
           </h1>
-          <p className="text-lg sm:text-xl text-charcoal max-w-3xl mx-auto">
+          <p className="text-sm sm:text-base lg:text-lg text-charcoal max-w-3xl mx-auto">
           10-minute complimentary consultation to ensure the right fit. 
           </p>
         </div>
@@ -250,7 +247,7 @@ export default function TherapistCarousel() {
           </button>
 
           {/* Carousel */}
-          <div className="overflow-hidden mx-4 sm:mx-8 lg:mx-12">
+          <div className="overflow-hidden mx-2 sm:mx-4 lg:mx-8 xl:mx-12">
             <div 
               className="flex transition-transform duration-300 ease-in-out"
               style={{ 
@@ -266,32 +263,32 @@ export default function TherapistCarousel() {
                   {specialists.slice(slideIndex * itemsPerSlide, (slideIndex + 1) * itemsPerSlide).map((therapist, index) => (
                     <div key={index} className={`px-2 sm:px-4 flex-shrink-0 ${itemsPerSlide === 1 ? 'w-full' : itemsPerSlide === 2 ? 'w-1/2' : 'w-1/4'}`}>
                       <div 
-                        className="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300"
-                        data-testid={`card-therapist-${slideIndex * 4 + index}`}
+                        className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-3 sm:p-4 lg:p-6 text-center hover:shadow-xl transition-shadow duration-300"
+                        data-testid={`card-therapist-${slideIndex * itemsPerSlide + index}`}
                       >
                         <img
                           src={therapist.image}
                           alt={`${therapist.name} - Professional therapist headshot`}
-                          className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
-                          data-testid={`img-therapist-${slideIndex * 4 + index}`}
+                          className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full mx-auto mb-3 sm:mb-4 object-cover"
+                          data-testid={`img-therapist-${slideIndex * itemsPerSlide + index}`}
                           onError={(e) => {
                             const target = e.target as HTMLImageElement;
                             target.src = "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face";
                           }}
                         />
-                        <h3 className="text-xl font-bold text-primary mb-1" data-testid={`text-therapist-name-${slideIndex * 4 + index}`}>
+                        <h3 className="text-sm sm:text-base lg:text-xl font-bold text-primary mb-1" data-testid={`text-therapist-name-${slideIndex * itemsPerSlide + index}`}>
                           {therapist.name}
                         </h3>
-                        <p className="text-secondary font-semibold mb-2" data-testid={`text-therapist-title-${slideIndex * 4 + index}`}>
+                        <p className="text-xs sm:text-sm lg:text-base text-secondary font-semibold mb-1 sm:mb-2" data-testid={`text-therapist-title-${slideIndex * itemsPerSlide + index}`}>
                           {therapist.title}
                         </p>
-                        <p className="text-sm text-charcoal mb-4" data-testid={`text-therapist-experience-${slideIndex * 4 + index}`}>
+                        <p className="text-xs sm:text-sm text-charcoal mb-3 sm:mb-4" data-testid={`text-therapist-experience-${slideIndex * itemsPerSlide + index}`}>
                           {therapist.experience}
                         </p>
                         <Button
                           onClick={() => openSpecialistModal(therapist)}
-                          className="bg-secondary text-white hover:bg-secondary/90 w-full"
-                          data-testid={`button-therapist-info-${slideIndex * 4 + index}`}
+                          className="bg-secondary text-white hover:bg-secondary/90 w-full text-xs sm:text-sm lg:text-base py-2 sm:py-2 lg:py-3"
+                          data-testid={`button-therapist-info-${slideIndex * itemsPerSlide + index}`}
                         >
                           More Information
                         </Button>

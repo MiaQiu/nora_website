@@ -9,25 +9,25 @@ export default function Footer() {
   return (
     <>
       {/* Contact/CTA Section */}
-      <section id="contact" className="py-16 lg:py-24 bg-primary text-white">
+      <section id="contact" className="py-8 sm:py-12 lg:py-24 bg-primary text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold mb-4 sm:mb-6">
             Ready to support your family's journey?
           </h2>
-          <p className="text-lg sm:text-xl mb-8 max-w-3xl mx-auto opacity-90">
+          <p className="text-base sm:text-lg lg:text-xl mb-6 sm:mb-8 max-w-3xl mx-auto opacity-90">
             Join thousands of families who have found expert support and guidance through AskFellow. 
             Start your personalized care journey today.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <button 
               onClick={() => window.location.href = '/book-session'}
-              className="bg-white text-primary px-8 py-4 rounded-lg hover:bg-opacity-90 transition duration-300 font-semibold"
+              className="bg-white text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-opacity-90 transition duration-300 font-semibold text-sm sm:text-base"
               data-testid="button-book-session-footer"
             >
               Book Your Session
             </button>
             <button 
-              className="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-primary transition duration-300 font-semibold"
+              className="border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-white hover:text-primary transition duration-300 font-semibold text-sm sm:text-base"
               data-testid="button-learn-more-services"
             >
               Learn More About Our Services
@@ -37,9 +37,9 @@ export default function Footer() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-charcoal text-white py-12">
+      <footer className="bg-charcoal text-white py-8 sm:py-10 lg:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             <div>
               <h3 className="text-2xl font-bold mb-4" data-testid="text-footer-brand">AskFellow</h3>
               <p className="text-gray-400" data-testid="text-footer-description">

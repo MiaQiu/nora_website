@@ -30,6 +30,30 @@
   --radius: 0.75rem;
 }
 
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  /* Improve touch targets */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Better scroll behavior on mobile */
+  html {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Prevent zoom on input focus */
+  input, textarea, select {
+    font-size: 16px;
+  }
+  
+  /* Better button spacing on mobile */
+  .mobile-friendly-buttons {
+    gap: 0.75rem;
+  }
+}
+
 .dark {
   --background: hsl(0, 0%, 0%);
   --foreground: hsl(0, 0%, 98%);

@@ -101,18 +101,18 @@ export default function ChatWidget() {
   return (
     <>
       {/* Chat Bubble */}
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
         {/* Chat Window */}
         {isOpen && (
-          <div className="mb-4 w-80 h-96 bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col">
+          <div className="mb-4 w-72 sm:w-80 h-80 sm:h-96 bg-white rounded-xl sm:rounded-2xl shadow-2xl border border-gray-200 flex flex-col">
             {/* Header */}
-            <div className="bg-primary text-white p-4 rounded-t-2xl flex justify-between items-center">
-              <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-secondary rounded-full flex items-center justify-center">
-                  <MessageCircle className="w-4 h-4" />
+            <div className="bg-primary text-white p-3 sm:p-4 rounded-t-xl sm:rounded-t-2xl flex justify-between items-center">
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-secondary rounded-full flex items-center justify-center">
+                  <MessageCircle className="w-3 h-3 sm:w-4 sm:h-4" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-sm" data-testid="text-chat-title">
+                  <h3 className="font-semibold text-xs sm:text-sm" data-testid="text-chat-title">
                     {isHumanAgent ? "Sarah - AskFellow Team" : "AskFellow Assistant"}
                   </h3>
                   <p className="text-xs opacity-90" data-testid="text-chat-status">
@@ -130,7 +130,7 @@ export default function ChatWidget() {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 p-4 overflow-y-auto space-y-3" data-testid="chat-messages-container">
+            <div className="flex-1 p-3 sm:p-4 overflow-y-auto space-y-2 sm:space-y-3" data-testid="chat-messages-container">
               {messages.map((message) => (
                 <div 
                   key={message.id}
@@ -138,7 +138,7 @@ export default function ChatWidget() {
                   data-testid={`message-${message.id}`}
                 >
                   <div 
-                    className={`max-w-xs px-3 py-2 rounded-lg text-sm ${
+                    className={`max-w-xs px-2 sm:px-3 py-2 rounded-lg text-xs sm:text-sm ${
                       message.sender === 'user' 
                         ? 'bg-secondary text-white' 
                         : message.sender === 'system'
@@ -155,7 +155,7 @@ export default function ChatWidget() {
             </div>
 
             {/* Input */}
-            <div className="p-4 border-t border-gray-200">
+            <div className="p-3 sm:p-4 border-t border-gray-200">
               <div className="flex space-x-2">
                 <input
                   type="text"
