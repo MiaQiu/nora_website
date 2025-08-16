@@ -1,8 +1,8 @@
-# ParentPro - Family Support Platform
+# ParentCompass - Family Support Platform
 
 ## Overview
 
-ParentPro is a comprehensive digital platform designed to provide expert support for working families at every stage of their journey. The application serves as a global, proactive care model offering personalized guidance, expert consultations, and community connections. The platform features a modern React-based frontend with a clean, professional design showcasing services like mental health support, return-to-work guidance, child care assistance, and specialized support for neurodivergent families.
+ParentCompass is a comprehensive digital platform designed to provide expert support for working families at every stage of their journey. The application serves as a global, proactive care model offering personalized guidance, expert consultations, and community connections. The platform features a modern React-based frontend with a clean, professional design showcasing services like mental health support, return-to-work guidance, child care assistance, and specialized support for neurodivergent families.
 
 ## Recent Changes (August 16, 2025)
 

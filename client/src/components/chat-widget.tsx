@@ -9,7 +9,7 @@ export default function ChatWidget() {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Hi! I'm Kai, your ParentPro AI assistant 👋",
+      text: "Hi! I'm Kai, your ParentCompass AI assistant 👋",
       sender: "bot",
       timestamp: new Date()
     },
@@ -84,7 +84,7 @@ export default function ChatWidget() {
       
       const agentGreeting = {
         id: messages.length + 2,
-        text: "Hi! 👋 I'm Sarah from the ParentPro team. I'm here to personally help you find the perfect specialist for your family. What can I assist you with today?",
+        text: "Hi! 👋 I'm Sarah from the ParentCompass team. I'm here to personally help you find the perfect specialist for your family. What can I assist you with today?",
         sender: "agent",
         timestamp: new Date()
       };
@@ -113,7 +113,7 @@ export default function ChatWidget() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-sm" data-testid="text-chat-title">
-                    {isHumanAgent ? "Sarah - ParentPro Team" : "ParentPro Assistant"}
+                    {isHumanAgent ? "Sarah - ParentCompass Team" : "ParentCompass Assistant"}
                   </h3>
                   <p className="text-xs opacity-90" data-testid="text-chat-status">
                     {isConnectingToAgent ? "Connecting..." : "Online • Ready to help"}

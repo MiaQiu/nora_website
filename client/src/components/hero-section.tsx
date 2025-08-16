@@ -14,13 +14,10 @@ export default function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="text-4xl lg:text-6xl font-bold text-primary leading-tight mb-4">
-              An expert support system for every working family
+              An expert support system for every working parent
             </h1>
-            <h2 className="text-xl lg:text-2xl font-semibold text-secondary mb-6">
-              Get matched with the perfect parenting coach + 10-minute complimentary consultation to ensure the right fit
-            </h2>
             <p className="text-xl text-charcoal mb-8 leading-relaxed">
-              ParentPro offers the only global, proactive care model that supports 
+              ParentCompass offers the only global, proactive care model that supports 
               all stages of family life. Members receive expert support and guidance, 
               resulting in improved mental health and increased productivity.
             </p>

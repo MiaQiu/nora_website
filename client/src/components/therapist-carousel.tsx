@@ -281,11 +281,14 @@ export default function TherapistCarousel() {
     <section id="therapists" className="py-16 lg:py-24 bg-accent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4">
+          {/* <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4">
             And 100+ elite psychologists and therapists in your area
-          </h2>
+          </h2> */}
+          <h1 className="text-xl lg:text-2xl font-semibold text-secondary mb-6">
+            Get matched with our carefully selected team of professionals
+          </h1>
           <p className="text-xl text-charcoal max-w-3xl mx-auto">
-            Our carefully selected team of professionals brings decades of experience in family support and mental health.
+          10-minute complimentary consultation to ensure the right fit. 
           </p>
         </div>
 
