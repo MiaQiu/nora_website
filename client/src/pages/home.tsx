@@ -5,6 +5,7 @@ import TimelineJourney from "@/components/timeline-journey";
 import HowItWorks from "@/components/how-it-works";
 import TherapistCarousel from "@/components/therapist-carousel";
 import Footer from "@/components/footer";
+import ChatWidget from "@/components/chat-widget";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <TherapistCarousel />
       </main>
       <Footer />
+      <ChatWidget />
     </div>
   );
 }
