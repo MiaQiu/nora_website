@@ -25,10 +25,10 @@ export default function ServicesGrid() {
       alt: "Parent and child engaged in developmental activities and communication"
     },
     {
-      title: "College & Future Planning",
-      description: "Strategic guidance for educational pathways and long-term family goal setting.",
+      title: "Special & Complex Care Navigation",
+      description: "Expert guidance for families managing neurodivergence, physical and mental health conditions with comprehensive care coordination.",
       image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
-      alt: "Family meeting around table discussing future plans"
+      alt: "Healthcare team providing specialized care navigation support"
     },
     {
       title: "Neurodivergence Support",
