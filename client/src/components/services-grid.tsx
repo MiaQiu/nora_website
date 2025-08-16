@@ -31,10 +31,10 @@ export default function ServicesGrid() {
       alt: "Healthcare team providing specialized care navigation support"
     },
     {
-      title: "Neurodivergence Support",
-      description: "Specialized resources and strategies for supporting neurodivergent family members.",
+      title: "Emotional & Relationship Wellbeing",
+      description: "Support for parental mental health and family harmony with expert guidance on emotional wellness and healthy relationships.",
       image: "https://images.unsplash.com/photo-1600298881974-6be191ceeda1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
-      alt: "Multi-racial family cooking together in kitchen showing inclusive support"
+      alt: "Family experiencing emotional wellbeing and healthy relationships"
     },
     {
       title: "Inclusive Support",
