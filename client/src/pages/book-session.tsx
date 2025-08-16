@@ -174,7 +174,7 @@ export default function BookSession() {
               {/* Info Box */}
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                 <p className="text-sm text-blue-800">
-                  <strong>What happens next?</strong> Our team will review your request and contact you within 1 business day to schedule your personalized consultation. Sessions are typically 45-60 minutes and can be conducted via video call or phone.
+                  <strong>What happens next?</strong> After we match you with a coach, you'll start with a complimentary 10-minute consultation to discuss your needs and ensure it's the right fit before continuing with your full session.
                 </p>
               </div>
 
