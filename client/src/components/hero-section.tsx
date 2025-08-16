@@ -14,8 +14,11 @@ export default function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="text-4xl lg:text-6xl font-bold text-primary leading-tight mb-4">
-              An expert support system for every working parent
+              Your Extended Parenting Village
             </h1>
+            <h2 className="text-xl lg:text-2xl font-semibold text-secondary mb-6">
+              Evidence-based expert support network providing personalized 1:1 guidance across every stage of parenting. Navigate challenges and milestones with confidence whether it's small or large
+            </h2>
             <p className="text-xl text-charcoal mb-8 leading-relaxed">
               AskFellow offers the only global, proactive care model that supports 
               all stages of family life. Members receive expert support and guidance, 
