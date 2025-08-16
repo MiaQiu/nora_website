@@ -171,7 +171,24 @@ export default function TherapistCarousel() {
   }
 ];
 
-  const totalSlides = Math.ceil(specialists.length / 4);
+  const [itemsPerSlide, setItemsPerSlide] = useState(4);
+  const totalSlides = Math.ceil(specialists.length / itemsPerSlide);
+
+  useEffect(() => {
+    const updateItemsPerSlide = () => {
+      if (window.innerWidth < 640) {
+        setItemsPerSlide(1); // Mobile: 1 card per slide
+      } else if (window.innerWidth < 1024) {
+        setItemsPerSlide(2); // Tablet: 2 cards per slide
+      } else {
+        setItemsPerSlide(4); // Desktop: 4 cards per slide
+      }
+    };
+
+    updateItemsPerSlide();
+    window.addEventListener('resize', updateItemsPerSlide);
+    return () => window.removeEventListener('resize', updateItemsPerSlide);
+  }, []);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % totalSlides);
@@ -204,10 +221,10 @@ export default function TherapistCarousel() {
           {/* <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4">
             And 100+ elite psychologists and therapists in your area
           </h2> */}
-          <h1 className="text-xl lg:text-2xl font-semibold text-secondary mb-6">
+          <h1 className="text-lg sm:text-xl lg:text-2xl font-semibold text-secondary mb-6">
             Get matched with our carefully selected team of professionals
           </h1>
-          <p className="text-xl text-charcoal max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-charcoal max-w-3xl mx-auto">
           10-minute complimentary consultation to ensure the right fit. 
           </p>
         </div>
@@ -217,23 +234,23 @@ export default function TherapistCarousel() {
           {/* Left Arrow */}
           <button
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors"
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-1 sm:p-2 hover:bg-gray-50 transition-colors"
             data-testid="button-carousel-prev"
           >
-            <ChevronLeft className="w-5 h-5 text-primary" />
+            <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
           </button>
 
           {/* Right Arrow */}
           <button
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors"
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-1 sm:p-2 hover:bg-gray-50 transition-colors"
             data-testid="button-carousel-next"
           >
-            <ChevronRight className="w-5 h-5 text-primary" />
+            <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
           </button>
 
           {/* Carousel */}
-          <div className="overflow-hidden mx-12">
+          <div className="overflow-hidden mx-4 sm:mx-8 lg:mx-12">
             <div 
               className="flex transition-transform duration-300 ease-in-out"
               style={{ 
@@ -246,8 +263,8 @@ export default function TherapistCarousel() {
                   key={slideIndex} 
                   className="min-w-full flex"
                 >
-                  {specialists.slice(slideIndex * 4, (slideIndex + 1) * 4).map((therapist, index) => (
-                    <div key={index} className="w-1/4 px-4 flex-shrink-0">
+                  {specialists.slice(slideIndex * itemsPerSlide, (slideIndex + 1) * itemsPerSlide).map((therapist, index) => (
+                    <div key={index} className={`px-2 sm:px-4 flex-shrink-0 ${itemsPerSlide === 1 ? 'w-full' : itemsPerSlide === 2 ? 'w-1/2' : 'w-1/4'}`}>
                       <div 
                         className="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300"
                         data-testid={`card-therapist-${slideIndex * 4 + index}`}

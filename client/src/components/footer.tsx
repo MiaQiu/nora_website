@@ -11,10 +11,10 @@ export default function Footer() {
       {/* Contact/CTA Section */}
       <section id="contact" className="py-16 lg:py-24 bg-primary text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6">
             Ready to support your family's journey?
           </h2>
-          <p className="text-xl mb-8 max-w-3xl mx-auto opacity-90">
+          <p className="text-lg sm:text-xl mb-8 max-w-3xl mx-auto opacity-90">
             Join thousands of families who have found expert support and guidance through AskFellow. 
             Start your personalized care journey today.
           </p>
@@ -39,7 +39,7 @@ export default function Footer() {
       {/* Footer */}
       <footer className="bg-charcoal text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <div>
               <h3 className="text-2xl font-bold mb-4" data-testid="text-footer-brand">AskFellow</h3>
               <p className="text-gray-400" data-testid="text-footer-description">

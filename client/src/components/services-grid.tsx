@@ -42,15 +42,15 @@ export default function ServicesGrid() {
     <section id="services" className="py-16 lg:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-4">
             Comprehensive Parenting Support Services
           </h2>
-          <p className="text-xl text-charcoal max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-charcoal max-w-3xl mx-auto">
             From pregnancy to teen years, get personalized guidance from vetted experts who understand your family's unique journey.
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {services.map((service, index) => (
             <div 
               key={index}
