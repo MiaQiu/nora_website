@@ -23,11 +23,11 @@ export default function HeroSection() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
-                onClick={scrollToContact}
+                onClick={() => window.location.href = '/book-session'}
                 className="bg-primary text-white px-8 py-4 rounded-lg hover:bg-primary/90 font-semibold"
-                data-testid="button-schedule-demo"
+                data-testid="button-book-session"
               >
-                Schedule a Demo
+                Book Your Session
               </Button>
               <Button
                 variant="outline"

@@ -20,10 +20,11 @@ export default function Footer() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button 
+              onClick={() => window.location.href = '/book-session'}
               className="bg-white text-primary px-8 py-4 rounded-lg hover:bg-opacity-90 transition duration-300 font-semibold"
-              data-testid="button-schedule-demo-footer"
+              data-testid="button-book-session-footer"
             >
-              Schedule Your Demo
+              Book Your Session
             </button>
             <button 
               className="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-primary transition duration-300 font-semibold"
