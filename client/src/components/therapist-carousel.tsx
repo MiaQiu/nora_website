@@ -1,58 +1,173 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import SpecialistModal from "@/components/specialist-modal";
 
 export default function TherapistCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [selectedSpecialist, setSelectedSpecialist] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
   const therapists = [
     {
       name: "Dr. Amy Reale",
       title: "Clinical School Psychologist", 
       experience: "27 years experience",
-      image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&h=200"
+      image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&h=200",
+      about: "Clinical School Psychologists provide comprehensive psychological services within educational settings. They assess learning disabilities, behavioral challenges, and emotional difficulties that may impact academic performance. Dr. Reale specializes in creating individualized intervention plans and collaborating with educators and families.",
+      workExperience: [
+        "Northwest Ohio Center for Educational Psychology",
+        "Cincinnati Children's Hospital Psychology Department",
+        "Hamilton County Board of Education"
+      ],
+      education: [
+        "Ph.D. in School Psychology - University of Cincinnati",
+        "M.A. in Educational Psychology - Miami University",
+        "B.S. in Psychology - The Ohio State University"
+      ],
+      languages: ["English", "Spanish"],
+      specialties: ["Learning disabilities", "ADHD assessment", "Behavioral interventions", "Academic accommodations", "IEP development", "Social-emotional learning"],
+      cancellationPolicy: "24-hour notice required for cancellations to avoid charges"
     },
     {
       name: "Dr. Chelsea Chew",
       title: "Educational Psychologist",
       experience: "27 years experience", 
-      image: "https://images.unsplash.com/photo-1594824278171-187f5086b962?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&h=200"
+      image: "https://images.unsplash.com/photo-1594824278171-187f5086b962?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&h=200",
+      about: "Educational Psychologists focus on how people learn and develop throughout their lives. They study cognitive processes, motivation, and educational effectiveness to help optimize learning experiences. Dr. Chew works with students, families, and educators to address learning challenges.",
+      workExperience: [
+        "Stanford University Learning Sciences Institute",
+        "Palo Alto Unified School District",
+        "Bay Area Educational Consulting"
+      ],
+      education: [
+        "Ph.D. in Educational Psychology - Stanford University",
+        "M.Ed. in Special Education - UC Berkeley",
+        "B.A. in Cognitive Science - UCLA"
+      ],
+      languages: ["English", "Mandarin", "Cantonese"],
+      specialties: ["Cognitive assessment", "Learning strategies", "Giftedness evaluation", "Educational planning", "Study skills training", "Academic motivation"],
+      cancellationPolicy: "48-hour notice required for assessment appointments"
     },
     {
       name: "Dr. Alicia Pon",
       title: "Child Psychotherapist",
       experience: "25 years experience",
-      image: "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&h=200"
+      image: "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&h=200",
+      about: "Child Psychotherapists provide specialized mental health treatment for children and adolescents. They use evidence-based therapeutic approaches to help young people overcome emotional, behavioral, and developmental challenges. Dr. Pon creates safe, supportive environments for healing and growth.",
+      workExperience: [
+        "Children's Hospital of Philadelphia Psychology Department",
+        "Main Line Health Child & Adolescent Services",
+        "Private Practice - Center for Child Wellness"
+      ],
+      education: [
+        "Psy.D. in Clinical Psychology - Widener University",
+        "M.A. in Developmental Psychology - Temple University",
+        "B.A. in Psychology - University of Pennsylvania"
+      ],
+      languages: ["English", "French"],
+      specialties: ["Anxiety disorders", "Depression in children", "Trauma therapy", "Play therapy", "Family counseling", "Autism spectrum support"],
+      cancellationPolicy: "24-hour notice required; same-day cancellations are charged"
     },
     {
       name: "Dr. Davy Guo", 
       title: "Counseling Psychologist",
       experience: "15 years experience",
-      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&h=200"
+      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&h=200",
+      about: "Counseling Psychologists help individuals navigate life transitions, relationship challenges, and personal growth. They provide therapy and counseling services that promote emotional well-being and resilience. Dr. Guo specializes in culturally responsive approaches to mental health care.",
+      workExperience: [
+        "Asian Community Mental Health Services",
+        "University of California Counseling Center",
+        "Multicultural Family Therapy Institute"
+      ],
+      education: [
+        "Ph.D. in Counseling Psychology - UC Santa Barbara",
+        "M.S. in Marriage and Family Therapy - Alliant International",
+        "B.A. in Psychology - UC Davis"
+      ],
+      languages: ["English", "Mandarin", "Korean"],
+      specialties: ["Cultural identity issues", "Intergenerational trauma", "Couples therapy", "Career counseling", "Stress management", "Cross-cultural adjustment"],
+      cancellationPolicy: "24-hour cancellation policy with flexible rescheduling options"
     },
     {
       name: "Dr. Belinda Teo",
       title: "Clinical Psychologist",
       experience: "17 years experience",
-      image: "https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&h=200"
+      image: "https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&h=200",
+      about: "Clinical Psychologists diagnose and treat mental health disorders using evidence-based therapeutic interventions. They conduct psychological assessments and provide individual, group, and family therapy. Dr. Teo specializes in cognitive-behavioral approaches and trauma-informed care.",
+      workExperience: [
+        "Singapore General Hospital Psychology Department",
+        "Institute of Mental Health Singapore",
+        "Raffles Hospital Counseling Services"
+      ],
+      education: [
+        "Ph.D. in Clinical Psychology - National University of Singapore",
+        "M.Psych in Clinical Psychology - University of Melbourne",
+        "B.Psych (Hons) - Monash University"
+      ],
+      languages: ["English", "Mandarin", "Malay", "Hokkien"],
+      specialties: ["Cognitive behavioral therapy", "Trauma recovery", "Mood disorders", "Personality disorders", "Psychological assessment", "Mindfulness-based interventions"],
+      cancellationPolicy: "48-hour notice required for individual sessions"
     },
     {
       name: "Dr. Clare Ong",
       title: "Consulting Psychologist",
       experience: "33 years experience",
-      image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&h=200"
+      image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&h=200",
+      about: "Consulting Psychologists provide expert psychological services to organizations, families, and individuals facing complex challenges. They offer specialized assessments, program development, and strategic interventions. Dr. Ong brings decades of experience in both clinical practice and organizational consulting.",
+      workExperience: [
+        "Singapore Psychological Society - Past President",
+        "Ministry of Education Singapore - Senior Consultant",
+        "Private Practice - Ong Psychology Associates"
+      ],
+      education: [
+        "Ph.D. in Psychology - University of London",
+        "M.A. in Applied Psychology - National University of Singapore",
+        "B.A. (Hons) in Psychology - University of Cambridge"
+      ],
+      languages: ["English", "Mandarin", "Teochew", "Cantonese"],
+      specialties: ["Executive coaching", "Organizational psychology", "Leadership development", "Team dynamics", "Conflict resolution", "Cultural competency training"],
+      cancellationPolicy: "72-hour notice required for consulting sessions"
     },
     {
       name: "Dr. Maria Santos",
       title: "Family Therapist",
       experience: "29 years experience",
-      image: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&h=200"
+      image: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&h=200",
+      about: "Family Therapists work with families to improve communication, resolve conflicts, and strengthen relationships. They address family dynamics, parenting challenges, and life transitions that affect the entire family system. Dr. Santos specializes in culturally responsive family therapy approaches.",
+      workExperience: [
+        "Latino Family Services Center",
+        "Children's Hospital of Los Angeles Family Therapy Unit",
+        "USC Family Therapy Training Clinic"
+      ],
+      education: [
+        "Ph.D. in Marriage and Family Therapy - USC",
+        "M.S.W. in Clinical Social Work - UCLA",
+        "B.A. in Psychology - California State University"
+      ],
+      languages: ["English", "Spanish", "Portuguese"],
+      specialties: ["Bilingual family therapy", "Parenting support", "Adolescent behavioral issues", "Divorce adjustment", "Blended family integration", "Cultural identity development"],
+      cancellationPolicy: "24-hour notice required; emergency sessions available"
     },
     {
       name: "Dr. James Wilson",
       title: "Child Development Specialist",
       experience: "22 years experience",
-      image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&h=200"
+      image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&h=200",
+      about: "Child Development Specialists focus on understanding and supporting children's physical, cognitive, social, and emotional growth. They assess developmental milestones, identify delays, and create intervention plans. Dr. Wilson works closely with families to optimize children's developmental outcomes.",
+      workExperience: [
+        "Boston Children's Hospital Developmental Medicine Center",
+        "Harvard Medical School Department of Pediatrics",
+        "Early Intervention Program of Massachusetts"
+      ],
+      education: [
+        "Ph.D. in Developmental Psychology - Harvard University",
+        "M.Ed. in Special Education - Boston College",
+        "B.S. in Child Development - Tufts University"
+      ],
+      languages: ["English", "French"],
+      specialties: ["Early childhood development", "Developmental delays", "Autism spectrum assessment", "Sensory processing issues", "School readiness", "Milestone tracking"],
+      cancellationPolicy: "48-hour notice required for developmental assessments"
     }
   ];
 
@@ -68,6 +183,16 @@ export default function TherapistCarousel() {
 
   const goToSlide = (slideIndex: number) => {
     setCurrentSlide(slideIndex);
+  };
+
+  const openSpecialistModal = (therapist: any) => {
+    setSelectedSpecialist(therapist);
+    setIsModalOpen(true);
+  };
+
+  const closeSpecialistModal = () => {
+    setIsModalOpen(false);
+    setSelectedSpecialist(null);
   };
 
   // Auto-scroll functionality
@@ -131,6 +256,7 @@ export default function TherapistCarousel() {
                           {therapist.experience}
                         </p>
                         <Button
+                          onClick={() => openSpecialistModal(therapist)}
                           className="bg-secondary text-white hover:bg-secondary/90 w-full"
                           data-testid={`button-therapist-info-${slideIndex * 4 + index}`}
                         >
@@ -179,6 +305,13 @@ export default function TherapistCarousel() {
             ))}
           </div>
         </div>
+
+        {/* Specialist Modal */}
+        <SpecialistModal
+          specialist={selectedSpecialist}
+          isOpen={isModalOpen}
+          onClose={closeSpecialistModal}
+        />
       </div>
     </section>
   );
