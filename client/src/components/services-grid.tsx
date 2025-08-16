@@ -2,7 +2,7 @@ export default function ServicesGrid() {
   const services = [
     {
       title: "Postpartum Care",
-      description: "Comprehensive support for new mothers navigating physical recovery, emotional adjustment, and early bonding with baby.",
+      description: "Comprehensive support for new mothers navigating physical recovery, emotional adjustment, and sleep coaching.",
       image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
       alt: "New mother receiving postpartum care support and guidance"
     },
