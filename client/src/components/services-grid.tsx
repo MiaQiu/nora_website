@@ -13,10 +13,10 @@ export default function ServicesGrid() {
       alt: "Father working on laptop while caring for toddler at home"
     },
     {
-      title: "Child Care & Enrichment",
-      description: "Expert advice on child development, education, and creating enriching experiences.",
+      title: "Education & Academic Guidance",
+      description: "Expert advice on popular education topics for example DSA, PLSE and University planning.",
       image: "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
-      alt: "Mother reading picture book with young daughter on floor"
+      alt: "Student receiving academic guidance and educational planning support"
     },
     {
       title: "Best Birth Plan",
