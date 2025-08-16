@@ -315,18 +315,16 @@ export default function TherapistCarousel() {
               className="flex transition-transform duration-300 ease-in-out"
               style={{ 
                 transform: `translateX(-${currentSlide * 100}%)`,
-                width: `${totalSlides * 100}%`
               }}
               data-testid="therapist-carousel"
             >
               {Array.from({ length: totalSlides }).map((_, slideIndex) => (
                 <div 
                   key={slideIndex} 
-                  className="w-full flex flex-shrink-0"
-                  style={{ width: '100%' }}
+                  className="min-w-full flex"
                 >
                   {therapists.slice(slideIndex * 4, (slideIndex + 1) * 4).map((therapist, index) => (
-                    <div key={index} className="flex-shrink-0 w-full sm:w-1/2 lg:w-1/4 px-4">
+                    <div key={index} className="w-1/4 px-4 flex-shrink-0">
                       <div 
                         className="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300"
                         data-testid={`card-therapist-${slideIndex * 4 + index}`}
