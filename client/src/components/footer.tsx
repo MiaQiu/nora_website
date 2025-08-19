@@ -34,12 +34,12 @@ export default function Footer() {
             >
               Book Your Session
             </button>
-            <button 
+            {/* <button 
               className="border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-white hover:text-primary transition duration-300 font-semibold text-sm sm:text-base"
               data-testid="button-learn-more-services"
             >
               Learn More About Our Services
-            </button>
+            </button> */}
           </div>
         </div>
       </section>
@@ -82,7 +82,7 @@ export default function Footer() {
             </div>
           </div>
           <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-            <p data-testid="text-copyright">&copy; 2025 ParentCompass. All rights reserved.</p>
+            <p data-testid="text-copyright">&copy; 2025 AskFellow. All rights reserved.</p>
           </div>
         </div>
       </footer>

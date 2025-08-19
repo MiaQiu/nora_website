@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SpecialistModal from "@/components/specialist-modal";
+import { motion } from "framer-motion";
 
 export default function TherapistCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -212,44 +213,78 @@ export default function TherapistCarousel() {
     setSelectedSpecialist(null);
   };
 
-  // Auto-scroll functionality removed per user request
-
   return (
-    <section id="therapists" className="py-8 sm:py-12 lg:py-24 bg-accent">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-          <h1 className="text-base sm:text-lg lg:text-xl xl:text-2xl font-semibold text-secondary mb-4 sm:mb-6">
-            Get matched with our carefully selected team of professionals
+    <section id="therapists" className="py-8 sm:py-12 lg:py-24 bg-gradient-to-br from-accent to-white relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 opacity-30">
+        <motion.div
+          className="absolute top-10 right-20 w-20 h-20 bg-gradient-secondary rounded-full blur-xl"
+          animate={{
+            y: [0, -15, 0],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <motion.div 
+          className="text-center mb-8 sm:mb-12 lg:mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h1 className="text-base sm:text-lg lg:text-xl xl:text-2xl font-semibold mb-4 sm:mb-6">
+            Get matched with our{" "}
+            <span className="text-gradient-secondary">carefully selected team</span>{" "}
+            of <span className="text-gradient-primary">professionals</span>
           </h1>
           <p className="text-sm sm:text-base lg:text-lg text-charcoal max-w-3xl mx-auto">
-          10-minute complimentary consultation to ensure the right fit. 
+            <span className="font-semibold bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
+              10-minute complimentary consultation
+            </span>{" "}
+            to ensure the right fit.
           </p>
-        </div>
+        </motion.div>
 
         {/* Therapist Carousel Container */}
-        <div className="relative" data-testid="therapist-carousel-container">
+        <motion.div 
+          className="relative"
+          data-testid="therapist-carousel-container"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
           {/* Left Arrow */}
-          <button
+          <motion.button
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-1 sm:p-2 hover:bg-gray-50 transition-colors"
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 backdrop-blur-glass shadow-lg rounded-full p-1 sm:p-2 hover:shadow-xl transition-all duration-300 border border-white/20 hover:border-secondary/30"
             data-testid="button-carousel-prev"
+            whileHover={{ scale: 1.1, x: -2 }}
+            whileTap={{ scale: 0.9 }}
           >
             <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
-          </button>
+          </motion.button>
 
           {/* Right Arrow */}
-          <button
+          <motion.button
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-1 sm:p-2 hover:bg-gray-50 transition-colors"
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 backdrop-blur-glass shadow-lg rounded-full p-1 sm:p-2 hover:shadow-xl transition-all duration-300 border border-white/20 hover:border-secondary/30"
             data-testid="button-carousel-next"
+            whileHover={{ scale: 1.1, x: 2 }}
+            whileTap={{ scale: 0.9 }}
           >
             <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
-          </button>
+          </motion.button>
 
           {/* Carousel */}
           <div className="overflow-hidden mx-2 sm:mx-4 lg:mx-8 xl:mx-12">
-            <div 
-              className="flex transition-transform duration-300 ease-in-out"
+            <motion.div 
+              className="flex transition-transform duration-500 ease-out"
               style={{ 
                 transform: `translateX(-${currentSlide * 100}%)`,
               }}
@@ -261,61 +296,110 @@ export default function TherapistCarousel() {
                   className="min-w-full flex"
                 >
                   {specialists.slice(slideIndex * itemsPerSlide, (slideIndex + 1) * itemsPerSlide).map((therapist, index) => (
-                    <div key={index} className={`px-2 sm:px-4 flex-shrink-0 ${itemsPerSlide === 1 ? 'w-full' : itemsPerSlide === 2 ? 'w-1/2' : 'w-1/4'}`}>
-                      <div 
-                        className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-3 sm:p-4 lg:p-6 text-center hover:shadow-xl transition-shadow duration-300"
+                    <motion.div 
+                      key={index} 
+                      className={`px-2 sm:px-4 flex-shrink-0 ${itemsPerSlide === 1 ? 'w-full' : itemsPerSlide === 2 ? 'w-1/2' : 'w-1/4'}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ 
+                        duration: 0.6, 
+                        delay: index * 0.1,
+                        ease: "easeOut"
+                      }}
+                    >
+                      <motion.div 
+                        className="group bg-white rounded-xl sm:rounded-2xl shadow-lg p-3 sm:p-4 lg:p-6 text-center transition-all duration-500 hover-lift border border-transparent hover:border-secondary/20"
                         data-testid={`card-therapist-${slideIndex * itemsPerSlide + index}`}
+                        whileHover={{ 
+                          y: -8,
+                          boxShadow: "0 20px 40px rgba(0,0,0,0.1)"
+                        }}
                       >
-                        <img
-                          src={therapist.image}
-                          alt={`${therapist.name} - Professional therapist headshot`}
-                          className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full mx-auto mb-3 sm:mb-4 object-cover"
-                          data-testid={`img-therapist-${slideIndex * itemsPerSlide + index}`}
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.src = "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face";
-                          }}
-                        />
-                        <h3 className="text-sm sm:text-base lg:text-xl font-bold text-primary mb-1" data-testid={`text-therapist-name-${slideIndex * itemsPerSlide + index}`}>
+                        <motion.div
+                          className="relative mb-3 sm:mb-4"
+                          whileHover={{ scale: 1.05 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <img
+                            src={therapist.image}
+                            alt={`${therapist.name} - Professional therapist headshot`}
+                            className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full mx-auto object-cover ring-4 ring-transparent group-hover:ring-secondary/20 transition-all duration-300"
+                            data-testid={`img-therapist-${slideIndex * itemsPerSlide + index}`}
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.src = "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face";
+                            }}
+                          />
+                          <motion.div
+                            className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-secondary rounded-full opacity-0 group-hover:opacity-100"
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ duration: 0.3 }}
+                          />
+                        </motion.div>
+                        
+                        <motion.h3 
+                          className="text-sm sm:text-base lg:text-xl font-bold text-primary mb-1 group-hover:text-gradient-primary transition-all duration-300" 
+                          data-testid={`text-therapist-name-${slideIndex * itemsPerSlide + index}`}
+                          whileHover={{ scale: 1.02 }}
+                        >
                           {therapist.name}
-                        </h3>
+                        </motion.h3>
+                        
                         <p className="text-xs sm:text-sm lg:text-base text-secondary font-semibold mb-1 sm:mb-2" data-testid={`text-therapist-title-${slideIndex * itemsPerSlide + index}`}>
                           {therapist.title}
                         </p>
+                        
                         <p className="text-xs sm:text-sm text-charcoal mb-3 sm:mb-4" data-testid={`text-therapist-experience-${slideIndex * itemsPerSlide + index}`}>
-                          {therapist.experience}
+                          <span className="font-medium text-gradient-secondary">
+                            {therapist.experience}
+                          </span>
                         </p>
-                        <Button
-                          onClick={() => openSpecialistModal(therapist)}
-                          className="bg-secondary text-white hover:bg-secondary/90 w-full text-xs sm:text-sm lg:text-base py-2 sm:py-2 lg:py-3"
-                          data-testid={`button-therapist-info-${slideIndex * itemsPerSlide + index}`}
+                        
+                        <motion.div
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
                         >
-                          More Information
-                        </Button>
-                      </div>
-                    </div>
+                          <Button
+                            onClick={() => openSpecialistModal(therapist)}
+                            className="bg-gradient-secondary text-white hover:shadow-lg hover:shadow-secondary/25 w-full text-xs sm:text-sm lg:text-base py-2 sm:py-2 lg:py-3 glow-secondary transition-all duration-300"
+                            data-testid={`button-therapist-info-${slideIndex * itemsPerSlide + index}`}
+                          >
+                            More Information
+                          </Button>
+                        </motion.div>
+                      </motion.div>
+                    </motion.div>
                   ))}
                 </div>
               ))}
-            </div>
+            </motion.div>
           </div>
-
-
 
           {/* Carousel Indicators */}
-          <div className="flex justify-center space-x-2 mt-6" data-testid="carousel-indicators">
+          <motion.div 
+            className="flex justify-center space-x-2 mt-6"
+            data-testid="carousel-indicators"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
             {Array.from({ length: totalSlides }).map((_, index) => (
-              <button
+              <motion.button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`w-3 h-3 rounded-full transition-colors duration-200 ${
-                  currentSlide === index ? 'bg-secondary' : 'bg-gray-300'
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  currentSlide === index 
+                    ? 'bg-gradient-secondary shadow-lg' 
+                    : 'bg-muted hover:bg-muted/80'
                 }`}
                 data-testid={`indicator-${index}`}
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
               />
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Specialist Modal */}
         <SpecialistModal
