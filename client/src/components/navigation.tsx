@@ -17,7 +17,12 @@ export default function Navigation() {
     <nav className="bg-white shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-14 sm:h-16">
-          <div className="flex items-center">
+          <div className="flex items-center space-x-2">
+            <img 
+              src="/images/animate_logo.gif" 
+              alt="AskFellow Logo" 
+              className="h-8 w-8 sm:h-10 sm:w-10"
+            />
             <h1 className="text-xl sm:text-2xl font-bold text-primary">AskFellow</h1>
           </div>
           
@@ -31,19 +36,13 @@ export default function Navigation() {
               >
                 Services
               </button>
-              <button
-                onClick={() => scrollToSection('how-it-works')}
-                className="text-charcoal hover:text-primary transition duration-300"
-                data-testid="nav-how-it-works"
-              >
-                How it Works
-              </button>
+             
               <button
                 onClick={() => scrollToSection('therapists')}
                 className="text-charcoal hover:text-primary transition duration-300"
                 data-testid="nav-therapists"
               >
-                Our Team
+                Experts
               </button>
               <button
                 onClick={() => scrollToSection('contact')}

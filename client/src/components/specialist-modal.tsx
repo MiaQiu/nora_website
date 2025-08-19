@@ -1,5 +1,6 @@
 import { X, MessageCircle, Video } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLocation } from "wouter";
 
 interface Specialist {
   name: string;
@@ -21,7 +22,15 @@ interface SpecialistModalProps {
 }
 
 export default function SpecialistModal({ specialist, isOpen, onClose }: SpecialistModalProps) {
+  const [, setLocation] = useLocation();
+
   if (!isOpen || !specialist) return null;
+
+  const handleBookAppointment = () => {
+    // Navigate to booking page with specialist name as URL parameter
+    setLocation(`/book-session?specialist=${encodeURIComponent(specialist.name)}`);
+    onClose(); // Close the modal
+  };
 
   return (
     <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center p-4">
@@ -52,6 +61,17 @@ export default function SpecialistModal({ specialist, isOpen, onClose }: Special
             <p className="text-gray-600" data-testid="text-modal-experience">
               {specialist.experience}
             </p>
+          </div>
+
+          <div className="flex justify-center mt-6">
+            <Button
+              onClick={handleBookAppointment}
+              className="bg-secondary text-white hover:bg-secondary/90"
+              data-testid="button-book-session-specialist"
+            >
+              <Video className="w-4 h-4 mr-2" />
+              Book appointment
+            </Button>
           </div>
         </div>
 
@@ -130,7 +150,7 @@ export default function SpecialistModal({ specialist, isOpen, onClose }: Special
           </div>
         </div>
 
-        {/* Action Buttons */}
+        {/* Action Buttons
         <div className="p-6 border-t border-gray-200 flex space-x-3">
           <Button
             variant="outline"
@@ -140,14 +160,8 @@ export default function SpecialistModal({ specialist, isOpen, onClose }: Special
             <MessageCircle className="w-4 h-4 mr-2" />
             Message
           </Button>
-          <Button
-            className="flex-1 bg-secondary text-white hover:bg-secondary/90"
-            data-testid="button-book-appointment"
-          >
-            <Video className="w-4 h-4 mr-2" />
-            Book video appointment
-          </Button>
-        </div>
+  
+        </div> */}
       </div>
     </div>
   );

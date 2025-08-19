@@ -1,9 +1,17 @@
+import { useLocation } from "wouter";
+
 export default function Footer() {
+  const [, setLocation] = useLocation();
+
   const scrollToContact = () => {
     const element = document.getElementById('contact');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+  };
+
+  const navigateToBookSession = () => {
+    setLocation('/book-session');
   };
 
   return (
@@ -20,7 +28,7 @@ export default function Footer() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <button 
-              onClick={() => window.location.href = '/book-session'}
+              onClick={navigateToBookSession}
               className="bg-white text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-opacity-90 transition duration-300 font-semibold text-sm sm:text-base"
               data-testid="button-book-session-footer"
             >

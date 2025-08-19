@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { CheckCircle, ArrowLeft, X } from "lucide-react";
 import { Link, useLocation } from "wouter";
 
-export default function BookSession() {
+export default function Request() {
   const [location] = useLocation();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -132,10 +132,10 @@ export default function BookSession() {
               <div className="text-center">
                 <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-6" />
                 <h1 className="text-3xl font-bold text-primary mb-4">
-                  Session Request Submitted!
+                  Request Submitted!
                 </h1>
                 <p className="text-lg text-charcoal mb-6">
-                  Thank you{formData.name ? `, ${formData.name},` : ""} for booking your session with AskFellow. Our team will review your request and get back to you within 1 business day.
+                  Thank you{formData.name ? `, ${formData.name},` : ""} for submitting your request with AskFellow. Our team will review your request and get back to you within 1 business day.
                 </p>
                 <p className="text-md text-charcoal mb-8">
                   We'll contact you at <strong>{formData.email}</strong> or <strong>{formData.phone}</strong> to schedule your personalized consultation.
@@ -165,19 +165,19 @@ export default function BookSession() {
             </Button>
           </Link>
           <h1 className="text-4xl font-bold text-primary mb-4">
-            Book Your Session
+            Submit Your Request
           </h1>
           <p className="text-xl text-charcoal">
             {formData.specialist 
-              ? <>Schedule a personalized consultation with <strong className="text-secondary">{formData.specialist}</strong></>
-              : "Schedule a personalized consultation with our expert team"
+              ? <>Submit a personalized request to <strong className="text-secondary">{formData.specialist}</strong></>
+              : "Submit a personalized request to our expert team"
             }
           </p>
         </div>
 
         <Card className="shadow-xl">
           <CardHeader>
-            <CardTitle className="text-2xl text-primary">Session Details</CardTitle>
+            <CardTitle className="text-2xl text-primary">Request Details</CardTitle>
             <CardDescription>
               Tell us about yourself and what you'd like to discuss. We'll get back to you within 1 business day.
             </CardDescription>
@@ -236,7 +236,7 @@ export default function BookSession() {
               </div>
 
               {/* Category Selection */}
-              <div className="space-y-2">
+              {/* <div className="space-y-2">
                 <Label htmlFor="category" className="text-sm font-medium text-charcoal">
                   Support Category (Optional)
                 </Label>
@@ -252,10 +252,10 @@ export default function BookSession() {
                     ))}
                   </SelectContent>
                 </Select>
-              </div>
+              </div> */}
 
               {/* Specialist Selection */}
-              <div className="space-y-2">
+              {/* <div className="space-y-2">
                 <Label htmlFor="specialist" className="text-sm font-medium text-charcoal">
                   Preferred Specialist (Optional)
                 </Label>
@@ -274,7 +274,7 @@ export default function BookSession() {
                     ))}
                   </SelectContent>
                 </Select>
-              </div>
+              </div> */}
 
               {/* Available Time Slots */}
               <div className="space-y-4">
@@ -429,7 +429,7 @@ export default function BookSession() {
                 className="w-full bg-primary text-white hover:bg-primary/90 py-3 text-lg font-semibold"
                 data-testid="button-submit-booking"
               >
-                Submit Session Request
+                Submit Request
               </Button>
             </form>
           </CardContent>
@@ -437,4 +437,4 @@ export default function BookSession() {
       </div>
     </div>
   );
-}
+} 

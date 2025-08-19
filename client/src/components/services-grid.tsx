@@ -3,37 +3,37 @@ export default function ServicesGrid() {
     {
       title: "Postpartum Care",
       description: "Comprehensive support for new mothers navigating physical recovery, emotional adjustment, and sleep coaching.",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
+      image: "/images/categories/Postpartum_care.jpg",
       alt: "New mother receiving postpartum care support and guidance"
     },
     {
       title: "Return to Work",
       description: "Guidance and strategies for successfully balancing career responsibilities with family needs.",
-      image: "https://images.unsplash.com/photo-1531983412531-1f49a365ffed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
+      image: "/images/categories/return_to_work.jpg",
       alt: "Father working on laptop while caring for toddler at home"
     },
     {
       title: "Education & Academic Guidance",
       description: "Expert advice on popular education topics for example DSA, PLSE and University planning.",
-      image: "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
+      image: "/images/categories/academic.jpg",
       alt: "Student receiving academic guidance and educational planning support"
     },
     {
       title: "Parenting Skills & Child Development",
       description: "From toddler play to screentime management to teenage communication - expert guidance for every developmental stage.",
-      image: "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
+      image: "/images/categories/parenting_skills.jpg",
       alt: "Parent and child engaged in developmental activities and communication"
     },
     {
       title: "Special & Complex Care Navigation",
       description: "Expert guidance for families managing neurodivergence, physical and mental health conditions with comprehensive care coordination.",
-      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
+      image: "/images/categories/special_care.jpg",
       alt: "Healthcare team providing specialized care navigation support"
     },
     {
       title: "Emotional & Relationship Wellbeing",
       description: "Support for parental mental health and family harmony with expert guidance on emotional wellness and healthy relationships.",
-      image: "https://images.unsplash.com/photo-1600298881974-6be191ceeda1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
+      image: "/images/categories/mental_support.jpg",
       alt: "Family experiencing emotional wellbeing and healthy relationships"
     }
   ];

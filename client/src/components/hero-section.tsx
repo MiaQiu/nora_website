@@ -1,11 +1,18 @@
 import { Button } from "@/components/ui/button";
+import { useLocation } from "wouter";
 
 export default function HeroSection() {
+  const [, setLocation] = useLocation();
+
   const scrollToContact = () => {
     const element = document.getElementById('contact');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+  };
+
+  const navigateToBookSession = () => {
+    setLocation('/book-session');
   };
 
   return (
@@ -21,7 +28,7 @@ export default function HeroSection() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Button
-                onClick={() => window.location.href = '/book-session'}
+                onClick={navigateToBookSession}
                 className="bg-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-primary/90 font-semibold text-sm sm:text-base"
                 data-testid="button-book-session"
               >
