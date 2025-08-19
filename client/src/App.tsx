@@ -7,6 +7,7 @@ import Home from "@/pages/home";
 import BookSession from "@/pages/book-session";
 import Request from "@/pages/request";
 import NotFound from "@/pages/not-found";
+import ParentingSkills from "@/pages/parenting-skills";
 
 function Router() {
   return (
@@ -14,6 +15,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/book-session" component={BookSession} />
       <Route path="/request" component={Request} />
+      <Route path="/parenting-skills" component={ParentingSkills} />
       <Route component={NotFound} />
     </Switch>
   );

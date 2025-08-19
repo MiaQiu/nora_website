@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, ArrowLeft, X } from "lucide-react";
 import { Link, useLocation } from "wouter";
+import SEOHead from "@/components/seo-head";
 
 export default function BookSession() {
   const [location] = useLocation();
@@ -125,7 +126,14 @@ export default function BookSession() {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-accent to-white py-16 lg:py-24">
+      <>
+        <SEOHead
+          title="Session Booked - Thank You | AskFellow"
+          description="Your parenting session request has been submitted. Our expert specialists will contact you within 1 business day to schedule your personalized consultation."
+          canonical="https://askfellow.com/book-session"
+          noIndex={true}
+        />
+        <div className="min-h-screen bg-gradient-to-br from-accent to-white py-16 lg:py-24">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <Card className="shadow-xl">
             <CardContent className="pt-8">
@@ -151,11 +159,19 @@ export default function BookSession() {
           </Card>
         </div>
       </div>
+      </>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-accent to-white py-16 lg:py-24">
+    <>
+      <SEOHead
+        title="Book a Session - Expert Parenting Support | AskFellow"
+        description="Schedule a personalized 1:1 consultation with our expert parenting specialists. Get professional guidance for child development, behavior issues, and family challenges."
+        keywords="book parenting session, parenting consultation, child development expert, family counseling, parenting specialist appointment"
+        canonical="https://askfellow.com/book-session"
+      />
+      <div className="min-h-screen bg-gradient-to-br from-accent to-white py-16 lg:py-24">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
           <Link href="/">
@@ -436,5 +452,6 @@ export default function BookSession() {
         </Card>
       </div>
     </div>
+    </>
   );
 }

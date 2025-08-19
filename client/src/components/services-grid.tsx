@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "wouter";
 
 export default function ServicesGrid() {
   const services = [
@@ -96,17 +97,10 @@ export default function ServicesGrid() {
           initial="hidden"
           animate="visible"
         >
-          {services.map((service, index) => (
-            <motion.div 
-              key={index}
-              variants={itemVariants}
-              whileHover={{ 
-                y: -8,
-                transition: { duration: 0.3 }
-              }}
-              className="group"
-              data-testid={`card-service-${index}`}
-            >
+          {services.map((service, index) => {
+            const isParentingSkills = service.title === "Parenting Skills & Child Development";
+            
+            const cardContent = (
               <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden hover-lift group-hover:glow-secondary border border-transparent hover:border-secondary/20">
                 <div className="relative overflow-hidden">
                   <motion.img
@@ -121,7 +115,7 @@ export default function ServicesGrid() {
                   
                   {/* Floating highlight badge */}
                   <motion.div 
-                    className="absolute top-3 left-3 backdrop-blur-glass px-2 py-1 rounded-lg border border-white/20"
+                    className="absolute bottom-3 left-3 backdrop-blur-glass px-2 py-1 rounded-lg border border-white/20"
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
@@ -161,8 +155,29 @@ export default function ServicesGrid() {
                   </motion.div>
                 </div>
               </div>
-            </motion.div>
-          ))}
+            );
+
+            return (
+              <motion.div 
+                key={index}
+                variants={itemVariants}
+                whileHover={{ 
+                  y: -8,
+                  transition: { duration: 0.3 }
+                }}
+                className="group"
+                data-testid={`card-service-${index}`}
+              >
+                {isParentingSkills ? (
+                  <Link href="/parenting-skills">
+                    {cardContent}
+                  </Link>
+                ) : (
+                  cardContent
+                )}
+              </motion.div>
+            );
+          })}
         </motion.div>
         
         {/* Trust indicators */}
