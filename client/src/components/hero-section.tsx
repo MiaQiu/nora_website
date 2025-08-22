@@ -3,44 +3,52 @@ import { motion } from "framer-motion";
 export default function HeroSection() {
   const specialists = [
     {
-      name: "Dr. Priya Sharma",
+      name: "Ms. Priya Sharma",
       photo: "/images/specialists/dr-priya-sharma.jpg",
-      specialty: "Child Development Expert"
+      specialty: "Return to Work Coach",
+      experience: "Prepare the transition back to their careers after maternity leave"
     },
     {
       name: "Dr. Rachel Lim",
       photo: "/images/specialists/dr-rachel-lim.jpg",
-      specialty: "Postpartum Care Specialist"
+      specialty: "Parenting Coach",
+      experience: "Navigate the challenges of raising children with mental health issues"
     },
     {
-      name: "Dr. Ahmad Hassan",
+      name: "Mr. Ahmad Hassan",
       photo: "/images/specialists/dr-ahmad-hassan.jpg",
-      specialty: "Family Therapist"
+      specialty: "Parent Navigator",
+      experience: "Father of 10 years old son with ADHD"
     },
     {
-      name: "Dr. Catherine Wong",
+      name: "Ms. Catherine Wong",
       photo: "/images/specialists/dr-catherine-wong.jpg",
-      specialty: "Educational Psychologist"
+      specialty: "Parenting Coach",
+      experience: "Education & Academic Planning - PSLE, DSA, University"
     },
     {
       name: "Dr. Sarah Tan",
       photo: "/images/specialists/dr-sarah-tan.jpg",
-      specialty: "Mental Health Counselor"
+      specialty: "Mental Health Counselor",
+      experience: "Emotional & Relationship Wellbeing"
     },
     {
       name: "Dr. Marcus Chen",
       photo: "/images/specialists/dr-marcus-chen.jpg",
-      specialty: "Behavioral Specialist"
+      specialty: "Behavioral Specialist",
+      experience: "Special & Complex Care Navigation"
     },
     {
       name: "Dr. Amelia Kumar",
       photo: "/images/specialists/dr-amelia-kumar.jpg",
-      specialty: "Parenting Coach"
+      specialty: "Parenting Coach",
+      experience: "Parenting Skills & Child Development"
     },
     {
       name: "Dr. Janet Loh",
       photo: "/images/specialists/dr-janet-loh.jpg",
-      specialty: "Family Wellness Expert"
+      specialty: "Family Wellness Expert",
+      experience: "Postpartum Care & Family Support"
     }
   ];
 
@@ -122,7 +130,7 @@ export default function HeroSection() {
                   y: [0, -(224 + 16) * specialists.length]
                 }}
                 transition={{
-                  duration: 30, // Adjust this value to change speed
+                  duration: 50, // Adjust this value to change speed
                   repeat: Infinity,
                   ease: "linear"
                 }}
@@ -160,11 +168,11 @@ export default function HeroSection() {
                       
                       {/* Always visible specialist info overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent">
-                        <div className="absolute bottom-0 left-0 right-0 p-4">
-                          <h3 className="text-white text-lg font-semibold mb-2 leading-tight">
+                        <div className="absolute bottom-0 left-0 right-0 p-3">
+                          <h3 className="text-white text-sm font-semibold mb-1 leading-tight">
                             {specialist.name}
                           </h3>
-                          <p className="text-white/90 text-sm leading-tight">
+                          <p className="text-white/90 text-xs leading-tight">
                             {specialist.specialty}
                           </p>
                         </div>

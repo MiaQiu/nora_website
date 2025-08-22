@@ -10,86 +10,86 @@ export default function TherapistCarousel() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   
   const specialists = [
-  {
-    name: "Dr. Priya Sharma",
-    title: "Perinatal & Postpartum Specialist",
-    experience: "19 years experience",
-    image: "/images/specialists/dr-priya-sharma.jpg",
-    about: "Perinatal & Postpartum Specialists provide comprehensive support throughout pregnancy, birth, and the fourth trimester. They focus on maternal mental health, breastfeeding support, and helping families adjust to parenthood. Dr. Sharma combines medical expertise with culturally sensitive approaches for Singapore's diverse population.",
-    workExperience: [
-      "KK Women's and Children's Hospital Maternal Mental Health Unit",
-      "Singapore General Hospital Perinatal Psychology",
-      "Thomson Medical Centre Lactation Services"
-    ],
-    education: [
-      "MBBS - National University of Singapore",
-      "M.Med in Obstetrics & Gynaecology - NUS",
-      "Diploma in Lactation Management - International Board"
-    ],
-    languages: ["English", "Mandarin", "Tamil", "Hindi", "Malay"],
-    specialties: ["Postpartum depression", "Breastfeeding support", "Birth trauma recovery", "Maternal anxiety", "Sleep training guidance", "Return-to-work preparation"],
-    cancellationPolicy: "24-hour notice required; emergency support available"
-  },
-  {
-    name: "Dr. Rachel Lim",
-    title: "Child Development & Early Intervention Specialist",
-    experience: "23 years experience",
-    image: "/images/specialists/dr-rachel-lim.jpg",
-    about: "Child Development & Early Intervention Specialists assess developmental milestones and provide early screening for neurodivergence. They work with families to identify potential delays and create intervention strategies. Dr. Lim specializes in supporting Singapore families navigate the Early Intervention Programme.",
-    workExperience: [
-      "Child Development Unit, National University Hospital",
-      "Early Intervention Programme for Infants & Children (EIPIC)",
-      "Singapore Association for Early Childhood Development"
-    ],
-    education: [
-      "Ph.D. in Developmental Psychology - National University of Singapore",
-      "M.A. in Special Education - NIE Singapore",
-      "B.Psych (Hons) - University of Melbourne"
-    ],
-    languages: ["English", "Mandarin", "Hokkien", "Teochew"],
-    specialties: ["Developmental assessments", "Autism spectrum screening", "Speech delay intervention", "Motor skills development", "School readiness evaluation", "EIPIC navigation"],
-    cancellationPolicy: "48-hour notice required for comprehensive assessments"
-  },
-  {
-    name: "Dr. Ahmad Hassan",
-    title: "Pediatric Sleep & Nutrition Consultant",
-    experience: "16 years experience",
-    image: "/images/specialists/dr-ahmad-hassan.jpg",
-    about: "Pediatric Sleep & Nutrition Consultants help families establish healthy routines from infancy through childhood. They address feeding difficulties, sleep challenges, and create sustainable wellness habits. Dr. Hassan understands the unique challenges of Singapore's climate and cultural food practices.",
-    workExperience: [
-      "Mount Elizabeth Hospital Pediatric Sleep Clinic",
-      "Singapore Institute for Clinical Sciences",
-      "Private Practice - Healthy Kids Singapore"
-    ],
-    education: [
-      "MBBS - National University of Singapore",
-      "M.Med in Paediatrics - NUS",
-      "Certificate in Pediatric Sleep Medicine - Singapore Sleep Society"
-    ],
-    languages: ["English", "Malay", "Arabic", "Mandarin"],
-    specialties: ["Infant sleep training", "Childhood nutrition planning", "Feeding difficulties", "Healthy routine establishment", "Weight management", "Cultural food adaptation"],
-    cancellationPolicy: "24-hour notice required; flexible scheduling for urgent concerns"
-  },
-  {
-    name: "Dr. Catherine Wong",
-    title: "Educational Psychology & School Support Specialist",
-    experience: "21 years experience",
-    image: "/images/specialists/dr-catherine-wong.jpg",
-    about: "Educational Psychology & School Support Specialists guide families through Singapore's education system, from primary school selection to PSLE preparation. They provide academic support strategies and help navigate special educational needs. Dr. Wong has extensive experience with MOE policies and school placement.",
-    workExperience: [
-      "Ministry of Education Singapore - Special Educational Needs Division",
-      "Raffles Institution Counselling Department",
-      "Singapore Psychological Society - Education Committee"
-    ],
-    education: [
-      "Ph.D. in Educational Psychology - National Institute of Education",
-      "M.Ed in Special Needs - NIE Singapore",
-      "B.A. (Hons) in Psychology - National University of Singapore"
-    ],
-    languages: ["English", "Mandarin", "Cantonese", "Malay"],
-    specialties: ["Primary school selection", "PSLE preparation strategies", "Learning difficulties support", "DSA application guidance", "Academic coaching", "MOE system navigation"],
-    cancellationPolicy: "48-hour notice required; priority booking during school application periods"
-  },
+    {
+      name: "Ms. Priya Sharma",
+      title: "Return to Work Coach",
+      experience: "Prepare the transition back to their careers after maternity leave",
+      image: "/images/specialists/dr-priya-sharma.jpg",
+      about: "Return to Work Coaches help parents navigate the transition back to their careers after maternity leave or career breaks. They provide strategies for work-life integration, managing mom guilt, career re-entry planning, and building confidence in professional settings. Dr. Sharma understands the unique challenges facing working mothers in Singapore's competitive job market.",
+      workExperience: [
+        "MOM Singapore - Women's Career Development Programme",
+        "Singapore Management University - Executive Coaching",
+        "Professional Women's Network Singapore"
+      ],
+      education: [
+        "MBBS - National University of Singapore",
+        "M.Ed in Career Development - National Institute of Education",
+        "Certificate in Executive Coaching - Singapore Coaching Institute"
+      ],
+      languages: ["English", "Mandarin", "Tamil", "Hindi", "Malay"],
+      specialties: ["Career re-entry planning", "Work-life integration strategies", "Professional confidence building", "Networking and job search", "Salary negotiation", "Managing career guilt"],
+      cancellationPolicy: "24-hour notice required; flexible scheduling for working parents"
+    },
+    {
+      name: "Dr. Rachel Lim",
+      title: "Parenting Coach",
+      experience: "Navigate the challenges of raising children with mental health issues",
+      image: "/images/specialists/dr-rachel-lim.jpg",
+      about: "Parenting Coaches specializing in mental health support help families navigate the challenges of raising children with anxiety, depression, or other mental health conditions. They provide evidence-based strategies, crisis management skills, and emotional support for both parents and children. Dr. Lim focuses on building resilient family systems while addressing mental health needs.",
+      workExperience: [
+        "Institute of Mental Health Singapore - Family Support Services",
+        "Singapore Association for Mental Health - Parent Training",
+        "Child Guidance Clinic - Family Therapy Department"
+      ],
+      education: [
+        "Ph.D. in Clinical Psychology - National University of Singapore",
+        "M.A. in Family Therapy - Eastern Virginia Medical School",
+        "Certificate in Child Mental Health - Singapore Psychological Society"
+      ],
+      languages: ["English", "Mandarin", "Hokkien", "Teochew"],
+      specialties: ["Supporting anxious children", "Depression management strategies", "Crisis intervention skills", "Family communication techniques", "Building emotional resilience", "Coordinating with mental health professionals"],
+      cancellationPolicy: "24-hour notice required; emergency support available for crisis situations"
+    },
+    {
+      name: "Mr. Ahmad Hassan",
+      title: "Parent Navigator",
+      experience: "Father of 10 years old son with ADHD",
+      image: "/images/specialists/dr-ahmad-hassan.jpg",
+      about: "Parent Navigators for special needs children help families understand and access services for children with ADHD, Autism Spectrum Disorder, and other developmental differences. They provide guidance on therapeutic interventions, educational support, and advocacy strategies. Dr. Hassan specializes in connecting families with Singapore's support networks and resources.",
+      workExperience: [
+        "Autism Resource Centre Singapore - Family Navigation Services",
+        "SPARK (Society for the Physically Disabled) - Early Intervention",
+        "Ministry of Education - Special Educational Needs Division"
+      ],
+      education: [
+        "M.Ed in Special Education - National Institute of Education",
+        "B.A. (Hons) in Psychology - National University of Singapore",
+        "Certificate in Applied Behavior Analysis - Behavior Analyst Certification Board"
+      ],
+      languages: ["English", "Malay", "Arabic", "Mandarin"],
+      specialties: ["ADHD management strategies", "Autism spectrum support", "IEP development and advocacy", "Therapeutic service coordination", "Sensory processing support", "School accommodation planning"],
+      cancellationPolicy: "48-hour notice required for comprehensive planning sessions"
+    },
+    {
+      name: "Ms. Catherine Wong",
+      title: "Parenting Coach",
+      experience: "Education & Academic Planning - PSLE, DSA, University",
+      image: "/images/specialists/dr-catherine-wong.jpg",
+      about: "Educational Parenting Coaches guide families through Singapore's complex education system, from primary school selection through university planning. They provide strategic academic planning, PSLE preparation support, DSA application guidance, and long-term educational pathway mapping. Dr. Wong has extensive experience with MOE policies and academic excellence strategies.",
+      workExperience: [
+        "Ministry of Education Singapore - Academic Planning Division",
+        "Raffles Institution - Academic Counselling Department",
+        "Singapore Examinations and Assessment Board - Consultant"
+      ],
+      education: [
+        "Ph.D. in Educational Psychology - National Institute of Education",
+        "M.Ed in Educational Leadership - NIE Singapore",
+        "Certificate in Academic Coaching - Singapore Coaching Association"
+      ],
+      languages: ["English", "Mandarin", "Cantonese", "Malay"],
+      specialties: ["PSLE strategic planning", "DSA application strategy", "Secondary school selection", "University pathway planning", "Academic stress management", "Parent-child study dynamics"],
+      cancellationPolicy: "48-hour notice required; priority booking during application seasons"
+    },
   {
     name: "Dr. Sarah Tan",
     title: "Neurodivergence & Learning Differences Specialist",
