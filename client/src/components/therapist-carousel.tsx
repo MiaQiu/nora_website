@@ -308,7 +308,7 @@ export default function TherapistCarousel() {
                       }}
                     >
                       <motion.div 
-                        className="group bg-white rounded-xl sm:rounded-2xl shadow-lg p-3 sm:p-4 lg:p-6 text-center transition-all duration-500 hover-lift border border-transparent hover:border-secondary/20"
+                        className="group bg-white rounded-xl sm:rounded-2xl shadow-lg p-3 sm:p-4 lg:p-6 text-center transition-all duration-500 hover-lift border border-transparent hover:border-secondary/20 h-full flex flex-col"
                         data-testid={`card-therapist-${slideIndex * itemsPerSlide + index}`}
                         whileHover={{ 
                           y: -8,
@@ -355,6 +355,9 @@ export default function TherapistCarousel() {
                             {therapist.experience}
                           </span>
                         </p>
+                        
+                        {/* Spacer to push button to bottom */}
+                        <div className="flex-grow" />
                         
                         <motion.div
                           whileHover={{ scale: 1.05 }}

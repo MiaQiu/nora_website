@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { ArrowLeft, Users, Heart, Smartphone, AlertCircle, User, Baby, Star, Clock, MessageCircle, Calendar } from "lucide-react";
+import { ArrowLeft, Brain, Activity, Star, Clock, MessageCircle, Calendar, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import ChatWidget from "@/components/chat-widget";
@@ -32,16 +32,16 @@ interface SubCategory {
 // Full specialist data
 const specialists = [
   {
-    name: "Dr. Priya Sharma",
-    title: "Perinatal & Postpartum Specialist",
-    experience: "19 years experience",
-    image: "/images/specialists/dr-priya-sharma.jpg",
-    about: "Perinatal & Postpartum Specialists provide comprehensive support throughout pregnancy, birth, and the fourth trimester. They focus on maternal mental health, breastfeeding support, and helping families adjust to parenthood.",
-    languages: ["English", "Mandarin", "Tamil", "Hindi", "Malay"],
-    specialties: ["Postpartum depression", "Breastfeeding support", "Birth trauma recovery", "Maternal anxiety", "Sleep training guidance", "Return-to-work preparation"],
-    cancellationPolicy: "24-hour notice required; emergency support available",
+    name: "Dr. Sarah Tan",
+    title: "Neurodivergence & Learning Differences Specialist",
+    experience: "18 years experience",
+    image: "/images/specialists/dr-sarah-tan.jpg",
+    about: "Neurodivergence & Learning Differences Specialists provide comprehensive support for children with ADHD, autism, dyslexia, and other learning differences. They help families understand neurodivergent needs and advocate within Singapore's education system.",
+    languages: ["English", "Mandarin", "Hokkien"],
+    specialties: ["ADHD assessment and management", "Autism spectrum support", "Dyslexia intervention", "School accommodation planning", "Strength-based coaching", "Family advocacy training"],
+    cancellationPolicy: "72-hour notice required for diagnostic assessments",
     rating: 4.9,
-    reviewCount: 127
+    reviewCount: 178
   },
   {
     name: "Dr. Rachel Lim",
@@ -54,46 +54,10 @@ const specialists = [
     cancellationPolicy: "48-hour notice required for comprehensive assessments",
     rating: 4.8,
     reviewCount: 89
-  },
-  {
-    name: "Dr. Marcus Chen",
-    title: "Digital Wellness & Family Communication Coach",
-    experience: "12 years experience",
-    image: "/images/specialists/dr-marcus-chen.jpg",
-    about: "Digital Wellness & Family Communication Coaches help families navigate technology use and strengthen relationships in the digital age. They provide strategies for healthy screen time, online safety, and maintaining family connection.",
-    languages: ["English", "Mandarin", "Cantonese"],
-    specialties: ["Screen time management", "Online safety education", "Digital parenting strategies", "Family communication improvement", "Cyberbullying prevention", "Tech-life balance"],
-    cancellationPolicy: "24-hour notice required; virtual sessions available",
-    rating: 4.7,
-    reviewCount: 156
-  },
-  {
-    name: "Dr. Amelia Kumar",
-    title: "Adolescent Mental Health & Emotional Wellness Coach",
-    experience: "20 years experience",
-    image: "/images/specialists/dr-amelia-kumar.jpg",
-    about: "Adolescent Mental Health & Emotional Wellness Coaches specialize in supporting teenagers through emotional challenges, anxiety, and depression. They work with both teens and parents to navigate this critical developmental stage.",
-    languages: ["English", "Tamil", "Hindi", "Mandarin", "Malay"],
-    specialties: ["Teen anxiety and depression", "Self-esteem building", "Peer pressure navigation", "Academic stress management", "Body image concerns", "Suicide prevention"],
-    cancellationPolicy: "24-hour notice required; crisis intervention available",
-    rating: 4.9,
-    reviewCount: 203
-  },
-  {
-    name: "Dr. Janet Loh",
-    title: "Parent Self-Care & Family Wellness Specialist",
-    experience: "24 years experience",
-    image: "/images/specialists/dr-janet-loh.jpg",
-    about: "Parent Self-Care & Family Wellness Specialists focus on supporting parents' mental health, stress management, and overall wellbeing throughout their parenting journey.",
-    languages: ["English", "Mandarin", "Hokkien", "Cantonese"],
-    specialties: ["Parent burnout prevention", "Stress management techniques", "Menopause support", "Work-life balance", "Mindfulness training", "Relationship maintenance during parenting"],
-    cancellationPolicy: "24-hour notice required; wellness retreats available",
-    rating: 4.8,
-    reviewCount: 145
   }
 ];
 
-export default function ParentingSkills() {
+export default function SpecialComplexCare() {
   const [selectedCategory, setSelectedCategory] = useState<SubCategory | null>(null);
 
   // Scroll to top when page loads
@@ -103,58 +67,58 @@ export default function ParentingSkills() {
 
   const subCategories = [
     {
-      id: "parent-child",
-      title: "Parent-Child Relationship",
-      description: "Build stronger bonds and improve communication with your child at every age.",
-      icon: Heart,
-      color: "from-pink-500 to-rose-500",
-      topics: ["Attachment building", "Quality time activities", "Age-appropriate communication", "Trust building"],
-      matchedSpecialists: ["Dr. Rachel Lim", "Dr. Amelia Kumar", "Dr. Janet Loh"]
-    },
-    {
-      id: "sibling",
-      title: "Sibling Relationship",
-      description: "Navigate sibling dynamics and foster healthy relationships between your children.",
-      icon: Users,
+      id: "depression",
+      title: "Depression",
+      description: "Comprehensive support for children and families dealing with depression and mood disorders.",
+      icon: Brain,
       color: "from-blue-500 to-cyan-500",
-      topics: ["Sibling rivalry", "Fair conflict resolution", "Individual attention", "Family harmony"],
-      matchedSpecialists: ["Dr. Rachel Lim", "Dr. Marcus Chen", "Dr. Janet Loh"]
+      topics: ["Depression assessment", "Treatment planning", "Family support", "School collaboration", "Crisis intervention", "Recovery strategies"],
+      matchedSpecialists: ["Dr. Sarah Tan", "Dr. Rachel Lim"]
     },
     {
-      id: "screentime",
-      title: "Digital Screentime",
-      description: "Establish healthy digital boundaries and screen time management for your family.",
-      icon: Smartphone,
+      id: "depression-adhd",
+      title: "Depression/ADHD",
+      description: "Specialized support for children with co-occurring depression and ADHD challenges.",
+      icon: Activity,
       color: "from-purple-500 to-indigo-500",
-      topics: ["Age-appropriate limits", "Digital wellness", "Educational content", "Screen-free activities"],
-      matchedSpecialists: ["Dr. Marcus Chen"]
+      topics: ["Dual diagnosis support", "ADHD management", "Depression treatment", "Behavioral strategies", "Academic support", "Family therapy"],
+      matchedSpecialists: ["Dr. Sarah Tan"]
     },
     {
-      id: "behavior",
-      title: "Behavior Issues",
-      description: "Address challenging behaviors with positive discipline strategies and expert guidance.",
-      icon: AlertCircle,
-      color: "from-orange-500 to-red-500",
-      topics: ["Positive discipline", "Tantrum management", "Consistent boundaries", "Behavioral strategies"],
-      matchedSpecialists: ["Dr. Rachel Lim", "Dr. Amelia Kumar", "Dr. Marcus Chen"]
-    },
-    {
-      id: "single-parent",
-      title: "Single Parents",
-      description: "Support and strategies specifically designed for single parent challenges and success.",
-      icon: User,
+      id: "anxiety",
+      title: "Anxiety",
+      description: "Expert guidance for managing anxiety disorders in children and adolescents.",
+      icon: Brain,
       color: "from-green-500 to-emerald-500",
-      topics: ["Time management", "Support networks", "Self-care balance", "Co-parenting strategies"],
-      matchedSpecialists: ["Dr. Janet Loh", "Dr. Priya Sharma"]
+      topics: ["Anxiety assessment", "Coping strategies", "Exposure therapy", "School anxiety support", "Social anxiety help", "Family coping skills"],
+      matchedSpecialists: ["Dr. Sarah Tan", "Dr. Rachel Lim"]
     },
     {
-      id: "father-bonding",
-      title: "Father-Kids Bonding",
-      description: "Strengthen father-child relationships with activities and communication strategies.",
-      icon: Baby,
+      id: "autism",
+      title: "Autism",
+      description: "Comprehensive autism spectrum support and early intervention strategies.",
+      icon: Brain,
+      color: "from-orange-500 to-red-500",
+      topics: ["Autism assessment", "Early intervention", "Behavioral support", "Communication strategies", "School integration", "Family education"],
+      matchedSpecialists: ["Dr. Sarah Tan", "Dr. Rachel Lim"]
+    },
+    {
+      id: "dyslexia",
+      title: "Dyslexia",
+      description: "Specialized support for children with dyslexia and reading difficulties.",
+      icon: Brain,
       color: "from-teal-500 to-blue-500",
-      topics: ["Bonding activities", "Active play", "Emotional connection", "Role modeling"],
-      matchedSpecialists: ["Dr. Marcus Chen", "Dr. Rachel Lim"]
+      topics: ["Dyslexia assessment", "Reading intervention", "Academic accommodations", "Learning strategies", "School advocacy", "Parent support"],
+      matchedSpecialists: ["Dr. Sarah Tan"]
+    },
+    {
+      id: "ocd",
+      title: "OCD",
+      description: "Expert support for children with Obsessive-Compulsive Disorder and related challenges.",
+      icon: Brain,
+      color: "from-pink-500 to-rose-500",
+      topics: ["OCD assessment", "Exposure therapy", "Family support", "School accommodations", "Coping strategies", "Treatment planning"],
+      matchedSpecialists: ["Dr. Sarah Tan"]
     }
   ];
 
@@ -216,24 +180,24 @@ export default function ParentingSkills() {
           </div>
         </div>
         
-                 <p className="text-gray-600 text-sm leading-relaxed mb-4 overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>
-           {specialist.about}
-         </p>
+        <p className="text-gray-600 text-sm leading-relaxed mb-4 overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>
+          {specialist.about}
+        </p>
         
         <div className="mb-4">
           <h4 className="text-sm font-semibold text-charcoal mb-2">Key Specialties:</h4>
-                     <div className="flex flex-wrap gap-1">
-             {specialist.specialties.slice(0, 3).map((specialty: string, idx: number) => (
-               <span key={idx} className="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full">
-                 {specialty}
-               </span>
-             ))}
-             {specialist.specialties.length > 3 && (
-               <span className="text-xs text-gray-500 px-2 py-1">
-                 +{specialist.specialties.length - 3} more
-               </span>
-             )}
-           </div>
+          <div className="flex flex-wrap gap-1">
+            {specialist.specialties.slice(0, 3).map((specialty: string, idx: number) => (
+              <span key={idx} className="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full">
+                {specialty}
+              </span>
+            ))}
+            {specialist.specialties.length > 3 && (
+              <span className="text-xs text-gray-500 px-2 py-1">
+                +{specialist.specialties.length - 3} more
+              </span>
+            )}
+          </div>
         </div>
 
         <div className="flex gap-2">
@@ -254,10 +218,10 @@ export default function ParentingSkills() {
   return (
     <>
       <SEOHead
-        title="Parenting Skills & Child Development - Expert Guidance | AskFellow"
-        description="Expert parenting skills guidance for every developmental stage. From toddler behavior to teenage communication, get personalized support from vetted child development specialists."
-        keywords="parenting skills, child development, toddler behavior, teenage communication, sibling rivalry, screen time management, positive discipline, parent-child bonding, single parenting, behavioral strategies"
-        canonical="https://askfellow.com/parenting-skills"
+        title="Special & Complex Care Navigation - Expert Support | AskFellow"
+        description="Expert guidance for neurodivergence, physical and mental health conditions including depression, ADHD, anxiety, autism, dyslexia, and OCD. Get comprehensive care coordination and support."
+        keywords="special care, complex care, neurodivergence, depression, ADHD, anxiety, autism, dyslexia, OCD, mental health, developmental support"
+        canonical="https://askfellow.com/special-complex-care"
       />
       <div className="min-h-screen bg-gradient-warm">
         {/* Header */}
@@ -307,17 +271,16 @@ export default function ParentingSkills() {
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.6 }}
                     >
-                      <Baby className="w-5 h-5 text-primary" />
-                      <span className="text-sm font-medium text-primary">Parenting Excellence</span>
+                      <Brain className="w-5 h-5 text-primary" />
+                      <span className="text-sm font-medium text-primary">Specialized Care</span>
                     </motion.div>
                     
                     <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-                      <span className="text-gradient-primary">Parenting Skills &</span>{" "}
-                      <span className="text-charcoal">Child Development</span>
+                      <span className="text-gradient-primary">Special & Complex Care</span>{" "}
+                      <span className="text-charcoal">Navigation</span>
                     </h1>
                     <p className="text-lg sm:text-xl text-charcoal max-w-3xl mx-auto leading-relaxed">
-                      From <span className="font-semibold text-secondary">toddler play to teenage communication</span> - 
-                      expert guidance for every developmental stage and parenting challenge.
+                      Expert guidance for families managing <span className="font-semibold text-secondary">neurodivergence, physical and mental health conditions</span> with comprehensive care coordination.
                     </p>
                   </motion.div>
 
@@ -456,11 +419,11 @@ export default function ParentingSkills() {
                 >
                   <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border border-primary/10">
                     <h2 className="text-2xl lg:text-3xl font-bold text-charcoal mb-4">
-                      Need Personalized Guidance?
+                      Need Specialized Care Support?
                     </h2>
                     <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-                      Every family is unique. Connect with our expert specialists for personalized advice 
-                      tailored to your specific parenting challenges and goals.
+                      Every child's needs are unique. Connect with our expert specialists for personalized care 
+                      tailored to your family's specific challenges and goals.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                       <Link href="/book-session">

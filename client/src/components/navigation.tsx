@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "wouter";
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -102,12 +103,14 @@ export default function Navigation() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button 
-                className="bg-gradient-primary text-white hover:shadow-lg hover:shadow-primary/25 text-sm sm:text-base px-3 sm:px-4 py-2 glow-primary transition-all duration-300"
-                data-testid="button-get-started"
-              >
-                Get Started
-              </Button>
+              <Link href="/request">
+                <Button 
+                  className="bg-gradient-primary text-white hover:shadow-lg hover:shadow-primary/25 text-sm sm:text-base px-3 sm:px-4 py-2 glow-primary transition-all duration-300"
+                  data-testid="button-get-started"
+                >
+                  Book a free consultation
+                </Button>
+              </Link>
             </motion.div>
             
             <motion.button 

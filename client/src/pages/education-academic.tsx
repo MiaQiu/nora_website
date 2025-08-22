@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { ArrowLeft, Users, Heart, Smartphone, AlertCircle, User, Baby, Star, Clock, MessageCircle, Calendar } from "lucide-react";
+import { ArrowLeft, GraduationCap, BookOpen, Star, Clock, MessageCircle, Calendar, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import ChatWidget from "@/components/chat-widget";
@@ -32,59 +32,23 @@ interface SubCategory {
 // Full specialist data
 const specialists = [
   {
-    name: "Dr. Priya Sharma",
-    title: "Perinatal & Postpartum Specialist",
-    experience: "19 years experience",
-    image: "/images/specialists/dr-priya-sharma.jpg",
-    about: "Perinatal & Postpartum Specialists provide comprehensive support throughout pregnancy, birth, and the fourth trimester. They focus on maternal mental health, breastfeeding support, and helping families adjust to parenthood.",
-    languages: ["English", "Mandarin", "Tamil", "Hindi", "Malay"],
-    specialties: ["Postpartum depression", "Breastfeeding support", "Birth trauma recovery", "Maternal anxiety", "Sleep training guidance", "Return-to-work preparation"],
-    cancellationPolicy: "24-hour notice required; emergency support available",
-    rating: 4.9,
-    reviewCount: 127
-  },
-  {
-    name: "Dr. Rachel Lim",
-    title: "Child Development & Early Intervention Specialist",
-    experience: "23 years experience",
-    image: "/images/specialists/dr-rachel-lim.jpg",
-    about: "Child Development & Early Intervention Specialists assess developmental milestones and provide early screening for neurodivergence. They work with families to identify potential delays and create intervention strategies.",
-    languages: ["English", "Mandarin", "Hokkien", "Teochew"],
-    specialties: ["Developmental assessments", "Autism spectrum screening", "Speech delay intervention", "Motor skills development", "School readiness evaluation", "EIPIC navigation"],
-    cancellationPolicy: "48-hour notice required for comprehensive assessments",
-    rating: 4.8,
-    reviewCount: 89
-  },
-  {
-    name: "Dr. Marcus Chen",
-    title: "Digital Wellness & Family Communication Coach",
-    experience: "12 years experience",
-    image: "/images/specialists/dr-marcus-chen.jpg",
-    about: "Digital Wellness & Family Communication Coaches help families navigate technology use and strengthen relationships in the digital age. They provide strategies for healthy screen time, online safety, and maintaining family connection.",
-    languages: ["English", "Mandarin", "Cantonese"],
-    specialties: ["Screen time management", "Online safety education", "Digital parenting strategies", "Family communication improvement", "Cyberbullying prevention", "Tech-life balance"],
-    cancellationPolicy: "24-hour notice required; virtual sessions available",
-    rating: 4.7,
-    reviewCount: 156
-  },
-  {
-    name: "Dr. Amelia Kumar",
-    title: "Adolescent Mental Health & Emotional Wellness Coach",
-    experience: "20 years experience",
-    image: "/images/specialists/dr-amelia-kumar.jpg",
-    about: "Adolescent Mental Health & Emotional Wellness Coaches specialize in supporting teenagers through emotional challenges, anxiety, and depression. They work with both teens and parents to navigate this critical developmental stage.",
-    languages: ["English", "Tamil", "Hindi", "Mandarin", "Malay"],
-    specialties: ["Teen anxiety and depression", "Self-esteem building", "Peer pressure navigation", "Academic stress management", "Body image concerns", "Suicide prevention"],
-    cancellationPolicy: "24-hour notice required; crisis intervention available",
+    name: "Dr. Catherine Wong",
+    title: "Educational Psychology & School Support Specialist",
+    experience: "21 years experience",
+    image: "/images/specialists/dr-catherine-wong.jpg",
+    about: "Educational Psychology & School Support Specialists guide families through Singapore's education system, from primary school selection to PSLE preparation. They provide academic support strategies and help navigate special educational needs.",
+    languages: ["English", "Mandarin", "Cantonese", "Malay"],
+    specialties: ["Primary school selection", "PSLE preparation strategies", "Learning difficulties support", "DSA application guidance", "Academic coaching", "MOE system navigation"],
+    cancellationPolicy: "48-hour notice required; priority booking during school application periods",
     rating: 4.9,
     reviewCount: 203
   },
   {
     name: "Dr. Janet Loh",
-    title: "Parent Self-Care & Family Wellness Specialist",
+    title: "Education & Academic Guidance Specialist",
     experience: "24 years experience",
     image: "/images/specialists/dr-janet-loh.jpg",
-    about: "Parent Self-Care & Family Wellness Specialists focus on supporting parents' mental health, stress management, and overall wellbeing throughout their parenting journey.",
+    about: "Education & Academic Guidance Specialists focus on supporting parents' mental health, stress management, and overall wellbeing throughout their parenting journey.",
     languages: ["English", "Mandarin", "Hokkien", "Cantonese"],
     specialties: ["Parent burnout prevention", "Stress management techniques", "Menopause support", "Work-life balance", "Mindfulness training", "Relationship maintenance during parenting"],
     cancellationPolicy: "24-hour notice required; wellness retreats available",
@@ -93,7 +57,7 @@ const specialists = [
   }
 ];
 
-export default function ParentingSkills() {
+export default function EducationAcademic() {
   const [selectedCategory, setSelectedCategory] = useState<SubCategory | null>(null);
 
   // Scroll to top when page loads
@@ -103,58 +67,22 @@ export default function ParentingSkills() {
 
   const subCategories = [
     {
-      id: "parent-child",
-      title: "Parent-Child Relationship",
-      description: "Build stronger bonds and improve communication with your child at every age.",
-      icon: Heart,
-      color: "from-pink-500 to-rose-500",
-      topics: ["Attachment building", "Quality time activities", "Age-appropriate communication", "Trust building"],
-      matchedSpecialists: ["Dr. Rachel Lim", "Dr. Amelia Kumar", "Dr. Janet Loh"]
-    },
-    {
-      id: "sibling",
-      title: "Sibling Relationship",
-      description: "Navigate sibling dynamics and foster healthy relationships between your children.",
-      icon: Users,
+      id: "dsa",
+      title: "DSA (Direct School Admission)",
+      description: "Strategic guidance for Direct School Admission applications and preparation.",
+      icon: GraduationCap,
       color: "from-blue-500 to-cyan-500",
-      topics: ["Sibling rivalry", "Fair conflict resolution", "Individual attention", "Family harmony"],
-      matchedSpecialists: ["Dr. Rachel Lim", "Dr. Marcus Chen", "Dr. Janet Loh"]
+      topics: ["DSA application strategy", "Portfolio development", "Interview preparation", "School selection guidance", "Application timeline", "Success rate optimization"],
+      matchedSpecialists: ["Dr. Catherine Wong"]
     },
     {
-      id: "screentime",
-      title: "Digital Screentime",
-      description: "Establish healthy digital boundaries and screen time management for your family.",
-      icon: Smartphone,
-      color: "from-purple-500 to-indigo-500",
-      topics: ["Age-appropriate limits", "Digital wellness", "Educational content", "Screen-free activities"],
-      matchedSpecialists: ["Dr. Marcus Chen"]
-    },
-    {
-      id: "behavior",
-      title: "Behavior Issues",
-      description: "Address challenging behaviors with positive discipline strategies and expert guidance.",
-      icon: AlertCircle,
-      color: "from-orange-500 to-red-500",
-      topics: ["Positive discipline", "Tantrum management", "Consistent boundaries", "Behavioral strategies"],
-      matchedSpecialists: ["Dr. Rachel Lim", "Dr. Amelia Kumar", "Dr. Marcus Chen"]
-    },
-    {
-      id: "single-parent",
-      title: "Single Parents",
-      description: "Support and strategies specifically designed for single parent challenges and success.",
-      icon: User,
+      id: "psle",
+      title: "PSLE Preparation",
+      description: "Comprehensive PSLE preparation strategies and academic support for primary school students.",
+      icon: BookOpen,
       color: "from-green-500 to-emerald-500",
-      topics: ["Time management", "Support networks", "Self-care balance", "Co-parenting strategies"],
-      matchedSpecialists: ["Dr. Janet Loh", "Dr. Priya Sharma"]
-    },
-    {
-      id: "father-bonding",
-      title: "Father-Kids Bonding",
-      description: "Strengthen father-child relationships with activities and communication strategies.",
-      icon: Baby,
-      color: "from-teal-500 to-blue-500",
-      topics: ["Bonding activities", "Active play", "Emotional connection", "Role modeling"],
-      matchedSpecialists: ["Dr. Marcus Chen", "Dr. Rachel Lim"]
+      topics: ["PSLE strategies", "Subject-specific preparation", "Exam techniques", "Stress management", "Study planning", "Mock exam practice"],
+      matchedSpecialists: ["Dr. Catherine Wong"]
     }
   ];
 
@@ -216,24 +144,24 @@ export default function ParentingSkills() {
           </div>
         </div>
         
-                 <p className="text-gray-600 text-sm leading-relaxed mb-4 overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>
-           {specialist.about}
-         </p>
+        <p className="text-gray-600 text-sm leading-relaxed mb-4 overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>
+          {specialist.about}
+        </p>
         
         <div className="mb-4">
           <h4 className="text-sm font-semibold text-charcoal mb-2">Key Specialties:</h4>
-                     <div className="flex flex-wrap gap-1">
-             {specialist.specialties.slice(0, 3).map((specialty: string, idx: number) => (
-               <span key={idx} className="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full">
-                 {specialty}
-               </span>
-             ))}
-             {specialist.specialties.length > 3 && (
-               <span className="text-xs text-gray-500 px-2 py-1">
-                 +{specialist.specialties.length - 3} more
-               </span>
-             )}
-           </div>
+          <div className="flex flex-wrap gap-1">
+            {specialist.specialties.slice(0, 3).map((specialty: string, idx: number) => (
+              <span key={idx} className="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full">
+                {specialty}
+              </span>
+            ))}
+            {specialist.specialties.length > 3 && (
+              <span className="text-xs text-gray-500 px-2 py-1">
+                +{specialist.specialties.length - 3} more
+              </span>
+            )}
+          </div>
         </div>
 
         <div className="flex gap-2">
@@ -254,10 +182,10 @@ export default function ParentingSkills() {
   return (
     <>
       <SEOHead
-        title="Parenting Skills & Child Development - Expert Guidance | AskFellow"
-        description="Expert parenting skills guidance for every developmental stage. From toddler behavior to teenage communication, get personalized support from vetted child development specialists."
-        keywords="parenting skills, child development, toddler behavior, teenage communication, sibling rivalry, screen time management, positive discipline, parent-child bonding, single parenting, behavioral strategies"
-        canonical="https://askfellow.com/parenting-skills"
+        title="Education & Academic Guidance - Expert Support | AskFellow"
+        description="Expert guidance for school choice, tutoring, exam preparation, DSA applications, and PSLE preparation. Get personalized academic support for your child's educational journey."
+        keywords="education guidance, academic support, school choice, DSA, PSLE preparation, tutoring, exam preparation, Singapore education system"
+        canonical="https://askfellow.com/education-academic"
       />
       <div className="min-h-screen bg-gradient-warm">
         {/* Header */}
@@ -307,17 +235,16 @@ export default function ParentingSkills() {
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.6 }}
                     >
-                      <Baby className="w-5 h-5 text-primary" />
-                      <span className="text-sm font-medium text-primary">Parenting Excellence</span>
+                      <GraduationCap className="w-5 h-5 text-primary" />
+                      <span className="text-sm font-medium text-primary">Academic Excellence</span>
                     </motion.div>
                     
                     <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-                      <span className="text-gradient-primary">Parenting Skills &</span>{" "}
-                      <span className="text-charcoal">Child Development</span>
+                      <span className="text-gradient-primary">Education & Academic</span>{" "}
+                      <span className="text-charcoal">Guidance</span>
                     </h1>
                     <p className="text-lg sm:text-xl text-charcoal max-w-3xl mx-auto leading-relaxed">
-                      From <span className="font-semibold text-secondary">toddler play to teenage communication</span> - 
-                      expert guidance for every developmental stage and parenting challenge.
+                      Expert advice on <span className="font-semibold text-secondary">school choice, tutoring, exam preparation, DSA applications, and PSLE strategies</span> for academic success.
                     </p>
                   </motion.div>
 
@@ -456,11 +383,11 @@ export default function ParentingSkills() {
                 >
                   <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border border-primary/10">
                     <h2 className="text-2xl lg:text-3xl font-bold text-charcoal mb-4">
-                      Need Personalized Guidance?
+                      Ready to Support Your Child's Academic Journey?
                     </h2>
                     <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-                      Every family is unique. Connect with our expert specialists for personalized advice 
-                      tailored to your specific parenting challenges and goals.
+                      Every child's educational path is unique. Connect with our expert specialists for personalized guidance 
+                      tailored to your child's specific academic needs and goals.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                       <Link href="/book-session">

@@ -98,7 +98,26 @@ export default function ServicesGrid() {
           animate="visible"
         >
           {services.map((service, index) => {
-            const isParentingSkills = service.title === "Parenting Skills & Child Development";
+            const getServiceRoute = (title: string) => {
+              switch (title) {
+                case "Postpartum Care":
+                  return "/postpartum-care";
+                case "Return to Work":
+                  return "/return-to-work";
+                case "Education & Academic Guidance":
+                  return "/education-academic";
+                case "Parenting Skills & Child Development":
+                  return "/parenting-skills";
+                case "Special & Complex Care Navigation":
+                  return "/special-complex-care";
+                case "Emotional & Relationship Wellbeing":
+                  return "/emotional-wellbeing";
+                default:
+                  return null;
+              }
+            };
+            
+            const serviceRoute = getServiceRoute(service.title);
             
             const cardContent = (
               <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden hover-lift group-hover:glow-secondary border border-transparent hover:border-secondary/20">
@@ -168,8 +187,8 @@ export default function ServicesGrid() {
                 className="group"
                 data-testid={`card-service-${index}`}
               >
-                {isParentingSkills ? (
-                  <Link href="/parenting-skills">
+                {serviceRoute ? (
+                  <Link href={serviceRoute}>
                     {cardContent}
                   </Link>
                 ) : (
@@ -187,7 +206,7 @@ export default function ServicesGrid() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
-          <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+          {/* <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
             <motion.div
               className="text-center"
               whileHover={{ scale: 1.05 }}
@@ -209,7 +228,7 @@ export default function ServicesGrid() {
               <div className="text-2xl sm:text-3xl font-bold text-gradient-primary mb-1">95%</div>
               <div className="text-sm text-charcoal">Satisfaction Rate</div>
             </motion.div>
-          </div>
+          </div> */}
         </motion.div>
       </div>
     </section>

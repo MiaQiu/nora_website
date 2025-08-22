@@ -8,6 +8,11 @@ import BookSession from "@/pages/book-session";
 import Request from "@/pages/request";
 import NotFound from "@/pages/not-found";
 import ParentingSkills from "@/pages/parenting-skills";
+import PostpartumCare from "@/pages/postpartum-care";
+import ReturnToWork from "@/pages/return-to-work";
+import EducationAcademic from "@/pages/education-academic";
+import SpecialComplexCare from "@/pages/special-complex-care";
+import EmotionalWellbeing from "@/pages/emotional-wellbeing";
 
 function Router() {
   return (
@@ -16,6 +21,11 @@ function Router() {
       <Route path="/book-session" component={BookSession} />
       <Route path="/request" component={Request} />
       <Route path="/parenting-skills" component={ParentingSkills} />
+      <Route path="/postpartum-care" component={PostpartumCare} />
+      <Route path="/return-to-work" component={ReturnToWork} />
+      <Route path="/education-academic" component={EducationAcademic} />
+      <Route path="/special-complex-care" component={SpecialComplexCare} />
+      <Route path="/emotional-wellbeing" component={EmotionalWellbeing} />
       <Route component={NotFound} />
     </Switch>
   );

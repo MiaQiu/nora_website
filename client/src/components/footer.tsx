@@ -1,4 +1,4 @@
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 
 export default function Footer() {
   const [, setLocation] = useLocation();
@@ -26,6 +26,9 @@ export default function Footer() {
             Join thousands of families who have found expert support and guidance through AskFellow. 
             Start your personalized care journey today.
           </p>
+          <p className="text-base sm:text-lg mb-6 sm:mb-8 opacity-80">
+            Contact us at: <a href="mailto:info@askfellow.ai" className="text-secondary hover:text-white transition duration-300 underline">info@askfellow.ai</a> or book a free consultation through the button below.
+          </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <button 
               onClick={navigateToBookSession}
@@ -45,27 +48,31 @@ export default function Footer() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-charcoal text-white py-8 sm:py-10 lg:py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            <div>
-              <h3 className="text-2xl font-bold mb-4" data-testid="text-footer-brand">AskFellow</h3>
-              <p className="text-gray-400" data-testid="text-footer-description">
-                Expert support for every working parents, wherever they are along their journey.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4" data-testid="text-footer-services-title">Services</h4>
+            <footer className="bg-charcoal text-white py-12 sm:py-16 lg:py-20">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-12 lg:gap-16">
+          <div className="lg:col-span-1">
+            <h3 className="text-2xl font-bold mb-4" data-testid="text-footer-brand">AskFellow</h3>
+            <p className="text-gray-400 leading-relaxed" data-testid="text-footer-description">
+              Expert support for every working parents, wherever they are along their journey.
+            </p>
+          </div>
+          <div className="lg:col-span-2">
+            <h4 className="font-semibold mb-4" data-testid="text-footer-services-title">Services</h4>
+            <div className="grid grid-cols-2 gap-x-8 gap-y-2">
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition duration-300" data-testid="link-postpartum-care">Postpartum Care</a></li>
-                <li><a href="#" className="hover:text-white transition duration-300" data-testid="link-return-work">Return to Work</a></li>
-                <li><a href="#" className="hover:text-white transition duration-300" data-testid="link-education-academic">Education & Academic Guidance</a></li>
-                <li><a href="#" className="hover:text-white transition duration-300" data-testid="link-parenting-skills">Parenting Skills & Child Development</a></li>
-                <li><a href="#" className="hover:text-white transition duration-300" data-testid="link-special-care">Special & Complex Care Navigation</a></li>
-                <li><a href="#" className="hover:text-white transition duration-300" data-testid="link-emotional-wellbeing">Emotional & Relationship Wellbeing</a></li>
+                <li><Link href="/postpartum-care" className="hover:text-white transition duration-300" data-testid="link-postpartum-care">Postpartum Care</Link></li>
+                <li><Link href="/return-to-work" className="hover:text-white transition duration-300" data-testid="link-return-work">Return to Work</Link></li>
+                <li><Link href="/education-academic" className="hover:text-white transition duration-300" data-testid="link-education-academic">Education & Academic Guidance</Link></li>
+              </ul>
+              <ul className="space-y-2 text-gray-400">
+                <li><Link href="/parenting-skills" className="hover:text-white transition duration-300" data-testid="link-parenting-skills">Parenting Skills & Child Development</Link></li>
+                <li><Link href="/special-complex-care" className="hover:text-white transition duration-300" data-testid="link-special-care">Special & Complex Care Navigation</Link></li>
+                <li><Link href="/emotional-wellbeing" className="hover:text-white transition duration-300" data-testid="link-emotional-wellbeing">Emotional & Relationship Wellbeing</Link></li>
               </ul>
             </div>
-            <div>
+          </div>
+            {/* <div>
               <h4 className="font-semibold mb-4" data-testid="text-footer-company-title">Company</h4>
               <ul className="space-y-2 text-gray-400">
                 <li><a href="#" className="hover:text-white transition duration-300" data-testid="link-about">About Us</a></li>
@@ -81,7 +88,7 @@ export default function Footer() {
                 <li><a href="#" className="hover:text-white transition duration-300" data-testid="link-terms">Terms of Service</a></li>
                 <li><a href="#" className="hover:text-white transition duration-300" data-testid="link-support">Support</a></li>
               </ul>
-            </div>
+            </div> */}
           </div>
           <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
             <p data-testid="text-copyright">&copy; 2025 AskFellow. All rights reserved.</p>
