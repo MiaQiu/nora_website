@@ -48,67 +48,85 @@ export default function HeroSection() {
   const duplicatedSpecialists = [...specialists, ...specialists, ...specialists];
 
   return (
-    <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-accent via-warm to-white py-8 lg:py-12">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-accent via-warm to-white">
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           
-          {/* Left Content - Takes up 3 columns */}
+          {/* Left Column - Text Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-center lg:text-left lg:col-span-3"
+            className="text-center lg:text-left"
           >
-            <motion.h1 
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-3 sm:mb-4"
+            <motion.h1
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Your Extended{" "}
-              <span className="text-gradient-primary">
-                Parenting Village
-              </span>
+              <span className="text-gradient-primary">Expert</span>{" "}
+              <span className="text-charcoal">Parenting</span>{" "}
+              <span className="text-gradient-secondary">Support</span>
             </motion.h1>
             
-            <motion.p 
-              className="text-base sm:text-lg lg:text-xl text-charcoal mb-6 sm:mb-8 leading-relaxed"
+            <motion.p
+              className="text-lg sm:text-xl lg:text-2xl text-charcoal mb-8 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <span className="font-semibold text-secondary">Evidence-based expert support</span> network providing{" "}
-              <span className="text-gradient-primary font-semibold">
-                personalized 1:1 guidance
-              </span>{" "}
-              across every stage of parenting. Navigate challenges and milestones with confidence.
+              Connect with <span className="font-semibold text-secondary">vetted specialists</span> for{" "}
+              <span className="font-semibold text-primary">personalized 1:1 guidance</span> across every stage of your parenting journey.
             </motion.p>
-            
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
+
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
             >
-              <motion.div
+              <motion.button
+                className="bg-primary text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <button
-                  className="bg-gradient-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:shadow-lg glow-primary font-semibold text-sm sm:text-base transition-all duration-300"
-                  data-testid="button-book-session"
-                >
-                  Book Your Session
-                </button>
-              </motion.div>
+                Book Your Session
+              </motion.button>
+              <motion.button
+                className="border-2 border-primary text-primary px-8 py-4 rounded-full text-lg font-semibold hover:bg-primary hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Learn More
+              </motion.button>
             </motion.div>
 
-            
+            {/* Trust Indicators */}
+            <motion.div
+              className="mt-12 grid grid-cols-3 gap-8 max-w-md mx-auto lg:mx-0"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            >
+              <div className="text-center">
+                <div className="text-2xl font-bold text-gradient-primary">100+</div>
+                <div className="text-sm text-charcoal">Expert Specialists</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-gradient-secondary">95%</div>
+                <div className="text-sm text-charcoal">Satisfaction Rate</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-gradient-primary">24/7</div>
+                <div className="text-sm text-charcoal">Support Available</div>
+              </div>
+            </motion.div>
           </motion.div>
 
-          {/* Right Column - Specialist Photos Grid - Takes up 2 columns */}
+          {/* Right Column - Specialist Photos Grid with Upward Scrolling Animation */}
           <motion.div
-            className="relative h-80 lg:h-[500px] w-full max-w-sm mx-auto lg:col-span-2"
+            className="relative h-96 lg:h-[600px] w-full max-w-lg mx-auto"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -119,21 +137,21 @@ export default function HeroSection() {
               <motion.div
                 className="absolute inset-0 grid grid-cols-2 gap-4 content-start"
                 animate={{
-                  y: [0, -(224 + 16) * specialists.length]
+                  y: [0, -(288 + 16) * specialists.length]
                 }}
                 transition={{
-                  duration: 30, // Adjust this value to change speed
+                  duration: 20, // Adjust this value to change speed
                   repeat: Infinity,
                   ease: "linear"
                 }}
                 style={{
-                  height: `${(224 + 16) * duplicatedSpecialists.length}px`
+                  height: `${(288 + 16) * duplicatedSpecialists.length}px`
                 }}
               >
                 {duplicatedSpecialists.map((specialist, index) => (
                   <motion.div
                     key={`${specialist.name}-${index}`}
-                    className="relative group h-56 w-full"
+                    className="relative group h-72 w-full"
                     whileHover={{ scale: 1.05, zIndex: 10 }}
                     transition={{ duration: 0.3 }}
                   >
@@ -144,9 +162,8 @@ export default function HeroSection() {
                         className="w-full h-full object-cover"
                         onError={(e) => {
                           // Fallback for missing images
-                          const target = e.target as HTMLImageElement;
-                          target.style.display = 'none';
-                          target.parentElement!.innerHTML = `
+                          e.target.style.display = 'none';
+                          e.target.parentElement.innerHTML = `
                             <div class="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
                               <div class="text-center p-4">
                                 <div class="w-16 h-16 bg-primary/30 rounded-full mx-auto mb-3"></div>

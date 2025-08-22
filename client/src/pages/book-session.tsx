@@ -5,13 +5,15 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle, ArrowLeft, X } from "lucide-react";
+import { CheckCircle, ArrowLeft, X, Loader2 } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import SEOHead from "@/components/seo-head";
 
 export default function BookSession() {
   const [location] = useLocation();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -60,7 +62,7 @@ export default function BookSession() {
     }
   }, [location]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validate that at least one time slot is added
@@ -69,8 +71,33 @@ export default function BookSession() {
       return;
     }
     
-    // In a real app, this would send data to the server
-    setIsSubmitted(true);
+    setIsSubmitting(true);
+    setSubmitError(null);
+    
+    try {
+      const response = await fetch('/api/book-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          timeSlots
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to submit booking request');
+      }
+
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error('Error submitting booking:', error);
+      setSubmitError(error instanceof Error ? error.message : 'An unexpected error occurred');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -200,6 +227,15 @@ export default function BookSession() {
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Display error message if any */}
+              {submitError && (
+                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                  <p className="text-sm text-red-800">
+                    <strong>Error:</strong> {submitError}
+                  </p>
+                </div>
+              )}
+
               {/* User Name */}
               <div className="space-y-2">
                 <Label htmlFor="name" className="text-sm font-medium text-charcoal">
@@ -212,6 +248,7 @@ export default function BookSession() {
                   onChange={(e) => handleInputChange('name', e.target.value)}
                   placeholder="How would you like to be addressed?"
                   required
+                  disabled={isSubmitting}
                   className="w-full"
                   data-testid="input-name"
                 />
@@ -229,6 +266,7 @@ export default function BookSession() {
                   onChange={(e) => handleInputChange('phone', e.target.value)}
                   placeholder="9123-4567"
                   required
+                  disabled={isSubmitting}
                   className="w-full"
                   data-testid="input-phone"
                 />
@@ -246,6 +284,7 @@ export default function BookSession() {
                   onChange={(e) => handleInputChange('email', e.target.value)}
                   placeholder="your.email@example.com"
                   required
+                  disabled={isSubmitting}
                   className="w-full"
                   data-testid="input-email"
                 />
@@ -256,7 +295,7 @@ export default function BookSession() {
                 <Label htmlFor="category" className="text-sm font-medium text-charcoal">
                   Support Category (Optional)
                 </Label>
-                <Select onValueChange={(value) => handleInputChange('category', value)}>
+                <Select onValueChange={(value) => handleInputChange('category', value)} disabled={isSubmitting}>
                   <SelectTrigger className="w-full" data-testid="select-category">
                     <SelectValue placeholder="Select a category that best describes your needs" />
                   </SelectTrigger>
@@ -278,6 +317,7 @@ export default function BookSession() {
                 <Select 
                   value={formData.specialist} 
                   onValueChange={(value) => handleInputChange('specialist', value)}
+                  disabled={isSubmitting}
                 >
                   <SelectTrigger className="w-full" data-testid="select-specialist">
                     <SelectValue placeholder="Select a specialist you'd like to work with" />
@@ -314,6 +354,7 @@ export default function BookSession() {
                         value={currentTimeSlot.date}
                         onChange={(e) => handleTimeSlotChange('date', e.target.value)}
                         min={new Date().toISOString().split('T')[0]}
+                        disabled={isSubmitting}
                         className="w-full text-sm"
                         data-testid="input-time-slot-date"
                       />
@@ -327,6 +368,7 @@ export default function BookSession() {
                       <Select 
                         value={currentTimeSlot.startTime}
                         onValueChange={(value) => handleTimeSlotChange('startTime', value)}
+                        disabled={isSubmitting}
                       >
                         <SelectTrigger className="w-full text-sm" data-testid="select-time-slot-time">
                           <SelectValue placeholder="Select time" />
@@ -352,6 +394,7 @@ export default function BookSession() {
                       <Select 
                         value={currentTimeSlot.duration}
                         onValueChange={(value) => handleTimeSlotChange('duration', value)}
+                        disabled={isSubmitting}
                       >
                         <SelectTrigger className="w-full text-sm" data-testid="select-time-slot-duration">
                           <SelectValue placeholder="Select duration" />
@@ -370,7 +413,7 @@ export default function BookSession() {
                   <Button
                     type="button"
                     onClick={addTimeSlot}
-                    disabled={!currentTimeSlot.date || !currentTimeSlot.startTime || !currentTimeSlot.duration}
+                    disabled={!currentTimeSlot.date || !currentTimeSlot.startTime || !currentTimeSlot.duration || isSubmitting}
                     className="bg-primary text-white hover:bg-primary/90 text-sm px-4 py-2"
                     data-testid="button-add-time-slot"
                   >
@@ -397,6 +440,7 @@ export default function BookSession() {
                             onClick={() => removeTimeSlot(index)}
                             variant="outline"
                             size="sm"
+                            disabled={isSubmitting}
                             className="text-red-600 border-red-200 hover:bg-red-50 text-xs px-2 py-1"
                             data-testid={`button-remove-time-slot-${index}`}
                           >
@@ -426,6 +470,7 @@ export default function BookSession() {
                   onChange={(e) => handleInputChange('details', e.target.value)}
                   placeholder="Please describe the topics, challenges, or questions you'd like to address during your session. The more details you provide, the better we can prepare to help you."
                   required
+                  disabled={isSubmitting}
                   rows={4}
                   className="w-full resize-none"
                   data-testid="textarea-details"
@@ -442,10 +487,18 @@ export default function BookSession() {
               {/* Submit Button */}
               <Button
                 type="submit"
+                disabled={isSubmitting}
                 className="w-full bg-primary text-white hover:bg-primary/90 py-3 text-lg font-semibold"
                 data-testid="button-submit-booking"
               >
-                Submit Session Request
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    Submitting Request...
+                  </>
+                ) : (
+                  'Submit Session Request'
+                )}
               </Button>
             </form>
           </CardContent>

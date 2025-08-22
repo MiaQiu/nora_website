@@ -57,10 +57,12 @@ export default function Footer() {
             <div>
               <h4 className="font-semibold mb-4" data-testid="text-footer-services-title">Services</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition duration-300" data-testid="link-mental-health">Mental Health Support</a></li>
+                <li><a href="#" className="hover:text-white transition duration-300" data-testid="link-postpartum-care">Postpartum Care</a></li>
                 <li><a href="#" className="hover:text-white transition duration-300" data-testid="link-return-work">Return to Work</a></li>
-                <li><a href="#" className="hover:text-white transition duration-300" data-testid="link-child-development">Child Development</a></li>
-                <li><a href="#" className="hover:text-white transition duration-300" data-testid="link-family-planning">Family Planning</a></li>
+                <li><a href="#" className="hover:text-white transition duration-300" data-testid="link-education-academic">Education & Academic Guidance</a></li>
+                <li><a href="#" className="hover:text-white transition duration-300" data-testid="link-parenting-skills">Parenting Skills & Child Development</a></li>
+                <li><a href="#" className="hover:text-white transition duration-300" data-testid="link-special-care">Special & Complex Care Navigation</a></li>
+                <li><a href="#" className="hover:text-white transition duration-300" data-testid="link-emotional-wellbeing">Emotional & Relationship Wellbeing</a></li>
               </ul>
             </div>
             <div>

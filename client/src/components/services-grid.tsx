@@ -199,7 +199,7 @@ export default function ServicesGrid() {
               className="text-center"
               whileHover={{ scale: 1.05 }}
             >
-              <div className="text-2xl sm:text-3xl font-bold text-gradient-secondary mb-1">24/7</div>
+              <div className="text-2xl sm:text-3xl font-bold text-gradient-secondary mb-1">1:1</div>
               <div className="text-sm text-charcoal">Support Available</div>
             </motion.div>
             <motion.div

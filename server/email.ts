@@ -1,0 +1,176 @@
+import nodemailer from 'nodemailer';
+
+export interface BookingDetails {
+  name: string;
+  phone: string;
+  email: string;
+  category?: string;
+  specialist?: string;
+  details: string;
+  timeSlots: Array<{
+    date: string;
+    startTime: string;
+    duration: string;
+  }>;
+}
+
+export interface RequestDetails {
+  name: string;
+  phone: string;
+  email: string;
+  details: string;
+  timeSlots: Array<{
+    date: string;
+    startTime: string;
+    duration: string;
+  }>;
+}
+
+class EmailService {
+  private transporter: nodemailer.Transporter;
+
+  constructor() {
+    // Configure your email provider here
+    // For development, you can use a service like Gmail, Outlook, or a dedicated email service
+    this.transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST || 'smtp.gmail.com',
+      port: parseInt(process.env.SMTP_PORT || '587'),
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: process.env.SMTP_USER, // your email
+        pass: process.env.SMTP_PASS, // your email password or app password
+      },
+    });
+  }
+
+  private formatTimeSlots(timeSlots: Array<{ date: string; startTime: string; duration: string }>): string {
+    const durations = [
+      { value: "10", label: "10 minutes (Free consultation)" },
+      { value: "30", label: "30 minutes" },
+      { value: "60", label: "1 hour" }
+    ];
+
+    return timeSlots.map((slot, index) => {
+      const date = new Date(slot.date).toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      const duration = durations.find(d => d.value === slot.duration)?.label || `${slot.duration} minutes`;
+      return `${index + 1}. ${date} at ${slot.startTime} (${duration})`;
+    }).join('\n');
+  }
+
+  async sendBookingNotification(bookingDetails: BookingDetails): Promise<void> {
+    const { name, phone, email, category, specialist, details, timeSlots } = bookingDetails;
+
+    const subject = `New Session Booking Request - ${name}`;
+    const htmlContent = `
+      <h2>New Session Booking Request</h2>
+      
+      <h3>Client Information:</h3>
+      <ul>
+        <li><strong>Name:</strong> ${name}</li>
+        <li><strong>Phone:</strong> ${phone}</li>
+        <li><strong>Email:</strong> ${email}</li>
+        ${category ? `<li><strong>Category:</strong> ${category}</li>` : ''}
+        ${specialist ? `<li><strong>Preferred Specialist:</strong> ${specialist}</li>` : ''}
+      </ul>
+
+      <h3>Session Details:</h3>
+      <p><strong>What they want to discuss:</strong></p>
+      <p>${details.replace(/\n/g, '<br>')}</p>
+
+      <h3>Available Time Slots:</h3>
+      <pre>${this.formatTimeSlots(timeSlots)}</pre>
+
+      <hr>
+      <p><em>This booking request was submitted through the AskFellow website.</em></p>
+    `;
+
+    const textContent = `
+New Session Booking Request
+
+Client Information:
+- Name: ${name}
+- Phone: ${phone}
+- Email: ${email}
+${category ? `- Category: ${category}` : ''}
+${specialist ? `- Preferred Specialist: ${specialist}` : ''}
+
+Session Details:
+What they want to discuss:
+${details}
+
+Available Time Slots:
+${this.formatTimeSlots(timeSlots)}
+
+---
+This booking request was submitted through the AskFellow website.
+    `;
+
+    await this.transporter.sendMail({
+      from: process.env.SMTP_FROM || process.env.SMTP_USER,
+      to: process.env.NOTIFICATION_EMAIL || process.env.SMTP_USER,
+      subject,
+      text: textContent,
+      html: htmlContent,
+    });
+  }
+
+  async sendRequestNotification(requestDetails: RequestDetails): Promise<void> {
+    const { name, phone, email, details, timeSlots } = requestDetails;
+
+    const subject = `New General Request - ${name}`;
+    const htmlContent = `
+      <h2>New General Request</h2>
+      
+      <h3>Client Information:</h3>
+      <ul>
+        <li><strong>Name:</strong> ${name}</li>
+        <li><strong>Phone:</strong> ${phone}</li>
+        <li><strong>Email:</strong> ${email}</li>
+      </ul>
+
+      <h3>Request Details:</h3>
+      <p><strong>What they want to discuss:</strong></p>
+      <p>${details.replace(/\n/g, '<br>')}</p>
+
+      <h3>Available Time Slots:</h3>
+      <pre>${this.formatTimeSlots(timeSlots)}</pre>
+
+      <hr>
+      <p><em>This request was submitted through the AskFellow website.</em></p>
+    `;
+
+    const textContent = `
+New General Request
+
+Client Information:
+- Name: ${name}
+- Phone: ${phone}
+- Email: ${email}
+
+Request Details:
+What they want to discuss:
+${details}
+
+Available Time Slots:
+${this.formatTimeSlots(timeSlots)}
+
+---
+This request was submitted through the AskFellow website.
+    `;
+
+    await this.transporter.sendMail({
+      from: process.env.SMTP_FROM || process.env.SMTP_USER,
+      to: process.env.NOTIFICATION_EMAIL || process.env.SMTP_USER,
+      subject,
+      text: textContent,
+      html: htmlContent,
+    });
+  }
+}
+
+export const emailService = new EmailService(); 
