@@ -2,17 +2,38 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [location, setLocation] = useLocation();
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // If not on home page, navigate to home page with hash
+    if (location !== '/') {
+      setLocation(`/#${sectionId}`);
+      return;
     }
-    setIsMobileMenuOpen(false);
+    const doScroll = () => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const navElement = document.querySelector('nav') as HTMLElement | null;
+        const offset = (navElement?.offsetHeight ?? 80) + 8;
+        const topPosition = element.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: topPosition, behavior: 'smooth' });
+      } else {
+        // Fallback to hash navigation if element is not present
+        window.location.hash = sectionId;
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      setIsMobileMenuOpen(false);
+      // Wait for the close animation so measurements are correct
+      setTimeout(doScroll, 350);
+    } else {
+      doScroll();
+    }
   };
 
   return (
@@ -24,20 +45,22 @@ export default function Navigation() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-14 sm:h-16">
-          <motion.div 
-            className="flex items-center space-x-2"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.2 }}
-          >
-            <motion.img 
-              src="/images/animate_logo.gif" 
-              alt="AskFellow Logo" 
-              className="h-8 w-8 sm:h-10 sm:w-10"
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.6 }}
-            />
-            <h1 className="text-xl sm:text-2xl font-bold text-gradient-primary">AskFellow</h1>
-          </motion.div>
+          <Link href="/">
+            <motion.div 
+              className="flex items-center space-x-2 cursor-pointer"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
+            >
+              <motion.img 
+                src="/images/animate_logo.gif" 
+                alt="AskFellow Logo" 
+                className="h-8 w-8 sm:h-10 sm:w-10"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              />
+              <h1 className="text-xl sm:text-2xl font-bold text-gradient-primary">AskFellow</h1>
+            </motion.div>
+          </Link>
           
           {/* Desktop Navigation */}
           <div className="hidden md:block">
@@ -95,11 +118,26 @@ export default function Navigation() {
                   />
                 </span>
               </motion.button>
+
+              {/* Employer link */}
+              <motion.span
+                onClick={() => {
+                  setLocation('/employer');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="text-charcoal hover:text-primary transition-all duration-300 font-medium cursor-pointer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                data-testid="nav-employer"
+              >
+                Employer
+              </motion.span>
             </div>
           </div>
           
           <div className="flex items-center space-x-2 sm:space-x-4">
             <motion.div
+              className="hidden md:block"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -174,22 +212,13 @@ export default function Navigation() {
                   Services
                 </motion.button>
                 <motion.button
-                  onClick={() => scrollToSection('how-it-works')}
-                  className="block px-3 py-2 text-charcoal hover:text-primary transition-all duration-300 font-medium w-full text-left hover:bg-accent/50 rounded-lg"
-                  data-testid="mobile-nav-how-it-works"
-                  whileHover={{ x: 5 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  How it Works
-                </motion.button>
-                <motion.button
                   onClick={() => scrollToSection('therapists')}
                   className="block px-3 py-2 text-charcoal hover:text-primary transition-all duration-300 font-medium w-full text-left hover:bg-accent/50 rounded-lg"
                   data-testid="mobile-nav-therapists"
                   whileHover={{ x: 5 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Our Team
+                  Experts
                 </motion.button>
                 <motion.button
                   onClick={() => scrollToSection('contact')}
@@ -200,6 +229,19 @@ export default function Navigation() {
                 >
                   Contact
                 </motion.button>
+                <motion.span
+                  onClick={() => {
+                    setLocation('/employer');
+                    setIsMobileMenuOpen(false);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="block px-3 py-2 text-charcoal hover:text-primary transition-all duration-300 font-medium w-full text-left hover:bg-accent/50 rounded-lg cursor-pointer"
+                  whileHover={{ x: 5 }}
+                  whileTap={{ scale: 0.95 }}
+                  data-testid="mobile-nav-employer"
+                >
+                  Employer
+                </motion.span>
               </motion.div>
             </motion.div>
           )}

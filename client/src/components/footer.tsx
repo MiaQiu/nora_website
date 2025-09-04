@@ -1,6 +1,10 @@
 import { useLocation, Link } from "wouter";
 
-export default function Footer() {
+interface FooterProps {
+  hideCTA?: boolean;
+}
+
+export default function Footer({ hideCTA = false }: FooterProps) {
   const [, setLocation] = useLocation();
 
   const scrollToContact = () => {
@@ -17,6 +21,7 @@ export default function Footer() {
   return (
     <>
       {/* Contact/CTA Section */}
+      {!hideCTA && (
       <section id="contact" className="py-8 sm:py-12 lg:py-24 bg-primary text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold mb-4 sm:mb-6">
@@ -26,9 +31,9 @@ export default function Footer() {
             Join thousands of families who have found expert support and guidance through AskFellow. 
             Start your personalized care journey today.
           </p>
-          <p className="text-base sm:text-lg mb-6 sm:mb-8 opacity-80">
+          {/* <p className="text-base sm:text-lg mb-6 sm:mb-8 opacity-80">
             Contact us at: <a href="mailto:info@askfellow.ai" className="text-secondary hover:text-white transition duration-300 underline">info@askfellow.ai</a> or book a free consultation through the button below.
-          </p>
+          </p> */}
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <button 
               onClick={navigateToBookSession}
@@ -46,6 +51,7 @@ export default function Footer() {
           </div>
         </div>
       </section>
+      )}
 
       {/* Footer */}
             <footer className="bg-charcoal text-white py-12 sm:py-16 lg:py-20">

@@ -13,6 +13,8 @@ import ReturnToWork from "@/pages/return-to-work";
 import EducationAcademic from "@/pages/education-academic";
 import SpecialComplexCare from "@/pages/special-complex-care";
 import EmotionalWellbeing from "@/pages/emotional-wellbeing";
+import Employer from "@/pages/employer";
+import DemoRequest from "@/pages/demo-request";
 
 function Router() {
   return (
@@ -26,6 +28,8 @@ function Router() {
       <Route path="/education-academic" component={EducationAcademic} />
       <Route path="/special-complex-care" component={SpecialComplexCare} />
       <Route path="/emotional-wellbeing" component={EmotionalWellbeing} />
+      <Route path="/employer" component={Employer} />
+      <Route path="/demo-request" component={DemoRequest} />
       <Route component={NotFound} />
     </Switch>
   );

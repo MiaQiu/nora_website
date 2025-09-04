@@ -8,42 +8,48 @@ export default function ServicesGrid() {
       description: "Comprehensive support for new mothers navigating physical recovery, emotional adjustment, and sleep coaching.",
       image: "/images/categories/Postpartum_care.jpg",
       alt: "New mother receiving postpartum care support and guidance",
-      highlight: "Physical & Emotional Recovery"
+      highlight: "Physical & Emotional Recovery",
+      color: "bg-primary"
     },
     {
       title: "Return to Work",
       description: "Guidance and strategies for successfully balancing career responsibilities with family needs.",
       image: "/images/categories/return_to_work.jpg",
       alt: "Father working on laptop while caring for toddler at home",
-      highlight: "Work-Life Balance"
+      highlight: "Work-Life Balance",
+      color: "bg-secondary"
     },
     {
       title: "Education & Academic Guidance",
       description: "Expert advice on popular education topics for example DSA, PLSE and University planning.",
       image: "/images/categories/academic.jpg",
       alt: "Student receiving academic guidance and educational planning support",
-      highlight: "Academic Excellence"
+      highlight: "Academic Excellence",
+      color: "bg-accent"
     },
     {
       title: "Parenting Skills & Child Development",
       description: "From toddler play to screentime management to teenage communication - expert guidance for every developmental stage.",
       image: "/images/categories/parenting_skills.jpg",
       alt: "Parent and child engaged in developmental activities and communication",
-      highlight: "Every Developmental Stage"
+      highlight: "Every Developmental Stage",
+      color: "bg-orange-400"
     },
     {
       title: "Special & Complex Care Navigation",
       description: "Expert guidance for families managing neurodivergence, physical and mental health conditions with comprehensive care coordination.",
       image: "/images/categories/special_care.jpg",
       alt: "Healthcare team providing specialized care navigation support",
-      highlight: "Specialized Support"
+      highlight: "Specialized Support",
+      color: "bg-red-400"
     },
     {
       title: "Emotional & Relationship Wellbeing",
       description: "Support for parental mental health and family harmony with expert guidance on emotional wellness and healthy relationships.",
       image: "/images/categories/mental_support.jpg",
       alt: "Family experiencing emotional wellbeing and healthy relationships",
-      highlight: "Mental Health & Harmony"
+      highlight: "Mental Health & Harmony",
+      color: "bg-teal-400"
     }
   ];
 
@@ -91,8 +97,72 @@ export default function ServicesGrid() {
           </p>
         </motion.div>
         
+        {/* Mobile-first category grid */}
         <motion.div 
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+          className="mb-12 lg:hidden"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <h3 className="text-lg font-bold text-charcoal mb-4 text-center">EXPLORE</h3>
+          <div className="grid grid-cols-2 gap-3 max-w-sm mx-auto">
+            {services.map((service, index) => {
+              const getServiceRoute = (title: string) => {
+                switch (title) {
+                  case "Postpartum Care":
+                    return "/postpartum-care";
+                  case "Return to Work":
+                    return "/return-to-work";
+                  case "Education & Academic Guidance":
+                    return "/education-academic";
+                  case "Parenting Skills & Child Development":
+                    return "/parenting-skills";
+                  case "Special & Complex Care Navigation":
+                    return "/special-complex-care";
+                  case "Emotional & Relationship Wellbeing":
+                    return "/emotional-wellbeing";
+                  default:
+                    return null;
+                }
+              };
+              
+              const serviceRoute = getServiceRoute(service.title);
+              
+              const mobileCard = (
+                <motion.div 
+                  className="flex items-center gap-3 p-4 bg-white rounded-xl shadow-sm hover:shadow-md border border-gray-100 hover:border-secondary/20 transition-all duration-300 group cursor-pointer"
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className={`w-7 h-7 rounded-full ${service.color} flex-shrink-0 shadow-md hover:shadow-lg transition-all duration-200 relative overflow-hidden group-hover:scale-110`}>
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-tl from-black/10 to-transparent"></div>
+                  </div>
+                  <span className="text-sm font-medium text-charcoal leading-tight group-hover:text-primary transition-colors duration-200">
+                    {service.title}
+                  </span>
+                </motion.div>
+              );
+
+              return (
+                <div key={index} data-testid={`mobile-card-service-${index}`}>
+                  {serviceRoute ? (
+                    <Link href={serviceRoute}>
+                      {mobileCard}
+                    </Link>
+                  ) : (
+                    mobileCard
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </motion.div>
+        
+        {/* Desktop grid - hidden on mobile */}
+        <motion.div 
+          className="hidden lg:grid grid-cols-3 gap-8"
           variants={containerVariants}
           initial="hidden"
           animate="visible"

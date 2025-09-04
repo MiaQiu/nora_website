@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "wouter";
 
 export default function HeroSection() {
   const specialists = [
@@ -102,12 +103,14 @@ export default function HeroSection() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <button
-                  className="bg-gradient-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:shadow-lg glow-primary font-semibold text-sm sm:text-base transition-all duration-300"
-                  data-testid="button-book-session"
-                >
-                  Book Your Session
-                </button>
+                <Link href="/book-session">
+                  <button
+                    className="bg-gradient-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:shadow-lg glow-primary font-semibold text-sm sm:text-base transition-all duration-300"
+                    data-testid="button-book-session"
+                  >
+                    Book Your Session
+                  </button>
+                </Link>
               </motion.div>
             </motion.div>
 

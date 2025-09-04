@@ -1,234 +1,455 @@
+import { Button } from "@/components/ui/button";
+import { useLocation } from "wouter";
 import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 
-export default function HeroSection() {
-  const specialists = [
-    {
+// Timeline stages with corresponding specialists
+const timelineStages = [
+  {
+    id: 1,
+    stage: "Pregnancy",
+    period: "0-9 months",
+    specialist: {
       name: "Dr. Priya Sharma",
-      photo: "/images/specialists/dr-priya-sharma.jpg",
-      specialty: "Child Development Expert"
+      title: "Perinatal & Postpartum Specialist",
+      image: "/images/specialists/dr-priya-sharma.jpg",
+      specialties: ["Prenatal care", "Birth preparation", "Maternal mental health"]
     },
-    {
-      name: "Dr. Rachel Lim",
-      photo: "/images/specialists/dr-rachel-lim.jpg",
-      specialty: "Postpartum Care Specialist"
-    },
-    {
+    profilePosition: "bottom"
+  },
+  {
+    id: 2,
+    stage: "Newborn",
+    period: "0-12 months",
+    specialist: {
       name: "Dr. Ahmad Hassan",
-      photo: "/images/specialists/dr-ahmad-hassan.jpg",
-      specialty: "Family Therapist"
+      title: "Pediatric Sleep & Nutrition Consultant",
+      image: "/images/specialists/dr-ahmad-hassan.jpg",
+      specialties: ["Sleep training", "Feeding guidance", "Growth monitoring"]
     },
-    {
+    profilePosition: "top"
+  },
+  {
+    id: 3,
+    stage: "Toddler",
+    period: "1-3 years",
+    specialist: {
+      name: "Dr. Rachel Lim",
+      title: "Child Development & Early Intervention Specialist",
+      image: "/images/specialists/dr-rachel-lim.jpg",
+      specialties: ["Developmental milestones", "Early intervention", "Speech development"]
+    },
+    profilePosition: "bottom"
+  },
+  {
+    id: 4,
+    stage: "School Age",
+    period: "4-12 years",
+    specialist: {
       name: "Dr. Catherine Wong",
-      photo: "/images/specialists/dr-catherine-wong.jpg",
-      specialty: "Educational Psychologist"
+      title: "Educational Psychology & School Support Specialist",
+      image: "/images/specialists/dr-catherine-wong.jpg",
+      specialties: ["School readiness", "Learning support", "Academic guidance"]
     },
-    {
-      name: "Dr. Sarah Tan",
-      photo: "/images/specialists/dr-sarah-tan.jpg",
-      specialty: "Mental Health Counselor"
-    },
-    {
-      name: "Dr. Marcus Chen",
-      photo: "/images/specialists/dr-marcus-chen.jpg",
-      specialty: "Behavioral Specialist"
-    },
-    {
+    profilePosition: "top"
+  },
+  {
+    id: 5,
+    stage: "Teen",
+    period: "13-18 years",
+    specialist: {
       name: "Dr. Amelia Kumar",
-      photo: "/images/specialists/dr-amelia-kumar.jpg",
-      specialty: "Parenting Coach"
+      title: "Adolescent Mental Health & Emotional Wellness Coach",
+      image: "/images/specialists/dr-amelia-kumar.jpg",
+      specialties: ["Teen mental health", "Emotional support", "Identity development"]
     },
-    {
+    profilePosition: "bottom"
+  },
+  {
+    id: 6,
+    stage: "Young Adult",
+    period: "18+ years",
+    specialist: {
       name: "Dr. Janet Loh",
-      photo: "/images/specialists/dr-janet-loh.jpg",
-      specialty: "Family Wellness Expert"
-    }
-  ];
+      title: "Education & Academic Guidance Specialist",
+      image: "/images/specialists/dr-janet-loh.jpg",
+      specialties: ["Parent wellness", "Empty nest support", "Family transitions"]
+    },
+    profilePosition: "top"
+  }
+];
 
-  // Triple the array for perfect seamless looping
-  const duplicatedSpecialists = [...specialists, ...specialists, ...specialists];
+function AnimatedTimeline() {
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [currentOffset, setCurrentOffset] = useState(80); // Start with Newborn (second stage)
+  const animationRef = useRef<number>();
+  const lastTimeRef = useRef(0);
+  
+  const STAGE_WIDTH = 250;
+  const ANIMATION_SPEED = 40;
+  const TOTAL_WIDTH = timelineStages.length * STAGE_WIDTH;
+
+  useEffect(() => {
+    if (!isPlaying) {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+      return;
+    }
+
+    const animate = (currentTime: number) => {
+      if (lastTimeRef.current === 0) {
+        lastTimeRef.current = currentTime;
+      }
+
+      const deltaTime = currentTime - lastTimeRef.current;
+      const deltaOffset = (deltaTime / 1000) * ANIMATION_SPEED;
+
+      setCurrentOffset(prevOffset => {
+        const newOffset = prevOffset + deltaOffset;
+        return newOffset >= TOTAL_WIDTH ? 0 : newOffset;
+      });
+
+      lastTimeRef.current = currentTime;
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [isPlaying, TOTAL_WIDTH]);
+
+  useEffect(() => {
+    lastTimeRef.current = 0;
+  }, [isPlaying]);
+
+  const centerStageIndex = Math.floor(currentOffset / STAGE_WIDTH) % timelineStages.length;
+  const duplicatedStages = [...timelineStages, ...timelineStages];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-accent via-warm to-white">
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    // FIXED: Contained timeline with proper overflow control
+    <div className="relative w-full py-20 px-8 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl shadow-xl overflow-hidden">
+      
+      {/* Timeline Title */}
+      {/* <div className="text-center mb-8">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
+         Guide through every stage of parenting
+        </h2>
+      </div> */}
+      
+      {/* Play/Pause Control */}
+      {/* <button
+        onClick={() => setIsPlaying(!isPlaying)}
+        className="absolute top-4 right-4 z-30 text-sm bg-white px-4 py-2 rounded-full hover:bg-gray-50 transition-all shadow-lg font-medium border border-gray-200"
+      >
+        {isPlaying ? "⏸️ Pause" : "▶️ Play"}
+      </button> */}
+
+      {/* Timeline Container - PROPERLY CONTAINED */}
+      <div className="relative h-96 flex items-center overflow-hidden" style={{ paddingLeft: `${STAGE_WIDTH / 2}px` }}>
+        
+        {/* Horizontal Timeline Line - CONTAINED */}
+        <div className="absolute left-8 right-8 h-1 bg-gradient-to-r from-gray-400 via-gray-600 to-gray-400 z-5"></div>
+        
+        {/* Moving Timeline Content - CONTAINED */}
+        <div 
+          className="flex items-center relative"
+          style={{
+            transform: `translateX(${-currentOffset}px)`,
+            width: `${duplicatedStages.length * STAGE_WIDTH}px`
+          }}
+        >
+          {duplicatedStages.map((stage, index) => {
+            const stagePosition = index * STAGE_WIDTH;
+            const viewportCenter = currentOffset;
+            const distanceFromCenter = Math.abs(stagePosition - viewportCenter);
+            const isActive = distanceFromCenter < STAGE_WIDTH * 0.6;
+            const isCentered = distanceFromCenter < STAGE_WIDTH * 0.3;
+            
+            return (
+              <div
+                key={`${stage.id}-${Math.floor(index / timelineStages.length)}`}
+                className="relative flex flex-col items-center justify-center"
+                style={{ 
+                  width: `${STAGE_WIDTH}px`,
+                  minWidth: `${STAGE_WIDTH}px`,
+                  height: '100%'
+                }}
+              >
+                
+                {/* Top Specialist Profile - REDUCED SIZE */}
+                {stage.profilePosition === "top" && (
+                  <div className="absolute -top-32 left-1/2 transform -translate-x-1/2">
+                    <motion.div
+                      className="w-64"
+                      animate={{ 
+                        // opacity: isActive ? 1 : 0.3,
+                        y: isCentered ? 0 : 10,
+                        scale: isCentered ? 1 : 0.95
+                      }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                    >
+                      <div className="bg-white rounded-lg p-4 shadow-lg border border-gray-200">
+                        <div className="flex items-start space-x-3">
+                          <img
+                            src={stage.specialist.image}
+                            alt={stage.specialist.name}
+                            className="w-12 h-12 rounded-full object-cover shadow-sm border-2 border-white flex-shrink-0"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <h4 className="font-bold text-charcoal text-sm mb-1 leading-tight">
+                              {stage.specialist.name}
+                            </h4>
+                            <p className="text-xs text-charcoal/70 mb-2 leading-relaxed">
+                              {stage.specialist.title}
+                            </p>
+                          </div>
+                        </div>
+                        {/* Down Arrow */}
+                        <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-r border-b border-gray-200 shadow-sm"></div>
+                      </div>
+                    </motion.div>
+                  </div>
+                )}
+
+                {/* Stage Labels - Position based on profile position */}
+                {stage.profilePosition === "bottom" && (
+                  <motion.div
+                    className="absolute -top-12 left-1/3 transform -translate-x-1/2 text-center"
+                    animate={{ 
+                      y: isCentered ? 0 : 5
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <h3 className="text-base font-bold text-charcoal mb-1">
+                      {stage.stage}
+                    </h3>
+                    <p className="text-sm text-charcoal/80 font-medium">
+                      {stage.period}
+                    </p>
+                  </motion.div>
+                )}
+
+                {/* Timeline Point - Position based on profile position */}
+                <motion.div
+                  className={`relative flex items-center justify-center z-10 ${
+                    stage.profilePosition === "bottom" ? "mt-8" : ""
+                  }`}
+                  animate={{
+                    scale: isCentered ? 1.3 : isActive ? 1.1 : 1
+                  }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className={`w-6 h-6 rounded-full border-4 border-white shadow-lg transition-all duration-300 z-10 ${
+                    isCentered ? 'bg-primary' : isActive ? 'bg-secondary' : 'bg-muted-foreground'
+                  }`}>
+                    {isCentered && (
+                      <div className="absolute inset-0 rounded-full bg-primary animate-ping opacity-75"></div>
+                    )}
+                  </div>
+                </motion.div>
+
+                {/* Stage Labels - For top profile position */}
+                {stage.profilePosition === "top" && (
+                  <motion.div
+                    className="mt-8 text-center"
+                    animate={{ 
+                      y: isCentered ? 0 : 5
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <h3 className="text-base font-bold text-charcoal mb-1">
+                      {stage.stage}
+                    </h3>
+                    <p className="text-sm text-charcoal/80 font-medium">
+                      {stage.period}
+                    </p>
+                  </motion.div>
+                )}
+
+                {/* Bottom Specialist Profile - REDUCED SIZE */}
+                {stage.profilePosition === "bottom" && (
+                  <div className="absolute -bottom-32 left-1/2 transform -translate-x-1/2">
+                    <motion.div
+                      className="w-64"
+                      animate={{ 
+                        // opacity: isActive ? 1 : 0.3,
+                        y: isCentered ? 0 : -10,
+                        scale: isCentered ? 1 : 0.95
+                      }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                    >
+                      <div className="bg-white rounded-lg p-4 shadow-lg border border-gray-200">
+                        {/* Up Arrow */}
+                        <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-l border-t border-gray-200 shadow-sm"></div>
+                        
+                        <div className="flex items-start space-x-3">
+                          <img
+                            src={stage.specialist.image}
+                            alt={stage.specialist.name}
+                            className="w-12 h-12 rounded-full object-cover shadow-sm border-2 border-white flex-shrink-0"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <h4 className="font-bold text-charcoal text-sm mb-1 leading-tight">
+                              {stage.specialist.name}
+                            </h4>
+                            <p className="text-xs text-charcoal/70 mb-3 leading-relaxed">
+                              {stage.specialist.title}
+                            </p>
+                            {/* <Button
+                              size="sm"
+                              className="w-full bg-primary hover:bg-primary/90 text-white text-xs py-2 rounded-lg transition-all duration-300"
+                            >
+                              Connect with Expert
+                            </Button> */}
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
+                )}
+
+              </div>
+            );
+          })}
+        </div>
+        
+      </div>
+
+      {/* Current Stage Indicator */}
+      {/* <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-30">
+        <div className="bg-white px-4 py-2 rounded-full shadow-lg border border-gray-200">
+          <span className="text-sm font-semibold text-charcoal">
+            {timelineStages[centerStageIndex].stage} • {timelineStages[centerStageIndex].period}
+          </span>
+        </div>
+      </div> */}
+    </div>
+  );
+}
+
+export default function HeroSection() {
+  const [, setLocation] = useLocation();
+
+  const navigateToBookSession = () => {
+    setLocation('/book-session');
+  };
+
+  return (
+    <section className="bg-gradient-to-br from-accent via-white to-accent/50 py-8 sm:py-12 lg:py-24 relative overflow-hidden">
+      
+      {/* Animated background elements */}
+      <div className="absolute inset-0 opacity-20">
+        <motion.div
+          className="absolute top-20 left-10 w-32 h-32 bg-gradient-primary rounded-full blur-xl"
+          animate={{
+            y: [0, -20, 0],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div
+          className="absolute bottom-20 right-10 w-24 h-24 bg-gradient-secondary rounded-full blur-xl"
+          animate={{
+            y: [0, 20, 0],
+            scale: [1, 0.9, 1],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           
-          {/* Left Column - Text Content */}
+          {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-center lg:text-left"
           >
-            <motion.h1
-              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6"
+            <motion.h1 
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-3 sm:mb-4"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <span className="text-gradient-primary">Expert</span>{" "}
-              <span className="text-charcoal">Parenting</span>{" "}
-              <span className="text-gradient-secondary">Support</span>
+              Your Extended{" "}
+              <span className="text-gradient-primary">
+                Parenting Village
+              </span>
             </motion.h1>
             
-            <motion.p
-              className="text-lg sm:text-xl lg:text-2xl text-charcoal mb-8 leading-relaxed"
+            <motion.p 
+              className="text-base sm:text-lg lg:text-xl text-charcoal mb-6 sm:mb-8 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Connect with <span className="font-semibold text-secondary">vetted specialists</span> for{" "}
-              <span className="font-semibold text-primary">personalized 1:1 guidance</span> across every stage of your parenting journey.
+              <span className="font-semibold text-secondary">Evidence-based expert support</span> network providing{" "}
+              <span className="text-gradient-primary font-semibold">
+                personalized 1:1 guidance
+              </span>{" "}
+              across every stage of parenting. Navigate challenges and milestones with confidence.
             </motion.p>
-
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+            
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
             >
-              <motion.button
-                className="bg-primary text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Book Your Session
-              </motion.button>
-              <motion.button
-                className="border-2 border-primary text-primary px-8 py-4 rounded-full text-lg font-semibold hover:bg-primary hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                <Button
+                  onClick={navigateToBookSession}
+                  className="bg-gradient-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:shadow-lg glow-primary font-semibold text-sm sm:text-base transition-all duration-300"
+                  data-testid="button-book-session"
+                >
+                  Book Your Session
+                </Button>
+              </motion.div>
+              
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Learn More
-              </motion.button>
-            </motion.div>
-
-            {/* Trust Indicators */}
-            <motion.div
-              className="mt-12 grid grid-cols-3 gap-8 max-w-md mx-auto lg:mx-0"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-            >
-              <div className="text-center">
-                <div className="text-2xl font-bold text-gradient-primary">100+</div>
-                <div className="text-sm text-charcoal">Expert Specialists</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-gradient-secondary">95%</div>
-                <div className="text-sm text-charcoal">Satisfaction Rate</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-gradient-primary">24/7</div>
-                <div className="text-sm text-charcoal">Support Available</div>
-              </div>
+                {/* <Button
+                  variant="outline"
+                  className="border-2 border-secondary text-secondary px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-secondary hover:text-white font-semibold text-sm sm:text-base transition-all duration-300"
+                  data-testid="button-learn-more"
+                >
+                  Learn More
+                </Button> */}
+              </motion.div>
             </motion.div>
           </motion.div>
-
-          {/* Right Column - Specialist Photos Grid with Upward Scrolling Animation */}
-          <motion.div
-            className="relative h-96 lg:h-[600px] w-full max-w-lg mx-auto"
+          
+          {/* Right Content - Timeline */}
+          <motion.div 
+            className="relative mt-6 lg:mt-0"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            {/* Container with mask for smooth scrolling effect */}
-            <div className="relative h-full overflow-hidden rounded-2xl">
-              {/* Scrolling container */}
-              <motion.div
-                className="absolute inset-0 grid grid-cols-2 gap-4 content-start"
-                animate={{
-                  y: [0, -(288 + 16) * specialists.length]
-                }}
-                transition={{
-                  duration: 20, // Adjust this value to change speed
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-                style={{
-                  height: `${(288 + 16) * duplicatedSpecialists.length}px`
-                }}
-              >
-                {duplicatedSpecialists.map((specialist, index) => (
-                  <motion.div
-                    key={`${specialist.name}-${index}`}
-                    className="relative group h-72 w-full"
-                    whileHover={{ scale: 1.05, zIndex: 10 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="h-full w-full rounded-xl overflow-hidden shadow-lg border-2 border-white/20 hover:border-secondary/50 transition-all duration-300 bg-white">
-                      <img
-                        src={specialist.photo}
-                        alt={specialist.name}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          // Fallback for missing images
-                          e.target.style.display = 'none';
-                          e.target.parentElement.innerHTML = `
-                            <div class="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                              <div class="text-center p-4">
-                                <div class="w-16 h-16 bg-primary/30 rounded-full mx-auto mb-3"></div>
-                                <div class="text-sm font-medium text-charcoal/70 mb-1">${specialist.name.split(' ')[1]}</div>
-                                <div class="text-xs text-charcoal/60">${specialist.specialty}</div>
-                              </div>
-                            </div>
-                          `;
-                        }}
-                      />
-                      
-                      {/* Always visible specialist info overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent">
-                        <div className="absolute bottom-0 left-0 right-0 p-4">
-                          <h3 className="text-white text-lg font-semibold mb-2 leading-tight">
-                            {specialist.name}
-                          </h3>
-                          <p className="text-white/90 text-sm leading-tight">
-                            {specialist.specialty}
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Enhanced hover effect */}
-                      <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-              
-              {/* Gradient masks for smooth fade effect */}
-              <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
-              <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
-            </div>
+            <AnimatedTimeline />
           </motion.div>
         </div>
       </div>
-
-      {/* Floating Elements */}
-      <motion.div
-        className="absolute top-20 right-20 w-32 h-32 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.6, 0.3],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      
-      <motion.div
-        className="absolute bottom-20 left-20 w-24 h-24 bg-gradient-to-br from-secondary/20 to-primary/20 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.4, 0.7, 0.4],
-        }}
-        transition={{
-          duration: 5,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1
-        }}
-      />
     </section>
   );
 }

@@ -219,7 +219,7 @@ export default function ChatWidget() {
 
       {/* Notification Badge */}
       {!isOpen && (
-        <div className="fixed bottom-20 right-6 z-40">
+        <div className="fixed bottom-20 right-6 z-40 hidden sm:block">
           <div className="bg-primary text-white px-3 py-2 rounded-lg shadow-lg text-sm animate-bounce">
             <p data-testid="text-chat-notification">Didn't find what you are looking for? Leave us a message</p>
           </div>
