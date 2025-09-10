@@ -1,57 +1,17 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
+import { useSpecialists } from "@/hooks/useSpecialists";
 
 export default function HeroSection() {
-  const specialists = [
-    {
-      name: "Ms. Priya Sharma",
-      photo: "/images/specialists/dr-priya-sharma.jpg",
-      specialty: "Return to Work Coach",
-      experience: "Prepare the transition back to their careers after maternity leave"
-    },
-    {
-      name: "Dr. Rachel Lim",
-      photo: "/images/specialists/dr-rachel-lim.jpg",
-      specialty: "Parenting Coach",
-      experience: "Navigate the challenges of raising children with mental health issues"
-    },
-    {
-      name: "Mr. Ahmad Hassan",
-      photo: "/images/specialists/dr-ahmad-hassan.jpg",
-      specialty: "Parent Navigator",
-      experience: "Father of 10 years old son with ADHD"
-    },
-    {
-      name: "Ms. Catherine Wong",
-      photo: "/images/specialists/dr-catherine-wong.jpg",
-      specialty: "Parenting Coach",
-      experience: "Education & Academic Planning - PSLE, DSA, University"
-    },
-    {
-      name: "Dr. Sarah Tan",
-      photo: "/images/specialists/dr-sarah-tan.jpg",
-      specialty: "Mental Health Counselor",
-      experience: "Emotional & Relationship Wellbeing"
-    },
-    {
-      name: "Dr. Marcus Chen",
-      photo: "/images/specialists/dr-marcus-chen.jpg",
-      specialty: "Behavioral Specialist",
-      experience: "Special & Complex Care Navigation"
-    },
-    {
-      name: "Dr. Amelia Kumar",
-      photo: "/images/specialists/dr-amelia-kumar.jpg",
-      specialty: "Parenting Coach",
-      experience: "Parenting Skills & Child Development"
-    },
-    {
-      name: "Dr. Janet Loh",
-      photo: "/images/specialists/dr-janet-loh.jpg",
-      specialty: "Family Wellness Expert",
-      experience: "Postpartum Care & Family Support"
-    }
-  ];
+  const allSpecialists = useSpecialists();
+  
+  // Transform centralized data to hero-section format
+  const specialists = allSpecialists.map(specialist => ({
+    name: specialist.name,
+    photo: specialist.image,
+    specialty: specialist.title,
+    experience: specialist.experience
+  }));
 
   // Triple the array for perfect seamless looping
   const duplicatedSpecialists = [...specialists, ...specialists, ...specialists];
@@ -86,7 +46,7 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <span className="font-semibold text-secondary">Evidence-based expert support</span> network providing{" "}
+              <span className="font-semibold text-secondary">Evidence-based expert</span> and <span className="font-semibold text-secondary">fellow parents </span>support network providing{" "}
               <span className="text-gradient-primary font-semibold">
                 personalized 1:1 guidance
               </span>{" "}

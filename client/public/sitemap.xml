@@ -6,32 +6,75 @@
 
   <!-- Homepage -->
   <url>
-    <loc>https://askfellow.com/</loc>
-    <lastmod>2024-01-16</lastmod>
+    <loc>https://hinora.co/</loc>
+    <lastmod>2025-09-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <!-- Book Session Page -->
   <url>
-    <loc>https://askfellow.com/book-session</loc>
-    <lastmod>2024-01-16</lastmod>
+    <loc>https://hinora.co/book-session</loc>
+    <lastmod>2025-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Parenting Skills Page -->
+  <!-- Request Consultation Page -->
   <url>
-    <loc>https://askfellow.com/parenting-skills</loc>
-    <lastmod>2024-01-16</lastmod>
+    <loc>https://hinora.co/request</loc>
+    <lastmod>2025-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Category Pages -->
+  <url>
+    <loc>https://hinora.co/emotional-wellbeing</loc>
+    <lastmod>2025-09-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Request Consultation Page -->
   <url>
-    <loc>https://askfellow.com/request</loc>
-    <lastmod>2024-01-16</lastmod>
+    <loc>https://hinora.co/parenting-skills</loc>
+    <lastmod>2025-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hinora.co/postpartum-care</loc>
+    <lastmod>2025-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hinora.co/education-academic</loc>
+    <lastmod>2025-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hinora.co/return-to-work</loc>
+    <lastmod>2025-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hinora.co/special-complex-care</loc>
+    <lastmod>2025-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Employer Page -->
+  <url>
+    <loc>https://hinora.co/employer</loc>
+    <lastmod>2025-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

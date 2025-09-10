@@ -361,7 +361,7 @@ export default function Employer() {
               >
                 <Link href="/demo-request">
                   <Button size="lg" className="bg-white text-primary hover:bg-gray-100 px-6 sm:px-8 md:px-10 py-3 sm:py-4 text-base sm:text-lg font-bold shadow-xl">
-                    Schedule Your Demo
+                    Schedule a Demo
                   </Button>
                 </Link>
                 {/* <Button variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white/10 px-10 py-4 text-lg font-bold">

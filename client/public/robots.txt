@@ -5,14 +5,27 @@ Allow: /
 Allow: /book-session
 Allow: /parenting-skills
 Allow: /request
+Allow: /emotional-wellbeing
+Allow: /postpartum-care
+Allow: /education-academic
+Allow: /return-to-work
+Allow: /special-complex-care
 
 # Block admin or sensitive areas (if any exist)
 Disallow: /admin/
 Disallow: /api/
-Disallow: /*?*
+Disallow: /_internal/
+Disallow: /temp/
 
 # Sitemap location
-Sitemap: https://askfellow.com/sitemap.xml
+Sitemap: https://hinora.co/sitemap.xml
 
 # Crawl delay (optional - helps prevent overloading)
-Crawl-delay: 1 
+Crawl-delay: 1
+
+# SEO optimization for major crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: / 

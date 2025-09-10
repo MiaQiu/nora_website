@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, ArrowLeft, X, Loader2 } from "lucide-react";
 import { Link, useLocation } from "wouter";
+import { useSpecialistNames } from "@/hooks/useSpecialists";
 
 export default function Request() {
   const [location] = useLocation();
@@ -34,16 +35,7 @@ export default function Request() {
     duration: ""
   });
 
-  const specialists = [
-    "Dr. Priya Sharma",
-    "Dr. Rachel Lim",
-    "Dr. Ahmad Hassan",
-    "Dr. Catherine Wong",
-    "Dr. Sarah Tan",
-    "Dr. Marcus Chen",
-    "Dr. Amelia Kumar",
-    "Dr. Janet Loh"
-  ];
+  const specialists = useSpecialistNames();
 
   // Extract specialist from URL parameters and scroll to top
   useEffect(() => {

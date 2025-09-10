@@ -10,11 +10,11 @@ interface SEOHeadProps {
 }
 
 export default function SEOHead({
-  title = "AskFellow - Expert Parenting Support & Child Development Guidance",
+  title = "Nora - Expert Parenting Support & Child Development Guidance",
   description = "Connect with expert parenting specialists for personalized 1:1 guidance across every stage of child development. From pregnancy to teen years - evidence-based support when you need it most.",
   keywords = "parenting support, child development, parenting experts, postpartum care, parenting skills, family guidance, child psychology, parenting advice",
-  ogImage = "https://askfellow.com/images/logo.png",
-  canonical = "https://askfellow.com",
+  ogImage = "https://hinora.co/images/logo.png",
+  canonical = "https://hinora.co",
   noIndex = false
 }: SEOHeadProps) {
   useEffect(() => {

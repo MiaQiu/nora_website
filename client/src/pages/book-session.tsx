@@ -8,6 +8,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { CheckCircle, ArrowLeft, X, Loader2 } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import SEOHead from "@/components/seo-head";
+import { useSpecialistNames, useSpecialistByName, useSpecialists } from "@/hooks/useSpecialists";
+import { categories as categoryMapping } from "@/data/specialists";
 
 export default function BookSession() {
   const [location] = useLocation();
@@ -35,16 +37,40 @@ export default function BookSession() {
     duration: ""
   });
 
-  const specialists = [
-    "Dr. Priya Sharma",
-    "Dr. Rachel Lim",
-    "Dr. Ahmad Hassan",
-    "Dr. Catherine Wong",
-    "Dr. Sarah Tan",
-    "Dr. Marcus Chen",
-    "Dr. Amelia Kumar",
-    "Dr. Janet Loh"
-  ];
+  const allSpecialists = useSpecialists();
+  const specialists = useSpecialistNames();
+  const selectedSpecialistData = useSpecialistByName(formData.specialist);
+
+  // Map display category names back to category keys
+  const categoryNameToKey = {
+    "Postpartum Care": "postpartum-care",
+    "Return to Work": "return-to-work", 
+    "Education & Academic Guidance": "education-academic",
+    "Parenting Skills & Child Development": "parenting-skills",
+    "Special & Complex Care Navigation": "special-complex-care",
+    "Emotional & Relationship Wellbeing": "emotional-wellbeing"
+  };
+
+  // Filter specialists based on selected category
+  const getAvailableSpecialists = () => {
+    if (!formData.category || formData.category === "Other") {
+      // If no category is selected or "Other" is selected, show all specialists
+      return specialists;
+    }
+    
+    // Get the category key from the display name
+    const categoryKey = categoryNameToKey[formData.category as keyof typeof categoryNameToKey];
+    if (!categoryKey) {
+      return specialists;
+    }
+    
+    // Filter specialists who work in this category
+    return allSpecialists
+      .filter(specialist => specialist.categories.includes(categoryKey))
+      .map(specialist => specialist.name);
+  };
+
+  const availableSpecialists = getAvailableSpecialists();
 
   // Extract specialist from URL parameters and scroll to top
   useEffect(() => {
@@ -60,7 +86,7 @@ export default function BookSession() {
         specialist: specialistParam
       }));
     }
-  }, [location]);
+  }, [location, specialists]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -107,15 +133,72 @@ export default function BookSession() {
     }));
   };
 
-  const categories = [
+  const clearFilters = () => {
+    setFormData(prev => ({
+      ...prev,
+      category: "",
+      specialist: ""
+    }));
+  };
+
+  // All available categories
+  const allCategories = [
     "Postpartum Care",
     "Return to Work",
-    "Education & Academic Guidance",
+    "Education & Academic Guidance", 
     "Parenting Skills & Child Development",
     "Special & Complex Care Navigation",
     "Emotional & Relationship Wellbeing",
     "Other"
   ];
+
+  // Map category keys to display names
+  const categoryKeyToName = {
+    "postpartum-care": "Postpartum Care",
+    "return-to-work": "Return to Work", 
+    "education-academic": "Education & Academic Guidance",
+    "parenting-skills": "Parenting Skills & Child Development",
+    "special-complex-care": "Special & Complex Care Navigation",
+    "emotional-wellbeing": "Emotional & Relationship Wellbeing"
+  };
+
+  // Filter categories based on selected specialist
+  const getAvailableCategories = () => {
+    if (!selectedSpecialistData || !formData.specialist) {
+      // If no specialist is selected, show all categories
+      return allCategories;
+    }
+    
+    // Get the specialist's categories and map them to display names
+    const specialistCategories = selectedSpecialistData.categories
+      .map((categoryKey: string) => categoryKeyToName[categoryKey as keyof typeof categoryKeyToName])
+      .filter(Boolean); // Remove any undefined mappings
+    
+    // Always include "Other" as an option
+    return [...specialistCategories, "Other"];
+  };
+
+  const categories = getAvailableCategories();
+
+  // Clear category selection if it's no longer valid for the selected specialist
+  useEffect(() => {
+    if (formData.category && !categories.includes(formData.category)) {
+      setFormData(prev => ({
+        ...prev,
+        category: ""
+      }));
+    }
+  }, [formData.specialist, formData.category, categories]);
+
+  // Clear specialist selection if it's no longer valid for the selected category
+  useEffect(() => {
+    if (formData.specialist && !availableSpecialists.includes(formData.specialist)) {
+      setFormData(prev => ({
+        ...prev,
+        specialist: ""
+      }));
+    }
+  }, [formData.category, formData.specialist, availableSpecialists]);
 
   const durations = [
     { value: "10", label: "10 minutes (Free consultation)" },
@@ -155,7 +238,7 @@ export default function BookSession() {
     return (
       <>
         <SEOHead
-          title="Session Booked - Thank You | AskFellow"
+          title="Session Booked - Thank You | Nora"
           description="Your parenting session request has been submitted. Our expert specialists will contact you within 1 business day to schedule your personalized consultation."
           canonical="https://askfellow.com/book-session"
           noIndex={true}
@@ -170,7 +253,7 @@ export default function BookSession() {
                   Session Request Submitted!
                 </h1>
                 <p className="text-lg text-charcoal mb-6">
-                  Thank you{formData.name ? `, ${formData.name},` : ""} for booking your session with AskFellow. Our team will review your request and get back to you within 1 business day.
+                  Thank you{formData.name ? `, ${formData.name},` : ""} for booking your session with Nora. Our team will review your request and get back to you within 1 business day.
                 </p>
                 <p className="text-md text-charcoal mb-8">
                   We'll contact you at <strong>{formData.email}</strong> or <strong>{formData.phone}</strong> to schedule your personalized consultation.
@@ -193,7 +276,7 @@ export default function BookSession() {
   return (
     <>
       <SEOHead
-        title="Book a Session - Expert Parenting Support | AskFellow"
+        title="Book a Session - Expert Parenting Support | Nora"
         description="Schedule a personalized 1:1 consultation with our expert parenting specialists. Get professional guidance for child development, behavior issues, and family challenges."
         keywords="book parenting session, parenting consultation, child development expert, family counseling, parenting specialist appointment"
         canonical="https://askfellow.com/book-session"
@@ -290,14 +373,63 @@ export default function BookSession() {
                 />
               </div>
 
+              {/* Filter Status and Clear Button */}
+              {(formData.category || formData.specialist) && (
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex-1">
+                      <h4 className="text-sm font-semibold text-blue-800 mb-2">Active Filters:</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {formData.category && (
+                          <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">
+                            Category: {formData.category}
+                          </span>
+                        )}
+                        {formData.specialist && (
+                          <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs font-medium">
+                            Specialist: {formData.specialist}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    <Button
+                      type="button"
+                      onClick={clearFilters}
+                      variant="outline"
+                      size="sm"
+                      className="text-blue-600 hover:text-blue-800 border-blue-200 hover:border-blue-300 bg-white hover:bg-blue-50 ml-4"
+                      disabled={isSubmitting}
+                    >
+                      <X className="h-3 w-3 mr-1" />
+                      Clear Filters
+                    </Button>
+                  </div>
+                </div>
+              )}
+
               {/* Category Selection */}
               <div className="space-y-2">
-                <Label htmlFor="category" className="text-sm font-medium text-charcoal">
-                  Support Category (Optional)
-                </Label>
-                <Select onValueChange={(value) => handleInputChange('category', value)} disabled={isSubmitting}>
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="category" className="text-sm font-medium text-charcoal">
+                    Support Category (Optional)
+                  </Label>
+                  {selectedSpecialistData && (
+                    <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+                      Filtered for {formData.specialist}
+                    </span>
+                  )}
+                </div>
+                <Select 
+                  value={formData.category} 
+                  onValueChange={(value) => handleInputChange('category', value)} 
+                  disabled={isSubmitting}
+                >
                   <SelectTrigger className="w-full" data-testid="select-category">
-                    <SelectValue placeholder="Select a category that best describes your needs" />
+                    <SelectValue placeholder={
+                      selectedSpecialistData 
+                        ? `Select from ${formData.specialist}'s specialties` 
+                        : "Select a category that best describes your needs"
+                    } />
                   </SelectTrigger>
                   <SelectContent>
                     {categories.map((category) => (
@@ -311,23 +443,40 @@ export default function BookSession() {
 
               {/* Specialist Selection */}
               <div className="space-y-2">
-                <Label htmlFor="specialist" className="text-sm font-medium text-charcoal">
-                  Preferred Specialist (Optional)
-                </Label>
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="specialist" className="text-sm font-medium text-charcoal">
+                    Preferred Specialist (Optional)
+                  </Label>
+                  {formData.category && formData.category !== "Other" && (
+                    <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+                      Filtered for {formData.category}
+                    </span>
+                  )}
+                </div>
                 <Select 
                   value={formData.specialist} 
                   onValueChange={(value) => handleInputChange('specialist', value)}
                   disabled={isSubmitting}
                 >
                   <SelectTrigger className="w-full" data-testid="select-specialist">
-                    <SelectValue placeholder="Select a specialist you'd like to work with" />
+                    <SelectValue placeholder={
+                      formData.category && formData.category !== "Other"
+                        ? `Select from ${availableSpecialists.length} specialist${availableSpecialists.length !== 1 ? 's' : ''} in ${formData.category}`
+                        : "Select a specialist you'd like to work with"
+                    } />
                   </SelectTrigger>
                   <SelectContent>
-                    {specialists.map((specialist) => (
-                      <SelectItem key={specialist} value={specialist}>
-                        {specialist}
+                    {availableSpecialists.length > 0 ? (
+                      availableSpecialists.map((specialist) => (
+                        <SelectItem key={specialist} value={specialist}>
+                          {specialist}
+                        </SelectItem>
+                      ))
+                    ) : (
+                      <SelectItem value="" disabled>
+                        No specialists available for this category
                       </SelectItem>
-                    ))}
+                    )}
                   </SelectContent>
                 </Select>
               </div>

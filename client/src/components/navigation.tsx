@@ -53,12 +53,12 @@ export default function Navigation() {
             >
               <motion.img 
                 src="/images/animate_logo.gif" 
-                alt="AskFellow Logo" 
+                alt="Nora Logo" 
                 className="h-8 w-8 sm:h-10 sm:w-10"
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.6 }}
               />
-              <h1 className="text-xl sm:text-2xl font-bold text-gradient-primary">AskFellow</h1>
+              <h1 className="text-xl sm:text-2xl font-bold text-gradient-primary">Nora</h1>
             </motion.div>
           </Link>
           

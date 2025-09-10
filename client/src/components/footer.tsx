@@ -28,7 +28,7 @@ export default function Footer({ hideCTA = false }: FooterProps) {
             Ready to support your family's journey?
           </h2>
           <p className="text-base sm:text-lg lg:text-xl mb-6 sm:mb-8 max-w-3xl mx-auto opacity-90">
-            Join thousands of families who have found expert support and guidance through AskFellow. 
+            Join thousands of families who have found expert support and guidance through Nora. 
             Start your personalized care journey today.
           </p>
           {/* <p className="text-base sm:text-lg mb-6 sm:mb-8 opacity-80">
@@ -58,7 +58,7 @@ export default function Footer({ hideCTA = false }: FooterProps) {
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-12 lg:gap-16">
           <div className="lg:col-span-1">
-            <h3 className="text-2xl font-bold mb-4" data-testid="text-footer-brand">AskFellow</h3>
+            <h3 className="text-2xl font-bold mb-4" data-testid="text-footer-brand">Nora</h3>
             <p className="text-gray-400 leading-relaxed" data-testid="text-footer-description">
               Expert support for every working parents, wherever they are along their journey.
             </p>
@@ -96,8 +96,25 @@ export default function Footer({ hideCTA = false }: FooterProps) {
               </ul>
             </div> */}
           </div>
-          <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-            <p data-testid="text-copyright">&copy; 2025 AskFellow. All rights reserved.</p>
+          <div className="border-t border-gray-700 mt-8 pt-8">
+            {/* Privacy & Confidentiality Statement */}
+            <div className="text-center mb-6">
+              <div className="bg-primary/10 rounded-lg p-4 max-w-2xl mx-auto">
+                <h4 className="text-white font-semibold mb-2 text-sm sm:text-base">
+                  🔒 Your Privacy is Our Priority
+                </h4>
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  <strong className="text-white">All conversations are completely confidential.</strong><br />
+                  Your discussions with our specialists are protected by strict privacy protocols 
+                  and professional confidentiality standards.
+                </p>
+              </div>
+            </div>
+            
+            {/* Copyright */}
+            <div className="text-center text-gray-400">
+              <p data-testid="text-copyright">&copy; 2025 Nora. All rights reserved.</p>
+            </div>
           </div>
         </div>
       </footer>
