@@ -190,7 +190,7 @@ export default function TherapistCarousel() {
                         </p>
                         
                         <p className="text-xs sm:text-sm text-charcoal mb-3 sm:mb-4" data-testid={`text-therapist-experience-${slideIndex * itemsPerSlide + index}`}>
-                          <span className="font-medium text-gradient-secondary">
+                          <span className="font-medium">
                             {therapist.experience}
                           </span>
                         </p>

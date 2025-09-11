@@ -98,7 +98,7 @@ export default function Footer({ hideCTA = false }: FooterProps) {
           </div>
           <div className="border-t border-gray-700 mt-8 pt-8">
             {/* Privacy & Confidentiality Statement */}
-            <div className="text-center mb-6">
+            {/* <div className="text-center mb-6">
               <div className="bg-primary/10 rounded-lg p-4 max-w-2xl mx-auto">
                 <h4 className="text-white font-semibold mb-2 text-sm sm:text-base">
                   🔒 Your Privacy is Our Priority
@@ -110,10 +110,22 @@ export default function Footer({ hideCTA = false }: FooterProps) {
                 </p>
               </div>
             </div>
+             */}
+      
             
             {/* Copyright */}
             <div className="text-center text-gray-400">
-              <p data-testid="text-copyright">&copy; 2025 Nora. All rights reserved.</p>
+              <p data-testid="text-copyright">
+                &copy; 2025 Nora. All rights reserved.
+                <span className="text-gray-600 mx-2">•</span>
+                <Link href="/privacy-policy" className="text-gray-400 hover:text-white transition duration-300" data-testid="link-privacy-policy">
+                  Privacy Policy
+                </Link>
+                <span className="text-gray-600 mx-2">•</span>
+                <Link href="/terms-conditions" className="text-gray-400 hover:text-white transition duration-300" data-testid="link-terms-conditions">
+                  Terms & Conditions
+                </Link>
+              </p>
             </div>
           </div>
         </div>

@@ -15,6 +15,8 @@ import SpecialComplexCare from "@/pages/special-complex-care";
 import EmotionalWellbeing from "@/pages/emotional-wellbeing";
 import Employer from "@/pages/employer";
 import DemoRequest from "@/pages/demo-request";
+import PrivacyPolicy from "@/pages/privacy-policy";
+import TermsConditions from "@/pages/terms-conditions";
 
 function Router() {
   return (
@@ -30,6 +32,8 @@ function Router() {
       <Route path="/emotional-wellbeing" component={EmotionalWellbeing} />
       <Route path="/employer" component={Employer} />
       <Route path="/demo-request" component={DemoRequest} />
+      <Route path="/privacy-policy" component={PrivacyPolicy} />
+      <Route path="/terms-conditions" component={TermsConditions} />
       <Route component={NotFound} />
     </Switch>
   );
