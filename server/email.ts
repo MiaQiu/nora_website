@@ -26,6 +26,17 @@ export interface RequestDetails {
   }>;
 }
 
+export interface BetaWaitlistDetails {
+  name: string;
+  email: string;
+  phone: string;
+  numberOfChildren: string;
+  children: Array<{
+    age: string;
+  }>;
+  topics?: string;
+}
+
 class EmailService {
   private transporter: nodemailer.Transporter;
 
@@ -161,6 +172,76 @@ ${this.formatTimeSlots(timeSlots)}
 
 ---
 This request was submitted through the AskFellow website.
+    `;
+
+    await this.transporter.sendMail({
+      from: process.env.SMTP_FROM || process.env.SMTP_USER,
+      to: process.env.NOTIFICATION_EMAIL || process.env.SMTP_USER,
+      subject,
+      text: textContent,
+      html: htmlContent,
+    });
+  }
+
+  async sendBetaWaitlistNotification(waitlistDetails: BetaWaitlistDetails): Promise<void> {
+    const { name, email, phone, numberOfChildren, children, topics } = waitlistDetails;
+
+    const subject = `New Beta Waitlist Signup - ${name}`;
+
+    const childrenList = children.map((child, index) =>
+      `<li>Child ${index + 1}: ${child.age}</li>`
+    ).join('\n');
+
+    const childrenTextList = children.map((child, index) =>
+      `  ${index + 1}. ${child.age}`
+    ).join('\n');
+
+    const htmlContent = `
+      <h2>New Beta Waitlist Signup</h2>
+
+      <h3>Contact Information:</h3>
+      <ul>
+        <li><strong>Name:</strong> ${name}</li>
+        <li><strong>Email:</strong> ${email}</li>
+        <li><strong>Phone:</strong> ${phone}</li>
+      </ul>
+
+      <h3>Family Information:</h3>
+      <ul>
+        <li><strong>Number of Children:</strong> ${numberOfChildren}</li>
+      </ul>
+
+      <h3>Children Ages:</h3>
+      <ul>
+        ${childrenList}
+      </ul>
+
+      ${topics ? `
+      <h3>Topics of Interest:</h3>
+      <p>${topics.replace(/\n/g, '<br>')}</p>
+      ` : ''}
+
+      <hr>
+      <p><em>This beta waitlist signup was submitted through the Nora website.</em></p>
+    `;
+
+    const textContent = `
+New Beta Waitlist Signup
+
+Contact Information:
+- Name: ${name}
+- Email: ${email}
+- Phone: ${phone}
+
+Family Information:
+- Number of Children: ${numberOfChildren}
+
+Children Ages:
+${childrenTextList}
+
+${topics ? `Topics of Interest:\n${topics}\n` : ''}
+---
+This beta waitlist signup was submitted through the Nora website.
     `;
 
     await this.transporter.sendMail({

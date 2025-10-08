@@ -82,34 +82,16 @@ export default function Navigation() {
                   />
                 </span>
               </motion.button>
-             
+
               <motion.button
-                onClick={() => scrollToSection('therapists')}
+                onClick={() => scrollToSection('pricing')}
                 className="text-charcoal hover:text-primary transition-all duration-300 font-medium relative"
-                data-testid="nav-therapists"
+                data-testid="nav-pricing"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <span className="relative">
-                  Experts
-                  <motion.div
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-secondary rounded-full"
-                    initial={{ scaleX: 0 }}
-                    whileHover={{ scaleX: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </span>
-              </motion.button>
-              
-              <motion.button
-                onClick={() => scrollToSection('contact')}
-                className="text-charcoal hover:text-primary transition-all duration-300 font-medium relative"
-                data-testid="nav-contact"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className="relative">
-                  Contact
+                  Pricing
                   <motion.div
                     className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-secondary rounded-full"
                     initial={{ scaleX: 0 }}
@@ -141,12 +123,12 @@ export default function Navigation() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Link href="/request">
-                <Button 
+              <Link href="/beta-waitlist">
+                <Button
                   className="bg-gradient-primary text-white hover:shadow-lg hover:shadow-primary/25 text-sm sm:text-base px-3 sm:px-4 py-2 glow-primary transition-all duration-300"
                   data-testid="button-get-started"
                 >
-                  Book a free consultation
+                  Join the Beta Waitlist
                 </Button>
               </Link>
             </motion.div>
@@ -195,7 +177,7 @@ export default function Navigation() {
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
             >
-              <motion.div 
+              <motion.div
                 className="px-2 pt-2 pb-3 space-y-1"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -212,22 +194,13 @@ export default function Navigation() {
                   Services
                 </motion.button>
                 <motion.button
-                  onClick={() => scrollToSection('therapists')}
+                  onClick={() => scrollToSection('pricing')}
                   className="block px-3 py-2 text-charcoal hover:text-primary transition-all duration-300 font-medium w-full text-left hover:bg-accent/50 rounded-lg"
-                  data-testid="mobile-nav-therapists"
+                  data-testid="mobile-nav-pricing"
                   whileHover={{ x: 5 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Experts
-                </motion.button>
-                <motion.button
-                  onClick={() => scrollToSection('contact')}
-                  className="block px-3 py-2 text-charcoal hover:text-primary transition-all duration-300 font-medium w-full text-left hover:bg-accent/50 rounded-lg"
-                  data-testid="mobile-nav-contact"
-                  whileHover={{ x: 5 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Contact
+                  Pricing
                 </motion.button>
                 <motion.span
                   onClick={() => {

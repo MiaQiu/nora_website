@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { emailService, type BookingDetails, type RequestDetails } from "./email";
+import { emailService, type BookingDetails, type RequestDetails, type BetaWaitlistDetails } from "./email";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // put application routes here
@@ -44,28 +44,67 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post('/api/submit-request', async (req, res) => {
     try {
       const requestData: RequestDetails = req.body;
-      
+
       // Validate required fields
-      if (!requestData.name || !requestData.phone || !requestData.email || 
+      if (!requestData.name || !requestData.phone || !requestData.email ||
           !requestData.details || !requestData.timeSlots || requestData.timeSlots.length === 0) {
-        return res.status(400).json({ 
-          success: false, 
-          message: 'Missing required fields' 
+        return res.status(400).json({
+          success: false,
+          message: 'Missing required fields'
         });
       }
 
       // Send email notification
       await emailService.sendRequestNotification(requestData);
-      
-      res.json({ 
-        success: true, 
-        message: 'Request submitted successfully' 
+
+      res.json({
+        success: true,
+        message: 'Request submitted successfully'
       });
     } catch (error) {
       console.error('Error processing request:', error);
-      res.status(500).json({ 
-        success: false, 
-        message: 'Internal server error' 
+      res.status(500).json({
+        success: false,
+        message: 'Internal server error'
+      });
+    }
+  });
+
+  // Beta waitlist form submission endpoint
+  app.post('/api/beta-waitlist', async (req, res) => {
+    try {
+      const waitlistData: BetaWaitlistDetails = req.body;
+
+      // Validate required fields
+      if (!waitlistData.name || !waitlistData.email || !waitlistData.phone ||
+          !waitlistData.numberOfChildren || !waitlistData.children || waitlistData.children.length === 0) {
+        return res.status(400).json({
+          success: false,
+          message: 'Missing required fields'
+        });
+      }
+
+      // Validate that all children have ages
+      const hasEmptyAges = waitlistData.children.some(child => !child.age || child.age.trim() === '');
+      if (hasEmptyAges) {
+        return res.status(400).json({
+          success: false,
+          message: 'Please provide age for all children'
+        });
+      }
+
+      // Send email notification
+      await emailService.sendBetaWaitlistNotification(waitlistData);
+
+      res.json({
+        success: true,
+        message: 'Beta waitlist signup submitted successfully'
+      });
+    } catch (error) {
+      console.error('Error processing beta waitlist signup:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Internal server error. Please try again later.'
       });
     }
   });

@@ -42,19 +42,46 @@ export const specialists: Specialist[] = [
     freeConsultation: true
   },
   {
+    id: "ronald-yow",
+    name: "Ronald Yow",
+    title: "Parenting Coach",
+    experience: "Over 20 years of experience working with children, youths, and families. Certified life and parent coach with extensive expertise in leadership, learning, and talent development.",
+    image: "/images/specialists/ronald-yow.jpeg",
+    about: "Ronald Yow is a certified life and parent coach with over 20 years of experience working with children, youths, and families. He is a certified trainer and has extensive expertise in leadership, learning, and talent development. He has a thoughtful, reflective approach and specializes in helping clients build self-awareness and emotional presence. He is known for his \"Parent Makeover Coaching Program,\" which focuses on helping parents adjust their mindset and perspectives rather than just teaching specific methods.",
+    workExperience: [
+      "Professional Certified Coach (PCC)",
+      "ACTA Certified Trainer - Singapore and Southeast Asia",
+      "Master Certified Coach (MCC)",
+      "Transformative coaching training conductor across Singapore and Southeast Asia",
+      "Father of two daughters - Personal parenting experience"
+    ],
+    education: [
+      "Professional Certified Coach (PCC) certification",
+      "ACTA Certified Trainer qualification",
+      "Master Certified Coach (MCC) certification"
+    ],
+    languages: ["English"],
+    specialties: ["Parent Coaching", "Leadership and Mentoring", "Youth and Family Development", "Parent Makeover Coaching Program", "Mindset and perspective adjustment", "Self-awareness building", "Emotional presence coaching"],
+    cancellationPolicy: "24-hour notice required; flexible scheduling for family coaching sessions",
+    categories: ["parenting-skills"],
+    pricing: 120,
+    freeConsultation: false
+  },
+  
+  {
     id: "jacquelyn-peh",
     name: "Jacquelyn Peh",
-    title: "Licensed Professional Counsellor",
+    title: "Registered Counsellor",
     experience: "Over 10 years of experience providing counseling to teenagers, young adults, and families. ",
     image: "/images/specialists/Jacquelyn-Peh.jpg",
-    about: "Jacquelyn is a licensed professional counsellour with over a decade of experience, focusing on supporting families and teenagers with mental health and relationship challenges. She is a clinical supervisor and holds professional affiliations with the Singapore Association for Counsellors (SAC) and the Association of Psychotherapists and Counsellors Singapore (APACS).",
+    about: "Jacquelyn is a registered counsellour with over a decade of experience, focusing on supporting families and teenagers with mental health and relationship challenges. She is a clinical supervisor and holds professional affiliations with the Singapore Association for Counsellors (SAC) and the Association of Psychotherapists and Counsellors Singapore (APACS).",
     workExperience: [
-      "Licensed Professional Counsellor - Private Practice",
+      "Registered Counsellor - Private Practice",
       "Clinical Supervisor - Singapore Association for Counsellors (SAC)",
       "Family Counsellor - Social Services Sector"
     ],
     education: [
-      "Master's in Social Sciences (Professional) Counselling"
+      "Master's in Social Sciences (Professional Counselling)"
     ],
     languages: ["English", "Mandarin"],
     specialties: ["Relationship challenges", "Family and parenting issues", "Teenager mental health", "Emotion regulation", "Grief counselling", "Self-esteem issues"],
@@ -91,6 +118,34 @@ export const specialists: Specialist[] = [
     freeConsultation: false
   },
   {
+    id: "clement-ong",
+    name: "Clement Ong",
+    title: "Parenting Coach & Registered Counsellor",
+    experience: "Certified coach and counsellor, specialising in family dynamics and parenting, with a focus on fathering, marital, and family issues.",
+    image: "/images/specialists/clement-ong.jpeg",
+    about: "Clement Ong is a certified coach and counsellour who brings his extensive experience in career and executive coaching to the realm of family dynamics and parenting. As a father of two young adult children, he has a passion for helping couples build strong marriages and empowering parents to raise resilient children. His approach focuses on helping parents gain clarity and fresh perspectives to enhance their self-awareness, improve family relationships, and navigate modern challenges, including digital issues.",
+    workExperience: [
+      "Associate Counsellor - Kingsmead Centre",
+      "Associate - Centre for Fathering",
+      "Couple Mentor - Family counselling and support",
+      "Director-level Coach - Civil Service College (CSC) leadership programs",
+      "Registered Counsellor - Singapore Association for Counselling",
+      "Father of two young adult children - Personal parenting experience"
+    ],
+    education: [
+      "Master of Social Science in Professional Counselling - Swinburne University of Technology, Melbourne, Australia",
+      "Certified Career Practitioner (CCP)",
+      "Certified Clinical Supervisor of Career Counselling (CCSCC)",
+      "Certified Solutions Focused Coach (CSFC)"
+    ],
+    languages: ["English"],
+    specialties: ["Parent and Family Counselling", "Parent-Child Relationship", "Father-child relationship", "Life transitions", "Youth counselling", "Marital and family issues", "Digital parenting challenges", "Building resilient children"],
+    cancellationPolicy: "24-hour notice required; flexible scheduling for family counselling sessions",
+    categories: ["parenting-skills", "emotional-wellbeing"],
+    pricing: 130,
+    freeConsultation: false
+  },
+  {
     id: "giselle-makarachvili",
     name: "Giselle Makarachvili",
     title: "Return to Work Coach/ Career Coach",
@@ -116,7 +171,7 @@ export const specialists: Specialist[] = [
     id: "yixuan",
     name: "Yixuan",
     title: "Baby-Led Sleep Specialist",
-    experience: "3+ years of sleep coaching experience",
+    experience: "Over 3 years of sleep coaching experience, specialises in improving sleep for the whole family with attachment based practices.",
     image: "/images/specialists/Yixuan.avif",
     about: "Yixuan is a Baby and Children Sleep Coach who specialises in improving sleep for the whole family with attachment based practices. Her approach is a gentle and responsive sleep training alternative that respects and supports normal infant sleep. She believes that parents are the experts of their child and works to guide them on a path that respects their baby's individual needs and the family's dynamics. Yixuan is a mother of 2 boys.",
     workExperience: [
@@ -180,6 +235,56 @@ export const specialists: Specialist[] = [
     specialties: ["Back-to-work coaching", "Motherhood coaching", "Identity shifts", "Guilt & pressure management", "Pumping & childcare logistics", "Career transition support"],
     cancellationPolicy: "48-hour notice required; flexible scheduling for working mothers",
     categories: ["return-to-work"],
+    pricing: undefined,
+    freeConsultation: false
+  },
+  {
+    id: "zhang-li-mingde",
+    name: "张李明德",
+    title: "父母教養顧問 (Parenting Consultant)",
+    experience: "Over 17 years of cross-disciplinary professional training in education, psychological counseling, and social work. More than 2,500 hours of practical experience in lectures, individual counseling, and leading growth groups.",
+    image: "/images/specialists/zhang-li-mingde.png",
+    about: "作為父母教養顧問，他專注於協助家長解決教養上的疑難雜症，並提升親子教養能力。他的目標是幫助父母培育出自信、懂得合作、並能對社會有所貢獻的幸福小孩。他認為，教養不應只針對單點問題，而是必須從「系統性」的角度來處理。他結合心理學的「綜合理論」、社會工作的「豐富實務經驗」以及教育訓練的「系統化架構」，提供專業的教養諮詢服務。As a Parenting Consultant, he focuses on helping parents solve their parenting difficulties and enhances their parenting skills. His goal is to help parents raise happy children who are confident, cooperative, and a contribution to society. His approach is not to solve single issues but to address parenting challenges from a 'systemic perspective.' He provides professional parenting consultation by combining a 'comprehensive psychological theory,' rich 'practical social work experience,' and a 'systematic educational training framework.'",
+    workExperience: [
+      "正向教養講師與外部督導 - Multiple Parent-Child Centers and Schools",
+      "到宅親職教養諮詢師 - 兒少保家庭處遇服務中心",
+      "Positive Discipline Instructor and External Supervisor",
+      "In-home Parenting Consultant for Child Protection Service Families"
+    ],
+    education: [
+      "國家專技高考社會工作師證書 (National Professional and Technical Examination Certificate for Social Worker)",
+      "國家乙級就業服務技術士證照 (National B-Level Employment Service Technician Certificate)",
+      "國際 NLP 與催眠師認證 (International NLP and Hypnotherapist Certification)",
+      "TA 溝通分析治療法 TA101、TA202 (TA Communication Analysis Therapy TA101, TA202)",
+      "財團法人杏陵醫學基金會性教育講師培訓 (Xingling Medical Foundation Sex Education Instructor Training)"
+    ],
+    languages: ["Chinese", "中文"],
+    specialties: ["Positive Discipline", "Children and Teenagers", "Relationships", "正向教養", "兒童與青少年", "人際關係"],
+    cancellationPolicy: "24-hour notice required; flexible scheduling for parenting consultation sessions",
+    categories: ["parenting-skills"],
+    pricing: 130,
+    freeConsultation: false
+  },
+  {
+    id: "anne-sophie",
+    name: "Anne-Sophie",
+    title: "Wellbeing Coaching & Yoga for Parents",
+    experience: "Trained wellness coach working toward ICF ACC certification since 2022, yoga teacher since 2020 specializing in prenatal and postnatal yoga",
+    image: "/images/specialists/anne-sophie.jpeg",
+    about: "Anne-Sophie helps parents reduce stress and nurture themselves through holistic coaching and private yoga. As a French mom living in Singapore for the past decade, she draws on her personal and professional experience to guide parents toward calm, confidence, and balance.",
+    workExperience: [
+      "Wellness Coach - Working toward ICF ACC certification (since 2022)",
+      "Yoga Teacher - Prenatal and Postnatal Yoga (since 2020)",
+      "French mother living in Singapore - Personal parenting experience"
+    ],
+    education: [
+      "Prenatal & Postnatal Yoga Training",
+      "ICF ACC Certification - In Progress"
+    ],
+    languages: ["English", "French"],
+    specialties: ["Work-Life Balance Coaching", "Stress & Anxiety Management", "Prenatal & Postnatal Recovery Support", "Coaching for Working Moms", "Wellness Coaching", "Yoga for Parents"],
+    cancellationPolicy: "24-hour notice required; flexible scheduling for parent wellness sessions",
+    categories: ["postpartum-care"],
     pricing: undefined,
     freeConsultation: false
   },

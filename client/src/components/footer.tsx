@@ -14,8 +14,8 @@ export default function Footer({ hideCTA = false }: FooterProps) {
     }
   };
 
-  const navigateToBookSession = () => {
-    setLocation('/book-session');
+  const navigateToBetaWaitlist = () => {
+    setLocation('/beta-waitlist');
   };
 
   return (
@@ -35,12 +35,12 @@ export default function Footer({ hideCTA = false }: FooterProps) {
             Contact us at: <a href="mailto:info@askfellow.ai" className="text-secondary hover:text-white transition duration-300 underline">info@askfellow.ai</a> or book a free consultation through the button below.
           </p> */}
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-            <button 
-              onClick={navigateToBookSession}
+            <button
+              onClick={navigateToBetaWaitlist}
               className="bg-white text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-opacity-90 transition duration-300 font-semibold text-sm sm:text-base"
               data-testid="button-book-session-footer"
             >
-              Book Your Session
+              Join the Beta Waitlist
             </button>
             {/* <button 
               className="border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-white hover:text-primary transition duration-300 font-semibold text-sm sm:text-base"
@@ -60,7 +60,7 @@ export default function Footer({ hideCTA = false }: FooterProps) {
           <div className="lg:col-span-1">
             <h3 className="text-2xl font-bold mb-4" data-testid="text-footer-brand">Nora</h3>
             <p className="text-gray-400 leading-relaxed" data-testid="text-footer-description">
-              Expert support for every working parents, wherever they are along their journey.
+              Expert support for all working parents, wherever they are along their journey.
             </p>
           </div>
           <div className="lg:col-span-2">

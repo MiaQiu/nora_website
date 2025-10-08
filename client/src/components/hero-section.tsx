@@ -28,32 +28,63 @@ export default function HeroSection() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-center lg:text-left lg:col-span-3"
           >
-            <motion.h1 
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-3 sm:mb-4"
+            <motion.p
+              className="text-sm sm:text-base text-secondary font-medium mb-3 sm:mb-4 tracking-wide uppercase"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              MEET NORA
+            </motion.p>
+
+            <motion.h1
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-4 sm:mb-6"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Your Extended{" "}
+              Raising Future-Ready Kids,{" "}
               <span className="text-gradient-primary">
-                Parenting Village
+                Today
               </span>
             </motion.h1>
-            
-            <motion.p 
-              className="text-base sm:text-lg lg:text-xl text-charcoal mb-6 sm:mb-8 leading-relaxed"
+
+            <motion.p
+              className="text-base sm:text-lg lg:text-xl text-charcoal/70 mb-6 sm:mb-8 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <span className="font-semibold text-secondary">Evidence-based expert</span> and <span className="font-semibold text-secondary">fellow parents </span>support network providing{" "}
-              <span className="text-gradient-primary font-semibold">
-                personalized 1:1 guidance
-              </span>{" "}
-              across every stage of parenting. Navigate challenges and milestones with confidence.
+              Navigate parenthood confidently from pregnancy to teenage years, with your team of experts available on demand.
             </motion.p>
-            
-            <motion.div 
+
+            <motion.div
+              className="space-y-3 mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              <div className="flex items-center gap-3 text-charcoal/80">
+                <svg className="w-5 h-5 text-secondary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <span className="text-sm sm:text-base">Stronger Bonds at Home</span>
+              </div>
+              <div className="flex items-center gap-3 text-charcoal/80">
+                <svg className="w-5 h-5 text-secondary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <span className="text-sm sm:text-base">Healthier, Happier Kids</span>
+              </div>
+              <div className="flex items-center gap-3 text-charcoal/80">
+                <svg className="w-5 h-5 text-secondary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <span className="text-sm sm:text-base">Future-Ready Families</span>
+              </div>
+            </motion.div>
+
+            <motion.div
               className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -63,18 +94,30 @@ export default function HeroSection() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Link href="/book-session">
+                <Link href="/beta-waitlist">
                   <button
                     className="bg-gradient-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:shadow-lg glow-primary font-semibold text-sm sm:text-base transition-all duration-300"
                     data-testid="button-book-session"
                   >
-                    Book Your Session
+                    Join the Beta Waitlist →
                   </button>
                 </Link>
               </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {/* <Link href="/about">
+                  <button
+                    className="bg-white text-charcoal border-2 border-charcoal/20 px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:shadow-lg hover:border-secondary/50 font-semibold text-sm sm:text-base transition-all duration-300"
+                  >
+                    Learn More
+                  </button>
+                </Link> */}
+              </motion.div>
             </motion.div>
 
-            
+
           </motion.div>
 
           {/* Right Column - Specialist Photos Grid - Takes up 2 columns */}

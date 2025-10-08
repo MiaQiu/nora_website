@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
 import BookSession from "@/pages/book-session";
+import BetaWaitlist from "@/pages/beta-waitlist";
 import Request from "@/pages/request";
 import NotFound from "@/pages/not-found";
 import ParentingSkills from "@/pages/parenting-skills";
@@ -23,6 +24,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/book-session" component={BookSession} />
+      <Route path="/beta-waitlist" component={BetaWaitlist} />
       <Route path="/request" component={Request} />
       <Route path="/parenting-skills" component={ParentingSkills} />
       <Route path="/postpartum-care" component={PostpartumCare} />
