@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, ArrowLeft, Loader2, PlusCircle, X } from "lucide-react";
 import { Link } from "wouter";
@@ -23,8 +24,30 @@ export default function BetaWaitlist() {
     phone: "",
     numberOfChildren: "",
     children: [] as ChildInfo[],
+    interestedPackage: "",
     topics: ""
   });
+
+  // Packages from Pricing Section
+  const pricingPackages = [
+    "Starter - $60 SGD/month",
+    "Premium - $399 SGD/6 months",
+    "Expert Call - $90 SGD"
+  ];
+
+  // Programs from Programs Section
+  const programs = [
+    "Maternity and New Born Care - $399 SGD/6 months",
+    "Parenting the Pre-Teen - $1,999 SGD/year",
+    "The Reconnection Project - $1,999 SGD/year",
+    "Neurodivergent Care Navigation - $499 SGD/6 months"
+  ];
+
+  // Combined list
+  const allPackages = [
+    { category: "Pricing Packages", items: pricingPackages },
+    { category: "Parenting Programs", items: programs }
+  ];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -295,6 +318,39 @@ export default function BetaWaitlist() {
                       </div>
                     </div>
                   )}
+
+                  {/* Interested Package/Program (Optional) */}
+                  <div className="space-y-2">
+                    <Label htmlFor="interestedPackage" className="text-sm font-medium text-charcoal">
+                      Interested Package/Program <span className="text-charcoal/50">(Optional)</span>
+                    </Label>
+                    <Select
+                      value={formData.interestedPackage}
+                      onValueChange={(value) => handleInputChange('interestedPackage', value)}
+                      disabled={isSubmitting}
+                    >
+                      <SelectTrigger className="w-full" data-testid="select-package">
+                        <SelectValue placeholder="Select a package or program you're interested in" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {allPackages.map((group, groupIndex) => (
+                          <div key={groupIndex}>
+                            <div className="px-2 py-1.5 text-xs font-semibold text-primary bg-primary/5">
+                              {group.category}
+                            </div>
+                            {group.items.map((item, itemIndex) => (
+                              <SelectItem key={`${groupIndex}-${itemIndex}`} value={item}>
+                                {item}
+                              </SelectItem>
+                            ))}
+                          </div>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <p className="text-xs text-charcoal/60">
+                      Let us know which package or program interests you most. This helps us understand your needs better.
+                    </p>
+                  </div>
 
                   {/* Topics (Optional) */}
                   <div className="space-y-2">

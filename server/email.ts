@@ -34,6 +34,7 @@ export interface BetaWaitlistDetails {
   children: Array<{
     age: string;
   }>;
+  interestedPackage?: string;
   topics?: string;
 }
 
@@ -184,7 +185,7 @@ This request was submitted through the AskFellow website.
   }
 
   async sendBetaWaitlistNotification(waitlistDetails: BetaWaitlistDetails): Promise<void> {
-    const { name, email, phone, numberOfChildren, children, topics } = waitlistDetails;
+    const { name, email, phone, numberOfChildren, children, interestedPackage, topics } = waitlistDetails;
 
     const subject = `New Beta Waitlist Signup - ${name}`;
 
@@ -216,6 +217,11 @@ This request was submitted through the AskFellow website.
         ${childrenList}
       </ul>
 
+      ${interestedPackage ? `
+      <h3>Interested Package/Program:</h3>
+      <p><strong>${interestedPackage}</strong></p>
+      ` : ''}
+
       ${topics ? `
       <h3>Topics of Interest:</h3>
       <p>${topics.replace(/\n/g, '<br>')}</p>
@@ -239,7 +245,7 @@ Family Information:
 Children Ages:
 ${childrenTextList}
 
-${topics ? `Topics of Interest:\n${topics}\n` : ''}
+${interestedPackage ? `Interested Package/Program:\n${interestedPackage}\n\n` : ''}${topics ? `Topics of Interest:\n${topics}\n` : ''}
 ---
 This beta waitlist signup was submitted through the Nora website.
     `;

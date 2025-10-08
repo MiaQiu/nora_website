@@ -149,7 +149,7 @@ export default function PricingSection() {
                   ))}
                 </ul>
 
-                <Link href="/beta-waitlist">
+                {/* <Link href="/beta-waitlist">
                   <motion.button
                     className={`w-full px-6 py-3 sm:py-4 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 ${
                       plan.featured
@@ -162,7 +162,7 @@ export default function PricingSection() {
                   >
                     Join the Beta Waitlist
                   </motion.button>
-                </Link>
+                </Link> */}
               </div>
             </motion.div>
           ))}

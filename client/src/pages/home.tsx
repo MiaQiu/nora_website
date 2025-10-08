@@ -3,6 +3,7 @@ import HeroSection from "@/components/hero-section";
 import ParentingSupportSection from "@/components/parenting-support-section";
 import ServicesSection from "@/components/services-section";
 import PricingSection from "@/components/pricing-section";
+import ProgramsSection from "@/components/programs-section";
 import ServicesGrid from "@/components/services-grid";
 import TherapistCarousel from "@/components/specialists/TherapistCarousel";
 import Footer from "@/components/footer";
@@ -25,6 +26,7 @@ export default function Home() {
           <ParentingSupportSection />
           <ServicesSection />
           <PricingSection />
+          <ProgramsSection />
           {/* <ServicesGrid />
           <TherapistCarousel /> */}
         </main>
