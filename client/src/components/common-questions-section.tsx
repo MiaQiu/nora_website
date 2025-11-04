@@ -11,7 +11,7 @@ export default function CommonQuestionsSection() {
   const faqs = [
     {
       question: "How much do your expert sessions cost?",
-      answer: "Our pricing varies based on the type of service and your family's specific needs. Contact us for a personalized quote and to learn about our flexible payment options."
+      answer: "Our expert sessions are 199 SGD for 1 hour. Contact us for a personalized quote and to learn about our flexible payment options."
     },
     {
       question: "Are sessions virtual?",
