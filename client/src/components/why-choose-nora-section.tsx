@@ -1,31 +1,10 @@
 import { motion } from "framer-motion";
+import { Users, User, FileText } from "lucide-react";
 
 export default function WhyChooseNoraSection() {
-  const features = [
-    {
-      title: "Whole-family care",
-      headline: "We work with the whole family — not just the child.",
-      description: "Our integrated model brings together counselors, parent coaches, and education planners to ensure that every family member grows together. By addressing both the child's challenges and the family's dynamics, we create lasting emotional change that starts at home.",
-      imageSrc: "/attached_assets/stock_images/happy_asian_family_t_b82ab640.jpg",
-      hasImage: true
-    },
-    {
-      title: "Results-Driven, Structured Care",
-      headline: "Personalized support, measurable progress.",
-      description: "Every Nora program follows a 12 week care plan with weekly goals, designed for visible outcomes. Families receive tailored guidance and progress tracking from our multidisciplinary team — ensuring real improvements in emotional regulation, family connection, and school engagement.",
-      hasImage: false
-    },
-    {
-      title: "Multidisciplinary and Coordinated Expertise",
-      headline: "A team that works as one for your family.",
-      description: "Our counselors, parent coaches, and education planners collaborate closely to deliver cohesive, end-to-end support. This coordinated model ensures every aspect of a child's wellbeing — emotional, behavioral, and educational — is aligned for long-term growth and stability.",
-      hasImage: false
-    }
-  ];
-
   return (
     <section className="py-16 sm:py-20 lg:py-24 bg-white">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-16">
           <motion.h2
             className="text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal"
@@ -39,43 +18,84 @@ export default function WhyChooseNoraSection() {
           </motion.h2>
         </div>
 
-        <div className="space-y-12 sm:space-y-16">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              data-testid={`section-why-${index}`}
-              className="space-y-6"
-            >
-              <div>
-                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-charcoal mb-3" data-testid={`text-why-title-${index}`}>
-                  {feature.title}
-                </h3>
-                
-                <p className="text-base sm:text-lg text-charcoal mb-3" data-testid={`text-why-headline-${index}`}>
-                  {feature.headline}
-                </p>
-                
-                <p className="text-sm sm:text-base text-charcoal/70 leading-relaxed" data-testid={`text-why-description-${index}`}>
-                  {feature.description}
-                </p>
-              </div>
+        <div className="space-y-8">
+          {/* First feature - 2 column layout with image */}
+          <motion.div
+            className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            data-testid="section-why-0"
+          >
+            {/* Text Card */}
+            <div className="bg-[#fef9e7] rounded-3xl p-8 lg:p-10">
+              <Users className="w-10 h-10 mb-6 text-charcoal" />
+              <h3 className="text-2xl sm:text-3xl font-bold text-charcoal mb-4" data-testid="text-why-title-0">
+                Whole-family care
+              </h3>
+              <p className="text-base sm:text-lg text-charcoal mb-4" data-testid="text-why-headline-0">
+                We work with the whole family — not just the child.
+              </p>
+              <p className="text-sm sm:text-base text-charcoal/80 leading-relaxed" data-testid="text-why-description-0">
+                Our integrated model brings together counselors, parent coaches, and education planners to ensure that every family member grows together. By addressing both the child's challenges and the family's dynamics, we create lasting emotional change that starts at home.
+              </p>
+            </div>
 
-              {feature.hasImage && (
-                <div className="w-full max-w-2xl">
-                  <img 
-                    src={feature.imageSrc} 
-                    alt={feature.title}
-                    className="w-full h-auto rounded-2xl"
-                    data-testid={`img-why-${index}`}
-                  />
-                </div>
-              )}
-            </motion.div>
-          ))}
+            {/* Image */}
+            <div className="rounded-3xl overflow-hidden">
+              <img 
+                src="/attached_assets/stock_images/happy_asian_family_t_b82ab640.jpg" 
+                alt="Happy family"
+                className="w-full h-full object-cover"
+                data-testid="img-why-0"
+              />
+            </div>
+          </motion.div>
+
+          {/* Second feature - card only */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            data-testid="section-why-1"
+          >
+            <div className="bg-[#f3e5f5] rounded-3xl p-8 lg:p-10 max-w-2xl">
+              <User className="w-10 h-10 mb-6 text-charcoal" />
+              <h3 className="text-2xl sm:text-3xl font-bold text-charcoal mb-4" data-testid="text-why-title-1">
+                Results-Driven, Structured Care
+              </h3>
+              <p className="text-base sm:text-lg text-charcoal mb-4" data-testid="text-why-headline-1">
+                Personalized support, measurable progress.
+              </p>
+              <p className="text-sm sm:text-base text-charcoal/80 leading-relaxed" data-testid="text-why-description-1">
+                Every Nora program follows a 12 week care plan with weekly goals, designed for visible outcomes. Families receive tailored guidance and progress tracking from our multidisciplinary team — ensuring real improvements in emotional regulation, family connection, and school engagement.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Third feature - card only */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            data-testid="section-why-2"
+          >
+            <div className="bg-[#e8eaf6] rounded-3xl p-8 lg:p-10 max-w-2xl">
+              <FileText className="w-10 h-10 mb-6 text-charcoal" />
+              <h3 className="text-2xl sm:text-3xl font-bold text-charcoal mb-4" data-testid="text-why-title-2">
+                Multidisciplinary and Coordinated Expertise
+              </h3>
+              <p className="text-base sm:text-lg text-charcoal mb-4" data-testid="text-why-headline-2">
+                A team that works as one for your family.
+              </p>
+              <p className="text-sm sm:text-base text-charcoal/80 leading-relaxed" data-testid="text-why-description-2">
+                Our counselors, parent coaches, and education planners collaborate closely to deliver cohesive, end-to-end support. This coordinated model ensures every aspect of a child's wellbeing — emotional, behavioral, and educational — is aligned for long-term growth and stability.
+              </p>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
