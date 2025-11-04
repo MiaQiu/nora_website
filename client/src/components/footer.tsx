@@ -22,12 +22,12 @@ export default function Footer({ hideCTA = false }: FooterProps) {
     <>
       {/* Contact/CTA Section */}
       {!hideCTA && (
-      <section id="contact" className="py-8 sm:py-12 lg:py-24 bg-primary text-white">
+      <section id="contact" className="py-16 sm:py-20 lg:py-28 bg-gradient-to-r from-primary to-secondary text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold mb-4 sm:mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
             Ready to support your family's journey?
           </h2>
-          <p className="text-base sm:text-lg lg:text-xl mb-6 sm:mb-8 max-w-3xl mx-auto opacity-90">
+          <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 max-w-3xl mx-auto opacity-90 leading-relaxed">
             Join thousands of families who have found expert support and guidance through Nora. 
             Start your personalized care journey today.
           </p>
@@ -37,7 +37,7 @@ export default function Footer({ hideCTA = false }: FooterProps) {
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <button
               onClick={navigateToBetaWaitlist}
-              className="bg-white text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-opacity-90 transition duration-300 font-semibold text-sm sm:text-base"
+              className="bg-white text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-gray-100 transition-all duration-300 font-bold text-base sm:text-lg shadow-xl hover:shadow-2xl"
               data-testid="button-book-session-footer"
             >
               Get Started
