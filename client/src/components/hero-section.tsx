@@ -56,32 +56,6 @@ export default function HeroSection() {
             </motion.p>
 
             <motion.div
-              className="space-y-3 mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-            >
-              <div className="flex items-center gap-3 text-charcoal/80">
-                <svg className="w-5 h-5 text-secondary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <span className="text-sm sm:text-base">Stronger Bonds at Home</span>
-              </div>
-              <div className="flex items-center gap-3 text-charcoal/80">
-                <svg className="w-5 h-5 text-secondary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <span className="text-sm sm:text-base">Healthier, Happier Kids</span>
-              </div>
-              <div className="flex items-center gap-3 text-charcoal/80">
-                <svg className="w-5 h-5 text-secondary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <span className="text-sm sm:text-base">Future-Ready Families</span>
-              </div>
-            </motion.div>
-
-            <motion.div
               className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
