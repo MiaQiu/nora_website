@@ -1,9 +1,19 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { useSpecialists } from "@/hooks/useSpecialists";
 
 export default function HeroSection() {
+  const [highlightIndex, setHighlightIndex] = useState(0);
   const allSpecialists = useSpecialists();
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHighlightIndex((prev) => (prev + 1) % 2);
+    }, 2500);
+
+    return () => clearInterval(interval);
+  }, []);
   
   // Transform centralized data to hero-section format
   const specialists = allSpecialists.map(specialist => ({
@@ -43,7 +53,14 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Building <span className="text-gradient-primary">confident kids</span> and connected families
+              Building{" "}
+              <span className={`transition-all duration-500 ${highlightIndex === 0 ? 'text-gradient-primary' : 'text-charcoal'}`}>
+                confident kids
+              </span>{" "}
+              and{" "}
+              <span className={`transition-all duration-500 ${highlightIndex === 1 ? 'text-gradient-primary' : 'text-charcoal'}`}>
+                connected families
+              </span>
             </motion.h1>
 
             <motion.p
