@@ -1,6 +1,7 @@
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
 import FamilyChallengesSection from "@/components/family-challenges-section";
+import WhyChooseNoraSection from "@/components/why-choose-nora-section";
 import ServicesGrid from "@/components/services-grid";
 import TherapistCarousel from "@/components/specialists/TherapistCarousel";
 import Footer from "@/components/footer";
@@ -21,6 +22,7 @@ export default function Home() {
         <main role="main">
           <HeroSection />
           <FamilyChallengesSection />
+          <WhyChooseNoraSection />
           {/* <ServicesGrid />
           <TherapistCarousel /> */}
         </main>
