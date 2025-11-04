@@ -39,7 +39,7 @@ export default function HeroSection() {
             className="text-center lg:text-left lg:col-span-3"
           >
             <motion.p
-              className="text-sm sm:text-base text-secondary font-medium mb-3 sm:mb-4 tracking-wide uppercase"
+              className="text-sm sm:text-base md:text-lg text-secondary font-semibold mb-3 sm:mb-4 tracking-wide uppercase"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
@@ -48,7 +48,7 @@ export default function HeroSection() {
             </motion.p>
 
             <motion.h1
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-4 sm:mb-6"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4 sm:mb-6"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -72,7 +72,7 @@ export default function HeroSection() {
             </motion.h1>
 
             <motion.p
-              className="text-base sm:text-lg lg:text-xl text-charcoal/70 mb-6 sm:mb-8 leading-relaxed"
+              className="text-base sm:text-lg md:text-xl text-charcoal/80 mb-6 sm:mb-8 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
@@ -92,7 +92,7 @@ export default function HeroSection() {
               >
                 <Link href="/beta-waitlist">
                   <button
-                    className="bg-gradient-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:shadow-lg glow-primary font-semibold text-sm sm:text-base transition-all duration-300"
+                    className="bg-gradient-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:shadow-lg glow-primary font-bold text-base sm:text-lg transition-all duration-300 shadow-xl hover:shadow-2xl"
                     data-testid="button-book-session"
                   >
                     Get Started
