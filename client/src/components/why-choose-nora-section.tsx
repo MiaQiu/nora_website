@@ -1,22 +1,24 @@
 import { motion } from "framer-motion";
-import { Users, Target, Network } from "lucide-react";
+import familyImage from "@assets/stock_images/happy_asian_family_t_b82ab640.jpg";
+import counselingImage from "@assets/stock_images/family_counseling_th_8323dfc9.jpg";
+import teamImage from "@assets/stock_images/diverse_team_of_prof_47901511.jpg";
 
 export default function WhyChooseNoraSection() {
   const features = [
     {
-      icon: Users,
+      image: familyImage,
       title: "Whole-family care",
       headline: "We work with the whole family — not just the child.",
       description: "Our integrated model brings together counselors, parent coaches, and education planners to ensure that every family member grows together. By addressing both the child's challenges and the family's dynamics, we create lasting emotional change that starts at home."
     },
     {
-      icon: Target,
+      image: counselingImage,
       title: "Results-Driven, Structured Care",
       headline: "Personalized support, measurable progress.",
       description: "Every Nora program follows a 12 week care plan with weekly goals, designed for visible outcomes. Families receive tailored guidance and progress tracking from our multidisciplinary team — ensuring real improvements in emotional regulation, family connection, and school engagement."
     },
     {
-      icon: Network,
+      image: teamImage,
       title: "Multidisciplinary and Coordinated Expertise",
       headline: "A team that works as one for your family.",
       description: "Our counselors, parent coaches, and education planners collaborate closely to deliver cohesive, end-to-end support. This coordinated model ensures every aspect of a child's wellbeing — emotional, behavioral, and educational — is aligned for long-term growth and stability."
@@ -41,7 +43,6 @@ export default function WhyChooseNoraSection() {
 
         <div className="space-y-12 sm:space-y-16 lg:space-y-20">
           {features.map((feature, index) => {
-            const Icon = feature.icon;
             const isEven = index % 2 === 0;
             
             return (
@@ -56,10 +57,6 @@ export default function WhyChooseNoraSection() {
               >
                 {/* Content */}
                 <div className="flex-1 space-y-4">
-                  <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20">
-                    <Icon className="w-7 h-7 sm:w-8 sm:h-8 text-primary" />
-                  </div>
-                  
                   <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-charcoal" data-testid={`text-why-title-${index}`}>
                     {feature.title}
                   </h3>
@@ -73,16 +70,19 @@ export default function WhyChooseNoraSection() {
                   </p>
                 </div>
 
-                {/* Image placeholder */}
+                {/* Image */}
                 <motion.div
                   className="flex-1 w-full max-w-md lg:max-w-none"
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center border-2 border-primary/10 overflow-hidden">
-                    <div className="w-full h-full bg-gradient-to-br from-pink-100 via-purple-50 to-blue-100 flex items-center justify-center">
-                      <Icon className="w-20 h-20 sm:w-24 sm:h-24 text-primary/30" />
-                    </div>
+                  <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
+                    <img 
+                      src={feature.image} 
+                      alt={feature.title}
+                      className="w-full h-full object-cover"
+                      data-testid={`img-why-${index}`}
+                    />
                   </div>
                 </motion.div>
               </motion.div>
