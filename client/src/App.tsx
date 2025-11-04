@@ -19,6 +19,7 @@ import DemoRequest from "@/pages/demo-request";
 import PrivacyPolicy from "@/pages/privacy-policy";
 import TermsConditions from "@/pages/terms-conditions";
 import Experts from "@/pages/experts";
+import NoraCamp from "@/pages/nora-camp";
 
 function Router() {
   return (
@@ -36,6 +37,7 @@ function Router() {
       <Route path="/emotional-wellbeing" component={EmotionalWellbeing} />
       <Route path="/employer" component={Employer} />
       <Route path="/demo-request" component={DemoRequest} />
+      <Route path="/nora-camp" component={NoraCamp} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/terms-conditions" component={TermsConditions} />
       <Route component={NotFound} />
