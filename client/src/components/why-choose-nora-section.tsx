@@ -45,7 +45,7 @@ export default function WhyChooseNoraSection() {
             {/* Image */}
             <div className="rounded-3xl overflow-hidden">
               <img 
-                src="/attached_assets/stock_images/happy_asian_family_t_b82ab640.jpg" 
+                src="/attached_assets/Happy_Asian_family_photo.png" 
                 alt="Happy family"
                 className="w-full h-full object-cover"
                 data-testid="img-why-0"
