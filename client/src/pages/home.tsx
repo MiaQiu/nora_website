@@ -1,6 +1,5 @@
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
-import ServicesSection from "@/components/services-section";
 import PricingSection from "@/components/pricing-section";
 import ProgramsSection from "@/components/programs-section";
 import ServicesGrid from "@/components/services-grid";
@@ -22,7 +21,6 @@ export default function Home() {
         <Navigation />
         <main role="main">
           <HeroSection />
-          <ServicesSection />
           <PricingSection />
           <ProgramsSection />
           {/* <ServicesGrid />
