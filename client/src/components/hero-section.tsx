@@ -57,7 +57,7 @@ export default function HeroSection() {
               <span className={`transition-all duration-700 ${
                 highlightIndex === 0 
                   ? 'text-gradient-primary' 
-                  : 'text-charcoal/40'
+                  : 'text-charcoal/20'
               }`}>
                 confident kids
               </span>{" "}
@@ -65,7 +65,7 @@ export default function HeroSection() {
               <span className={`transition-all duration-700 ${
                 highlightIndex === 1 
                   ? 'text-gradient-primary' 
-                  : 'text-charcoal/40'
+                  : 'text-charcoal/20'
               }`}>
                 connected families
               </span>
