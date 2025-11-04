@@ -30,7 +30,7 @@ export default function WhyChooseNoraSection() {
             data-testid="section-why-0"
           >
             {/* Text Card */}
-            <div className="bg-[#fef9e7] rounded-3xl p-8 lg:p-10 flex flex-col h-full min-h-[220px]">
+            <div className="bg-[#fef9e7] rounded-3xl p-8 lg:p-10 flex flex-col h-full min-h-[220px] order-2 lg:order-1">
               <Users className="w-10 h-10 mb-6 text-charcoal" />
               <h3 className="text-2xl sm:text-3xl font-bold text-charcoal mb-4" data-testid="text-why-title-0">
                 Whole-family care
@@ -43,8 +43,8 @@ export default function WhyChooseNoraSection() {
               </p>
             </div>
 
-            {/* Image - same size as card */}
-            <div className="rounded-3xl overflow-hidden h-full min-h-[220px]">
+            {/* Image - same size as card, shows first on mobile */}
+            <div className="rounded-3xl overflow-hidden h-full min-h-[220px] order-1 lg:order-2">
               <img 
                 src={familyPhoto} 
                 alt="Happy family"
