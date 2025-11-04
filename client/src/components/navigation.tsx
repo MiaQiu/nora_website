@@ -83,24 +83,6 @@ export default function Navigation() {
                 </span>
               </motion.button>
 
-              <motion.button
-                onClick={() => scrollToSection('pricing')}
-                className="text-charcoal hover:text-primary transition-all duration-300 font-medium relative"
-                data-testid="nav-pricing"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className="relative">
-                  Pricing
-                  <motion.div
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-secondary rounded-full"
-                    initial={{ scaleX: 0 }}
-                    whileHover={{ scaleX: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </span>
-              </motion.button>
-
               {/* Experts link */}
               <motion.span
                 onClick={() => {
@@ -206,15 +188,6 @@ export default function Navigation() {
                   whileTap={{ scale: 0.95 }}
                 >
                   Services
-                </motion.button>
-                <motion.button
-                  onClick={() => scrollToSection('pricing')}
-                  className="block px-3 py-2 text-charcoal hover:text-primary transition-all duration-300 font-medium w-full text-left hover:bg-accent/50 rounded-lg"
-                  data-testid="mobile-nav-pricing"
-                  whileHover={{ x: 5 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Pricing
                 </motion.button>
                 <motion.span
                   onClick={() => {
