@@ -19,10 +19,10 @@ export default function WhyChooseNoraSection() {
           </motion.h2>
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-6">
           {/* First feature - 2 column layout with image */}
           <motion.div
-            className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-6"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -30,7 +30,7 @@ export default function WhyChooseNoraSection() {
             data-testid="section-why-0"
           >
             {/* Text Card */}
-            <div className="bg-[#fef9e7] rounded-3xl p-8 lg:p-10">
+            <div className="bg-[#fef9e7] rounded-3xl p-8 lg:p-10 flex flex-col h-full min-h-[400px]">
               <Users className="w-10 h-10 mb-6 text-charcoal" />
               <h3 className="text-2xl sm:text-3xl font-bold text-charcoal mb-4" data-testid="text-why-title-0">
                 Whole-family care
@@ -43,12 +43,12 @@ export default function WhyChooseNoraSection() {
               </p>
             </div>
 
-            {/* Image - smaller size */}
-            <div className="rounded-3xl overflow-hidden max-w-md mx-auto lg:mx-0">
+            {/* Image - same size as card */}
+            <div className="rounded-3xl overflow-hidden h-full min-h-[400px]">
               <img 
                 src={familyPhoto} 
                 alt="Happy family"
-                className="w-full h-auto object-cover"
+                className="w-full h-full object-cover"
                 data-testid="img-why-0"
               />
             </div>
@@ -58,13 +58,14 @@ export default function WhyChooseNoraSection() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Second feature */}
             <motion.div
+              className="h-full"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
               data-testid="section-why-1"
             >
-              <div className="bg-[#f3e5f5] rounded-3xl p-8 lg:p-10 h-full">
+              <div className="bg-[#f3e5f5] rounded-3xl p-8 lg:p-10 h-full min-h-[400px] flex flex-col">
                 <User className="w-10 h-10 mb-6 text-charcoal" />
                 <h3 className="text-2xl sm:text-3xl font-bold text-charcoal mb-4" data-testid="text-why-title-1">
                   Results-Driven, Structured Care
@@ -80,13 +81,14 @@ export default function WhyChooseNoraSection() {
 
             {/* Third feature */}
             <motion.div
+              className="h-full"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
               data-testid="section-why-2"
             >
-              <div className="bg-[#e8eaf6] rounded-3xl p-8 lg:p-10 h-full">
+              <div className="bg-[#e8eaf6] rounded-3xl p-8 lg:p-10 h-full min-h-[400px] flex flex-col">
                 <FileText className="w-10 h-10 mb-6 text-charcoal" />
                 <h3 className="text-2xl sm:text-3xl font-bold text-charcoal mb-4" data-testid="text-why-title-2">
                   Multidisciplinary and Coordinated Expertise
