@@ -40,7 +40,7 @@ export default function Footer({ hideCTA = false }: FooterProps) {
               className="bg-white text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-opacity-90 transition duration-300 font-semibold text-sm sm:text-base"
               data-testid="button-book-session-footer"
             >
-              Join the Beta Waitlist
+              Get Started
             </button>
             {/* <button 
               className="border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-white hover:text-primary transition duration-300 font-semibold text-sm sm:text-base"

@@ -142,7 +142,7 @@ export default function Navigation() {
                   className="bg-gradient-primary text-white hover:shadow-lg hover:shadow-primary/25 text-sm sm:text-base px-3 sm:px-4 py-2 glow-primary transition-all duration-300"
                   data-testid="button-get-started"
                 >
-                  Join the Beta Waitlist
+                  Get Started
                 </Button>
               </Link>
             </motion.div>
