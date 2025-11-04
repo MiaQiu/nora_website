@@ -54,11 +54,19 @@ export default function HeroSection() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               Building{" "}
-              <span className={`transition-all duration-500 ${highlightIndex === 0 ? 'text-gradient-primary' : 'text-charcoal'}`}>
+              <span className={`inline-block transition-all duration-700 ${
+                highlightIndex === 0 
+                  ? 'text-gradient-primary scale-110 drop-shadow-[0_0_20px_rgba(255,107,107,0.5)]' 
+                  : 'text-charcoal/40 scale-100'
+              }`}>
                 confident kids
               </span>{" "}
               and{" "}
-              <span className={`transition-all duration-500 ${highlightIndex === 1 ? 'text-gradient-primary' : 'text-charcoal'}`}>
+              <span className={`inline-block transition-all duration-700 ${
+                highlightIndex === 1 
+                  ? 'text-gradient-primary scale-110 drop-shadow-[0_0_20px_rgba(255,107,107,0.5)]' 
+                  : 'text-charcoal/40 scale-100'
+              }`}>
                 connected families
               </span>
             </motion.h1>
