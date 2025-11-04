@@ -1,6 +1,5 @@
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
-import PricingSection from "@/components/pricing-section";
 import ProgramsSection from "@/components/programs-section";
 import ServicesGrid from "@/components/services-grid";
 import TherapistCarousel from "@/components/specialists/TherapistCarousel";
@@ -21,7 +20,6 @@ export default function Home() {
         <Navigation />
         <main role="main">
           <HeroSection />
-          <PricingSection />
           <ProgramsSection />
           {/* <ServicesGrid />
           <TherapistCarousel /> */}
