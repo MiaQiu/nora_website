@@ -47,7 +47,7 @@ export default function HowItWorksSection() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               data-testid={`section-step-${index}`}
             >
-              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-primary to-accent text-white text-3xl font-bold flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-[hsl(340,100%,60%)] to-[hsl(30,100%,60%)] text-white text-3xl font-bold flex items-center justify-center mx-auto mb-6 shadow-lg">
                 {step.number}
               </div>
               <h3 className="text-xl sm:text-2xl font-bold text-charcoal mb-4" data-testid={`text-step-title-${index}`}>
