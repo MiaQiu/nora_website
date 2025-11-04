@@ -312,6 +312,136 @@ export const specialists: Specialist[] = [
     categories: ["special-complex-care"],
     pricing: 90,
     freeConsultation: true
+  },
+  {
+    id: "lillian-ong",
+    name: "Lillian Ong",
+    title: "Parent Coach",
+    experience: "Over 20 years of experience helping adults and parents flourish, specializing in postpartum mental health and parent-child bonding",
+    image: "/images/specialists/lillian-ong.jpg",
+    about: "Lilian is a seasoned and empathetic counsellor with over 20 years of experience helping adults and parents flourish. Her work blends a person-centered ethos with evidence-based techniques such as CBT, ACT, and Positive Psychology to empower clients. She specializes in postpartum mental health and parent-child bonding.",
+    workExperience: [
+      "Senior Clinical Counsellor - KK Women's and Children's Hospital (13 years)",
+      "Lead Counsellor - SURE MUMS mother-infant therapy programme",
+      "Private Practice - Wellness Journey (since 2022)"
+    ],
+    education: [
+      "Master in Counselling - Monash University",
+      "Postgraduate Diploma in Clinical Supervision - Counselling and Care Centre",
+      "Bachelor of Social Science with Honours, Psychology - National University of Singapore"
+    ],
+    languages: ["English"],
+    specialties: ["Postpartum mental health", "Parent-child bonding", "CBT", "ACT", "Positive Psychology", "Mother-infant therapy", "Perinatal mental health"],
+    cancellationPolicy: "24-hour notice required; flexible scheduling for parent coaching sessions",
+    categories: ["parenting-skills", "emotional-wellbeing"],
+    pricing: 120,
+    freeConsultation: false
+  },
+  {
+    id: "marisa-rhein",
+    name: "Marisa Rhein",
+    title: "Lactation Consultant and Postpartum/Infant Care Expert",
+    experience: "10+ years as a postpartum and newborn nurse, 3 years as a board-certified lactation consultant, and 4 years as a nursing mother",
+    image: "/images/specialists/marisa-rhein.jpg",
+    about: "Marisa is a Registered Nurse (BSN, RN), International Board Certified Lactation Consultant (IBCLC) and Doula. Marisa's background as an RN allows her to specialize in premature babies and medical complications affecting lactation, such as mastitis, breast surgery, and other health conditions. Additionally, she is a certified birth and postpartum doula, giving her a well-rounded perspective on maternal and newborn care. Marisa loves building relationships with families, celebrating each milestone, and witnessing babies grow and thrive. Supporting parents through their lactation journey is more than just a profession for her—it's a deeply personal passion.",
+    workExperience: [
+      "Registered Nurse - Postpartum and Newborn Care (10+ years)",
+      "International Board Certified Lactation Consultant - IBCLC (3 years)",
+      "Certified Birth and Postpartum Doula",
+      "Nursing Mother (4 years and counting)"
+    ],
+    education: [
+      "Bachelor's of Science in Nursing",
+      "International Board Certified Lactation Consultant (IBCLC) certification",
+      "Certified Birth Doula",
+      "Certified Postpartum Doula"
+    ],
+    languages: ["English"],
+    specialties: ["Breastfeeding", "Pumping", "Infant formula", "Solids feeding", "Newborn care", "Postpartum care and recovery", "Cesarean care and recovery", "Premature babies", "Mastitis", "Breast surgery complications"],
+    cancellationPolicy: "48-hour notice required; flexible scheduling for postpartum families",
+    categories: ["postpartum-care"],
+    pricing: undefined,
+    freeConsultation: false
+  },
+  {
+    id: "sarah-ruse",
+    name: "Sarah Ruse",
+    title: "Return to Work Coach",
+    experience: "Seven years of coaching experience and a background in corporate consulting, with personal experience as a full-time mother",
+    image: "/images/specialists/sarah-ruse.jpg",
+    about: "Sarah is a fully certified and highly experienced Career and Executive Coach. Her approach uses powerful questioning, evidence-based coaching tools, and psychological insight to help clients reframe challenges and unlock meaningful change. She specializes in supporting professionals through pivotal career transitions.",
+    workExperience: [
+      "Career and Executive Coach (7 years)",
+      "Corporate Consultant",
+      "Full-time Mother - Personal Experience",
+      "Works with professionals from Microsoft, Google, and Amazon"
+    ],
+    education: [
+      "Associate Certified Coach - International Coaching Federation",
+      "Certified Counsellor - Level 3 - CityLit",
+      "Certified Coach - PG Cert Business & Personal Coaching - Barefoot",
+      "Bachelor of Commerce - 1st class honors - The University of Birmingham"
+    ],
+    languages: ["English"],
+    specialties: ["Maternity leave transitions", "Career transitions", "Parental leave", "Redundancy", "Menopause", "Health issues", "Promotion readiness", "Conflict resolution", "Leadership", "Imposter syndrome"],
+    cancellationPolicy: "24-hour notice required; flexible scheduling for working mothers",
+    categories: ["return-to-work"],
+    pricing: 150,
+    freeConsultation: true
+  },
+  {
+    id: "priscilla-shin",
+    name: "Dr. Priscilla Shin",
+    title: "Parent Coach",
+    experience: "Over nine years of therapeutic experience, with a focus on helping people through their challenges by building a strong connection based on trust and empathy",
+    image: "/images/specialists/priscilla-shin.jpg",
+    about: "Priscilla is a certified counsellor and clinical supervisor who champions mental health advocacy for children, youths, and adults. She has over nine years of therapeutic experience, with a focus on helping people through their challenges by building a strong connection based on trust and empathy. She is currently pursuing a doctoral program in counselling to further her dedication to the field.",
+    workExperience: [
+      "Registered Counsellor and Clinical Member - Singapore Association for Counselling",
+      "Registered Clinical Supervisor - Singapore Association for Counselling",
+      "Therapeutic work with children, youths, and adults (9 years)",
+      "Mental health talks and workshops facilitator"
+    ],
+    education: [
+      "Doctor of Professional Counselling (currently pursuing)",
+      "Registered Counsellor and Clinical Member - Singapore Association for Counselling",
+      "Registered Clinical Supervisor - Singapore Association for Counselling",
+      "Certified Circle of Security Parenting™ (COSP) Programme Facilitator",
+      "Level 1 Trained ABFT Therapist - Attachment-Based Family Therapy",
+      "Certificate in Clinical Supervision - Clinical Supervision Services, Australia",
+      "Emotionally-Focused Couples' Therapy: Core Skills - ICEEFT",
+      "Advanced Training in Gestalt Play Therapy"
+    ],
+    languages: ["English"],
+    specialties: ["Child and family therapy", "Peer relationships", "Suicidal ideation", "Attachment theory", "Emotionally-focused therapy", "Circle of Security Parenting", "Attachment-Based Family Therapy", "Couples therapy", "Gestalt play therapy"],
+    cancellationPolicy: "24-hour notice required; flexible scheduling for family therapy sessions",
+    categories: ["parenting-skills", "emotional-wellbeing"],
+    pricing: 130,
+    freeConsultation: false
+  },
+  {
+    id: "sheryl-ang",
+    name: "Sheryl Ang",
+    title: "Parent Coach, Dyslexia Care Navigator, Home Schooling Coach",
+    experience: "Over a decade of experience supporting parents and professionals, with personal experience as a mother of highly spirited, dyslexic children and homeschooling mom",
+    image: "/images/specialists/sheryl-ang.jpg",
+    about: "As a Peaceful Parent Coach, Sheryl Ang guides parents to clarity and confidence, helping them craft their unique family paths. Her approach is inspired by non-violent communication, collaborative problem-solving, playful parenting, and an attachment-based developmental perspective. She is also a mindfulness practitioner and is trauma-informed.",
+    workExperience: [
+      "Peaceful Parent Coach (10+ years)",
+      "Dyslexia Care Navigator",
+      "Homeschooling Coach",
+      "Business Owner",
+      "Mother of highly spirited, dyslexic children - Personal Experience"
+    ],
+    education: [
+      "Professional training in peaceful parenting approaches"
+    ],
+    languages: ["English"],
+    specialties: ["Siblings", "Trauma", "School & Learning Issues", "Anxiety", "Sensory Processing", "Homeschooling", "Executive Function", "Routines", "Emotion-Coaching", "Parental Self-Regulation", "Dyslexia navigation", "Non-violent communication", "Collaborative problem-solving", "Playful parenting"],
+    cancellationPolicy: "24-hour notice required; understanding of homeschooling family schedules",
+    categories: ["parenting-skills", "special-complex-care", "education-academic"],
+    pricing: 100,
+    freeConsultation: true
   }
   // ,
   // {

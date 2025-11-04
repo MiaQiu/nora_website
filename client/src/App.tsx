@@ -18,6 +18,7 @@ import Employer from "@/pages/employer";
 import DemoRequest from "@/pages/demo-request";
 import PrivacyPolicy from "@/pages/privacy-policy";
 import TermsConditions from "@/pages/terms-conditions";
+import Experts from "@/pages/experts";
 
 function Router() {
   return (
@@ -26,6 +27,7 @@ function Router() {
       <Route path="/book-session" component={BookSession} />
       <Route path="/beta-waitlist" component={BetaWaitlist} />
       <Route path="/request" component={Request} />
+      <Route path="/experts" component={Experts} />
       <Route path="/parenting-skills" component={ParentingSkills} />
       <Route path="/postpartum-care" component={PostpartumCare} />
       <Route path="/return-to-work" component={ReturnToWork} />
