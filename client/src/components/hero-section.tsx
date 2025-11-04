@@ -70,7 +70,7 @@ export default function HeroSection() {
                     className="bg-gradient-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:shadow-lg glow-primary font-semibold text-sm sm:text-base transition-all duration-300"
                     data-testid="button-book-session"
                   >
-                    Join the Beta Waitlist →
+                    Get Started
                   </button>
                 </Link>
               </motion.div>
