@@ -56,7 +56,7 @@ export default function HeroSection() {
               Building{" "}
               <span className={`transition-all duration-700 ${
                 highlightIndex === 0 
-                  ? 'text-gradient-primary drop-shadow-[0_0_25px_rgba(255,107,107,0.6)]' 
+                  ? 'text-gradient-primary' 
                   : 'text-charcoal/40'
               }`}>
                 confident kids
@@ -64,7 +64,7 @@ export default function HeroSection() {
               and{" "}
               <span className={`transition-all duration-700 ${
                 highlightIndex === 1 
-                  ? 'text-gradient-primary drop-shadow-[0_0_25px_rgba(255,107,107,0.6)]' 
+                  ? 'text-gradient-primary' 
                   : 'text-charcoal/40'
               }`}>
                 connected families
