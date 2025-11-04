@@ -97,6 +97,20 @@ export default function Navigation() {
                 Experts
               </motion.span>
 
+              {/* Nora Camp link */}
+              <motion.span
+                onClick={() => {
+                  setLocation('/nora-camp');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="text-charcoal hover:text-primary transition-all duration-300 font-medium cursor-pointer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                data-testid="nav-nora-camp"
+              >
+                Nora Camp
+              </motion.span>
+
               {/* Employer link */}
               <motion.span
                 onClick={() => {
@@ -201,6 +215,19 @@ export default function Navigation() {
                   data-testid="mobile-nav-experts"
                 >
                   Experts
+                </motion.span>
+                <motion.span
+                  onClick={() => {
+                    setLocation('/nora-camp');
+                    setIsMobileMenuOpen(false);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="block px-3 py-2 text-charcoal hover:text-primary transition-all duration-300 font-medium w-full text-left hover:bg-accent/50 rounded-lg cursor-pointer"
+                  whileHover={{ x: 5 }}
+                  whileTap={{ scale: 0.95 }}
+                  data-testid="mobile-nav-nora-camp"
+                >
+                  Nora Camp
                 </motion.span>
                 <motion.span
                   onClick={() => {
