@@ -30,7 +30,7 @@ export default function WhyChooseNoraSection() {
             data-testid="section-why-0"
           >
             {/* Text Card */}
-            <div className="bg-[#fef9e7] rounded-3xl p-8 lg:p-10 flex flex-col h-full min-h-[220px] order-2 lg:order-1">
+            <div className="bg-warm/20 rounded-3xl p-8 lg:p-10 flex flex-col h-full min-h-[220px] order-2 lg:order-1 border border-warm/30">
               <Users className="w-10 h-10 mb-6 text-charcoal" />
               <h3 className="text-2xl sm:text-3xl font-bold text-charcoal mb-4" data-testid="text-why-title-0">
                 Whole-family care
@@ -65,7 +65,7 @@ export default function WhyChooseNoraSection() {
               transition={{ duration: 0.6, delay: 0.1 }}
               data-testid="section-why-1"
             >
-              <div className="bg-[#f3e5f5] rounded-3xl p-8 lg:p-10 h-full min-h-[400px] flex flex-col">
+              <div className="bg-warm/20 rounded-3xl p-8 lg:p-10 h-full min-h-[400px] flex flex-col border border-warm/30">
                 <User className="w-10 h-10 mb-6 text-charcoal" />
                 <h3 className="text-2xl sm:text-3xl font-bold text-charcoal mb-4" data-testid="text-why-title-1">
                   Results-Driven, Structured Care
@@ -88,7 +88,7 @@ export default function WhyChooseNoraSection() {
               transition={{ duration: 0.6, delay: 0.2 }}
               data-testid="section-why-2"
             >
-              <div className="bg-[#e8eaf6] rounded-3xl p-8 lg:p-10 h-full min-h-[400px] flex flex-col">
+              <div className="bg-warm/20 rounded-3xl p-8 lg:p-10 h-full min-h-[400px] flex flex-col border border-warm/30">
                 <FileText className="w-10 h-10 mb-6 text-charcoal" />
                 <h3 className="text-2xl sm:text-3xl font-bold text-charcoal mb-4" data-testid="text-why-title-2">
                   Multidisciplinary and Coordinated Expertise
