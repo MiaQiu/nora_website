@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Users, User, FileText } from "lucide-react";
+import familyPhoto from "@assets/Happy_Asian_family_photo.png";
 
 export default function WhyChooseNoraSection() {
   return (
@@ -45,7 +46,7 @@ export default function WhyChooseNoraSection() {
             {/* Image */}
             <div className="rounded-3xl overflow-hidden">
               <img 
-                src="/attached_assets/Happy_Asian_family_photo.png" 
+                src={familyPhoto} 
                 alt="Happy family"
                 className="w-full h-full object-cover"
                 data-testid="img-why-0"
