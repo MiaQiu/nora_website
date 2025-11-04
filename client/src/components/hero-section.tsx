@@ -43,10 +43,7 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Raising Future-Ready Kids,{" "}
-              <span className="text-gradient-primary">
-                Today
-              </span>
+              Building confident kids and connected families
             </motion.h1>
 
             <motion.p
@@ -55,7 +52,7 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Navigate parenthood confidently from pregnancy to teenage years, with your team of experts available on demand.
+              Evidence-based, family-centered care combining child wellbeing, parent–child coaching, and education planning — empowering every child and parent to thrive
             </motion.p>
 
             <motion.div
