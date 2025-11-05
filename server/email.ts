@@ -38,6 +38,18 @@ export interface BetaWaitlistDetails {
   topics?: string;
 }
 
+export interface ConsultationDetails {
+  name: string;
+  email: string;
+  phone: string;
+  numberOfChildren: string;
+  children: Array<{
+    age: string;
+  }>;
+  familyNeeds: string[];
+  additionalDetails?: string;
+}
+
 class EmailService {
   private transporter: nodemailer.Transporter;
 
@@ -248,6 +260,87 @@ ${childrenTextList}
 ${interestedPackage ? `Interested Package/Program:\n${interestedPackage}\n\n` : ''}${topics ? `Topics of Interest:\n${topics}\n` : ''}
 ---
 This beta waitlist signup was submitted through the Nora website.
+    `;
+
+    await this.transporter.sendMail({
+      from: process.env.SMTP_FROM || process.env.SMTP_USER,
+      to: process.env.NOTIFICATION_EMAIL || process.env.SMTP_USER,
+      subject,
+      text: textContent,
+      html: htmlContent,
+    });
+  }
+
+  async sendConsultationNotification(consultationDetails: ConsultationDetails): Promise<void> {
+    const { name, email, phone, numberOfChildren, children, familyNeeds, additionalDetails } = consultationDetails;
+
+    const subject = `New Consultation Request - ${name}`;
+
+    const childrenList = children.map((child, index) =>
+      `<li>Child ${index + 1}: ${child.age}</li>`
+    ).join('\n');
+
+    const childrenTextList = children.map((child, index) =>
+      `  ${index + 1}. ${child.age}`
+    ).join('\n');
+
+    const needsList = familyNeeds.map(need => `<li>${need}</li>`).join('\n');
+    const needsTextList = familyNeeds.map((need, index) => `  ${index + 1}. ${need}`).join('\n');
+
+    const htmlContent = `
+      <h2>New Consultation Request</h2>
+
+      <h3>Contact Information:</h3>
+      <ul>
+        <li><strong>Name:</strong> ${name}</li>
+        <li><strong>Email:</strong> ${email}</li>
+        <li><strong>Phone:</strong> ${phone}</li>
+      </ul>
+
+      <h3>Family Information:</h3>
+      <ul>
+        <li><strong>Number of Children:</strong> ${numberOfChildren}</li>
+      </ul>
+
+      <h3>Children Ages:</h3>
+      <ul>
+        ${childrenList}
+      </ul>
+
+      <h3>What Can We Help With:</h3>
+      <ul>
+        ${needsList}
+      </ul>
+
+      ${additionalDetails ? `
+      <h3>Additional Details:</h3>
+      <p>${additionalDetails.replace(/\n/g, '<br>')}</p>
+      ` : ''}
+
+      <hr>
+      <p><em>This consultation request was submitted through the Nora website.</em></p>
+    `;
+
+    const textContent = `
+New Consultation Request
+
+Contact Information:
+- Name: ${name}
+- Email: ${email}
+- Phone: ${phone}
+
+Family Information:
+- Number of Children: ${numberOfChildren}
+
+Children Ages:
+${childrenTextList}
+
+What Can We Help With:
+${needsTextList}
+
+${additionalDetails ? `Additional Details:\n${additionalDetails}\n` : ''}
+---
+This consultation request was submitted through the Nora website.
     `;
 
     await this.transporter.sendMail({

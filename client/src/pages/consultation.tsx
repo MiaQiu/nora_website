@@ -3,9 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Card } from "@/components/ui/card";
-import { CheckCircle, ArrowRight, ArrowLeft, Loader2, User, Users, Calendar } from "lucide-react";
+import { CheckCircle, ArrowRight, ArrowLeft, Loader2, User, Users, Heart } from "lucide-react";
 import { Link } from "wouter";
 import SEOHead from "@/components/seo-head";
 import { motion, AnimatePresence } from "framer-motion";
@@ -20,9 +20,22 @@ interface FormData {
   phone: string;
   numberOfChildren: string;
   children: ChildInfo[];
-  interestedPackage: string;
-  topics: string;
+  familyNeeds: string[];
+  additionalDetails: string;
 }
+
+const FAMILY_NEEDS_OPTIONS = [
+  { value: "worries-stress", label: "Worries / stress, fears, anxiety 😥", emoji: "😥" },
+  { value: "sadness-depression", label: "Sadness / withdrawal, depression 🌧️", emoji: "🌧️" },
+  { value: "attention-adhd", label: "Attention / impulsiveness, hyperactivity, inattention, ADHD 👀", emoji: "👀" },
+  { value: "anger-behaviors", label: "Anger / tough behaviors, aggression, defiance 😡", emoji: "😡" },
+  { value: "addiction", label: "Addiction / screens, video games, vaping, etc. 📱", emoji: "📱" },
+  { value: "school-life", label: "School life / behavioral or academic issues, changing schools 🏫", emoji: "🏫" },
+  { value: "social-life", label: "Social life / social skills, problems with friends, relationships & breakups 🧑‍🤝‍🧑", emoji: "🧑‍🤝‍🧑" },
+  { value: "family-dynamics", label: "Family dynamics / family changes, conflicts, sibling rivalry 👨‍👩‍👧‍👦", emoji: "👨‍👩‍👧‍👦" },
+  { value: "identity", label: "Identity / sexuality, gender, racial identities 🤔", emoji: "🤔" },
+  { value: "divorce-separation", label: "Divorce or separation 💔", emoji: "💔" },
+];
 
 export default function Consultation() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -35,29 +48,11 @@ export default function Consultation() {
     phone: "",
     numberOfChildren: "",
     children: [],
-    interestedPackage: "",
-    topics: ""
+    familyNeeds: [],
+    additionalDetails: ""
   });
 
   const totalSteps = 3;
-
-  const pricingPackages = [
-    "Starter - $60 SGD/month",
-    "Premium - $399 SGD/6 months",
-    "Expert Call - $90 SGD"
-  ];
-
-  const programs = [
-    "Maternity and New Born Care - $399 SGD/6 months",
-    "Parenting the Pre-Teen - $1,999 SGD/year",
-    "The Reconnection Project - $1,999 SGD/year",
-    "Neurodivergent Care Navigation - $499 SGD/6 months"
-  ];
-
-  const allPackages = [
-    { category: "Pricing Packages", items: pricingPackages },
-    { category: "Parenting Programs", items: programs }
-  ];
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({
@@ -86,6 +81,15 @@ export default function Consultation() {
     }));
   };
 
+  const handleNeedToggle = (needValue: string) => {
+    setFormData(prev => ({
+      ...prev,
+      familyNeeds: prev.familyNeeds.includes(needValue)
+        ? prev.familyNeeds.filter(n => n !== needValue)
+        : [...prev.familyNeeds, needValue]
+    }));
+  };
+
   const canProceedFromStep1 = () => {
     return formData.numberOfChildren.trim() !== "" && 
            parseInt(formData.numberOfChildren) >= 0 &&
@@ -93,7 +97,7 @@ export default function Consultation() {
   };
 
   const canProceedFromStep2 = () => {
-    return true;
+    return formData.familyNeeds.length > 0;
   };
 
   const canSubmit = () => {
@@ -123,7 +127,7 @@ export default function Consultation() {
     setSubmitError(null);
 
     try {
-      const response = await fetch('/api/beta-waitlist', {
+      const response = await fetch('/api/consultation', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -349,63 +353,41 @@ export default function Consultation() {
                   </div>
                 )}
 
-                {/* Step 2: Needs & Interests */}
+                {/* Step 2: Family Needs */}
                 {currentStep === 2 && (
                   <div className="space-y-6">
                     <div className="flex items-center gap-3 mb-6">
                       <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full flex items-center justify-center">
-                        <Calendar className="w-6 h-6 text-primary" />
+                        <Heart className="w-6 h-6 text-primary" />
                       </div>
                       <div>
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gradient-primary">What brings you here?</h2>
-                        <p className="text-sm sm:text-base text-charcoal/70">Share your parenting goals and interests</p>
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gradient-primary">What can we help your family with?</h2>
+                        <p className="text-sm sm:text-base text-charcoal/70">We'll match you with a team specialized in your needs <span className="text-red-500">*</span></p>
                       </div>
                     </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="interestedPackage" className="text-sm font-medium text-charcoal">
-                        Interested Package/Program <span className="text-charcoal/50">(Optional)</span>
-                      </Label>
-                      <Select
-                        value={formData.interestedPackage}
-                        onValueChange={(value) => handleInputChange('interestedPackage', value)}
-                      >
-                        <SelectTrigger className="w-full" data-testid="select-package">
-                          <SelectValue placeholder="Select a package or program" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {allPackages.map((group, groupIndex) => (
-                            <div key={groupIndex}>
-                              <div className="px-2 py-1.5 text-xs font-semibold text-primary bg-primary/5">
-                                {group.category}
-                              </div>
-                              {group.items.map((item, itemIndex) => (
-                                <SelectItem key={`${groupIndex}-${itemIndex}`} value={item}>
-                                  {item}
-                                </SelectItem>
-                              ))}
-                            </div>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="topics" className="text-sm font-medium text-charcoal">
-                        Topics You'd Like to Discuss <span className="text-charcoal/50">(Optional)</span>
-                      </Label>
-                      <Textarea
-                        id="topics"
-                        value={formData.topics}
-                        onChange={(e) => handleInputChange('topics', e.target.value)}
-                        placeholder="e.g., Sleep training, behavior management, education planning, developmental milestones"
-                        rows={4}
-                        className="w-full resize-none"
-                        data-testid="textarea-topics"
-                      />
-                      <p className="text-xs text-charcoal/60">
-                        Share any specific areas where you'd like expert guidance
-                      </p>
+                    <div className="space-y-3">
+                      {FAMILY_NEEDS_OPTIONS.map((option) => (
+                        <div
+                          key={option.value}
+                          className={`flex items-start space-x-3 p-4 rounded-lg border-2 transition-all cursor-pointer hover:shadow-md ${
+                            formData.familyNeeds.includes(option.value)
+                              ? 'border-primary bg-primary/5'
+                              : 'border-gray-200 hover:border-primary/30'
+                          }`}
+                          onClick={() => handleNeedToggle(option.value)}
+                          data-testid={`checkbox-need-${option.value}`}
+                        >
+                          <Checkbox
+                            checked={formData.familyNeeds.includes(option.value)}
+                            onCheckedChange={() => handleNeedToggle(option.value)}
+                            className="mt-0.5"
+                          />
+                          <label className="flex-1 cursor-pointer text-sm sm:text-base text-charcoal">
+                            {option.label}
+                          </label>
+                        </div>
+                      ))}
                     </div>
 
                     <div className="flex gap-3 mt-6">
@@ -486,6 +468,21 @@ export default function Consultation() {
                         placeholder="9123 4567"
                         className="w-full"
                         data-testid="input-phone"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="additionalDetails" className="text-sm font-medium text-charcoal">
+                        Additional Details <span className="text-charcoal/50">(Optional)</span>
+                      </Label>
+                      <Textarea
+                        id="additionalDetails"
+                        value={formData.additionalDetails}
+                        onChange={(e) => handleInputChange('additionalDetails', e.target.value)}
+                        placeholder="Any other information you'd like to share..."
+                        rows={4}
+                        className="w-full resize-none"
+                        data-testid="textarea-additional-details"
                       />
                     </div>
 

@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { emailService, type BookingDetails, type RequestDetails, type BetaWaitlistDetails } from "./email";
+import { emailService, type BookingDetails, type RequestDetails, type BetaWaitlistDetails, type ConsultationDetails } from "./email";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // put application routes here
@@ -102,6 +102,46 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
     } catch (error) {
       console.error('Error processing beta waitlist signup:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Internal server error. Please try again later.'
+      });
+    }
+  });
+
+  // Consultation form submission endpoint
+  app.post('/api/consultation', async (req, res) => {
+    try {
+      const consultationData: ConsultationDetails = req.body;
+
+      // Validate required fields
+      if (!consultationData.name || !consultationData.email || !consultationData.phone ||
+          !consultationData.numberOfChildren || !consultationData.children || consultationData.children.length === 0 ||
+          !consultationData.familyNeeds || consultationData.familyNeeds.length === 0) {
+        return res.status(400).json({
+          success: false,
+          message: 'Missing required fields'
+        });
+      }
+
+      // Validate that all children have ages
+      const hasEmptyAges = consultationData.children.some(child => !child.age || child.age.trim() === '');
+      if (hasEmptyAges) {
+        return res.status(400).json({
+          success: false,
+          message: 'Please provide age for all children'
+        });
+      }
+
+      // Send email notification
+      await emailService.sendConsultationNotification(consultationData);
+
+      res.json({
+        success: true,
+        message: 'Consultation request submitted successfully'
+      });
+    } catch (error) {
+      console.error('Error processing consultation request:', error);
       res.status(500).json({
         success: false,
         message: 'Internal server error. Please try again later.'
