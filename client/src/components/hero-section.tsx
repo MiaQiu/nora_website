@@ -90,7 +90,7 @@ export default function HeroSection() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Link href="/beta-waitlist">
+                <Link href="/consultation">
                   <button
                     className="bg-gradient-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:shadow-lg glow-primary font-bold text-base sm:text-lg transition-all duration-300 shadow-xl hover:shadow-2xl"
                     data-testid="button-book-session"

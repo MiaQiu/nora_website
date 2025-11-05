@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 
 export default function HowItWorksSection() {
   const steps = [
@@ -61,13 +62,15 @@ export default function HowItWorksSection() {
         </div>
 
         <div className="text-center">
-          <Button 
-            size="lg" 
-            className="bg-gradient-to-r from-[hsl(340,100%,60%)] to-[hsl(30,100%,60%)] hover:opacity-90 text-white px-8 py-6 text-lg rounded-full shadow-lg"
-            data-testid="button-get-started-how-it-works"
-          >
-            Get Started
-          </Button>
+          <Link href="/consultation">
+            <Button 
+              size="lg" 
+              className="bg-gradient-to-r from-[hsl(340,100%,60%)] to-[hsl(30,100%,60%)] hover:opacity-90 text-white px-8 py-6 text-lg rounded-full shadow-lg"
+              data-testid="button-get-started-how-it-works"
+            >
+              Get Started
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

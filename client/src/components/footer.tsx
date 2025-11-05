@@ -14,8 +14,8 @@ export default function Footer({ hideCTA = false }: FooterProps) {
     }
   };
 
-  const navigateToBetaWaitlist = () => {
-    setLocation('/beta-waitlist');
+  const navigateToConsultation = () => {
+    setLocation('/consultation');
   };
 
   return (
@@ -36,7 +36,7 @@ export default function Footer({ hideCTA = false }: FooterProps) {
           </p> */}
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <button
-              onClick={navigateToBetaWaitlist}
+              onClick={navigateToConsultation}
               className="bg-white text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-gray-100 transition-all duration-300 font-bold text-base sm:text-lg shadow-xl hover:shadow-2xl"
               data-testid="button-book-session-footer"
             >
