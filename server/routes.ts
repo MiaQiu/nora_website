@@ -115,21 +115,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const consultationData: ConsultationDetails = req.body;
 
       // Validate required fields
-      if (!consultationData.name || !consultationData.email || !consultationData.phone ||
+      if (!consultationData.firstName || !consultationData.lastName || !consultationData.email || !consultationData.phone ||
           !consultationData.numberOfChildren || !consultationData.children || consultationData.children.length === 0 ||
-          !consultationData.familyNeeds || consultationData.familyNeeds.length === 0) {
+          !consultationData.consentToTherapy || !consultationData.familyNeeds || consultationData.familyNeeds.length === 0) {
         return res.status(400).json({
           success: false,
           message: 'Missing required fields'
         });
       }
 
-      // Validate that all children have ages
-      const hasEmptyAges = consultationData.children.some(child => !child.age || child.age.trim() === '');
-      if (hasEmptyAges) {
+      // Validate that all children have complete information
+      const hasIncompleteChildInfo = consultationData.children.some(child => 
+        !child.legalName || child.legalName.trim() === '' ||
+        !child.birthday || child.birthday.trim() === '' ||
+        !child.sex || child.sex.trim() === ''
+      );
+      if (hasIncompleteChildInfo) {
         return res.status(400).json({
           success: false,
-          message: 'Please provide age for all children'
+          message: 'Please provide complete information for all children'
         });
       }
 

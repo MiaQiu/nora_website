@@ -4,22 +4,28 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card } from "@/components/ui/card";
-import { CheckCircle, ArrowRight, ArrowLeft, Loader2, User, Users, Heart } from "lucide-react";
+import { CheckCircle, ArrowRight, ArrowLeft, Loader2, User, Users, Heart, Sparkles, Lock } from "lucide-react";
 import { Link } from "wouter";
 import SEOHead from "@/components/seo-head";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface ChildInfo {
-  age: string;
+  legalName: string;
+  birthday: string;
+  sex: string;
 }
 
 interface FormData {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   phone: string;
   numberOfChildren: string;
   children: ChildInfo[];
+  consentToTherapy: string;
   familyNeeds: string[];
   additionalDetails: string;
 }
@@ -43,11 +49,13 @@ export default function Consultation() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [formData, setFormData] = useState<FormData>({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     phone: "",
     numberOfChildren: "",
     children: [],
+    consentToTherapy: "",
     familyNeeds: [],
     additionalDetails: ""
   });
@@ -63,7 +71,7 @@ export default function Consultation() {
     if (field === 'numberOfChildren') {
       const count = parseInt(value) || 0;
       const newChildren: ChildInfo[] = Array.from({ length: count }, (_, i) =>
-        formData.children[i] || { age: '' }
+        formData.children[i] || { legalName: '', birthday: '', sex: '' }
       );
       setFormData(prev => ({
         ...prev,
@@ -72,9 +80,12 @@ export default function Consultation() {
     }
   };
 
-  const handleChildAgeChange = (index: number, age: string) => {
+  const handleChildInfoChange = (index: number, field: keyof ChildInfo, value: string) => {
     const newChildren = [...formData.children];
-    newChildren[index] = { age };
+    newChildren[index] = {
+      ...newChildren[index],
+      [field]: value
+    };
     setFormData(prev => ({
       ...prev,
       children: newChildren
@@ -91,19 +102,26 @@ export default function Consultation() {
   };
 
   const canProceedFromStep1 = () => {
-    return formData.numberOfChildren.trim() !== "" && 
-           parseInt(formData.numberOfChildren) >= 0 &&
-           formData.children.every(child => child.age.trim() !== "");
+    const hasParentInfo = formData.firstName.trim() !== "" && 
+                          formData.lastName.trim() !== "" &&
+                          formData.email.trim() !== "" &&
+                          formData.phone.trim() !== "";
+    
+    const hasKidsCount = formData.numberOfChildren.trim() !== "";
+    
+    const hasCompleteChildInfo = formData.children.every(child => 
+      child.legalName.trim() !== "" && 
+      child.birthday.trim() !== "" && 
+      child.sex.trim() !== ""
+    );
+    
+    const hasConsent = formData.consentToTherapy.trim() !== "";
+    
+    return hasParentInfo && hasKidsCount && hasCompleteChildInfo && hasConsent;
   };
 
   const canProceedFromStep2 = () => {
     return formData.familyNeeds.length > 0;
-  };
-
-  const canSubmit = () => {
-    return formData.name.trim() !== "" && 
-           formData.email.trim() !== "" && 
-           formData.phone.trim() !== "";
   };
 
   const handleNext = () => {
@@ -121,8 +139,6 @@ export default function Consultation() {
   };
 
   const handleSubmit = async () => {
-    if (!canSubmit()) return;
-
     setIsSubmitting(true);
     setSubmitError(null);
 
@@ -181,7 +197,7 @@ export default function Consultation() {
                   We've Got Your Request!
                 </h1>
                 <p className="text-lg sm:text-xl text-charcoal mb-6">
-                  Thank you{formData.name ? `, ${formData.name},` : ""} for reaching out to Nora.
+                  Thank you{formData.firstName ? `, ${formData.firstName},` : ""} for reaching out to Nora.
                 </p>
                 <p className="text-base sm:text-lg text-charcoal/80 mb-8">
                   Our team will review your information and contact you at <strong className="text-primary">{formData.email}</strong> or <strong className="text-primary">{formData.phone}</strong> within 24 hours to schedule your consultation.
@@ -249,7 +265,7 @@ export default function Consultation() {
                       {step}
                     </div>
                     <p className={`text-xs sm:text-sm mt-2 font-medium ${currentStep >= step ? 'text-primary' : 'text-gray-500'}`}>
-                      {step === 1 ? 'Your Family' : step === 2 ? 'Your Needs' : 'Book Session'}
+                      {step === 1 ? 'Your Family' : step === 2 ? 'Your Needs' : 'Complete'}
                     </p>
                   </div>
                   {index < 2 && (
@@ -288,55 +304,226 @@ export default function Consultation() {
               <Card className="shadow-xl border-2 border-primary/20 p-6 sm:p-8">
                 {/* Step 1: Family Information */}
                 {currentStep === 1 && (
-                  <div className="space-y-6">
-                    <div className="flex items-center gap-3 mb-6">
-                      <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full flex items-center justify-center">
-                        <Users className="w-6 h-6 text-primary" />
+                  <div className="space-y-8">
+                    {/* Parent Information */}
+                    <div>
+                      <div className="flex items-start gap-2 mb-6">
+                        <Sparkles className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                        <div>
+                          <h2 className="text-2xl sm:text-3xl font-bold text-gradient-primary">Let's get to know you. ✨</h2>
+                          <p className="text-sm text-charcoal/70 mt-1">
+                            <span className="text-red-500">*</span> This question is required.
+                          </p>
+                          <p className="text-sm text-charcoal/70 mt-1">
+                            Please enter your info, not your child's.
+                          </p>
+                          <div className="flex items-center gap-1 mt-2 text-sm text-charcoal/70">
+                            <Lock className="w-4 h-4" />
+                            <span>This will only be shared with your care team.</span>
+                          </div>
+                        </div>
                       </div>
-                      <div>
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gradient-primary">Tell us about your family</h2>
-                        <p className="text-sm sm:text-base text-charcoal/70">Help us understand your parenting journey</p>
+
+                      <div className="space-y-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div className="space-y-2">
+                            <Label htmlFor="firstName" className="text-sm font-medium text-charcoal">
+                              First Name <span className="text-red-500">*</span>
+                            </Label>
+                            <Input
+                              id="firstName"
+                              type="text"
+                              value={formData.firstName}
+                              onChange={(e) => handleInputChange('firstName', e.target.value)}
+                              placeholder="First name"
+                              className="w-full"
+                              data-testid="input-first-name"
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="lastName" className="text-sm font-medium text-charcoal">
+                              Last Name <span className="text-red-500">*</span>
+                            </Label>
+                            <Input
+                              id="lastName"
+                              type="text"
+                              value={formData.lastName}
+                              onChange={(e) => handleInputChange('lastName', e.target.value)}
+                              placeholder="Last name"
+                              className="w-full"
+                              data-testid="input-last-name"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="space-y-2">
+                          <Label htmlFor="email" className="text-sm font-medium text-charcoal">
+                            Email Address <span className="text-red-500">*</span>
+                          </Label>
+                          <Input
+                            id="email"
+                            type="email"
+                            value={formData.email}
+                            onChange={(e) => handleInputChange('email', e.target.value)}
+                            placeholder="your.email@example.com"
+                            className="w-full"
+                            data-testid="input-email"
+                          />
+                        </div>
+
+                        <div className="space-y-2">
+                          <Label htmlFor="phone" className="text-sm font-medium text-charcoal">
+                            Mobile Number <span className="text-red-500">*</span>
+                          </Label>
+                          <Input
+                            id="phone"
+                            type="tel"
+                            value={formData.phone}
+                            onChange={(e) => handleInputChange('phone', e.target.value)}
+                            placeholder="9123 4567"
+                            className="w-full"
+                            data-testid="input-phone"
+                          />
+                        </div>
                       </div>
                     </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="numberOfChildren" className="text-sm font-medium text-charcoal">
-                        How many children do you have? <span className="text-red-500">*</span>
-                      </Label>
-                      <Input
-                        id="numberOfChildren"
-                        type="number"
-                        min="0"
-                        max="20"
-                        value={formData.numberOfChildren}
-                        onChange={(e) => handleInputChange('numberOfChildren', e.target.value)}
-                        placeholder="Number of children"
-                        className="w-full text-base sm:text-lg"
-                        data-testid="input-number-of-children"
-                      />
+                    <div className="border-t border-gray-200 pt-8">
+                      <div className="space-y-2 mb-6">
+                        <Label htmlFor="numberOfChildren" className="text-lg font-semibold text-charcoal">
+                          How many kids do you want to include in Nora's care? <span className="text-red-500">*</span>
+                        </Label>
+                        <Select
+                          value={formData.numberOfChildren}
+                          onValueChange={(value) => handleInputChange('numberOfChildren', value)}
+                        >
+                          <SelectTrigger className="w-full" data-testid="select-number-of-children">
+                            <SelectValue placeholder="Select number of kids" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="1">1</SelectItem>
+                            <SelectItem value="2">2</SelectItem>
+                            <SelectItem value="3">3</SelectItem>
+                            <SelectItem value="4">4</SelectItem>
+                            <SelectItem value="5">5</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      {formData.children.length > 0 && (
+                        <div className="space-y-6">
+                          {formData.children.map((child, index) => (
+                            <div key={index} className="bg-gradient-to-r from-primary/5 to-secondary/5 border border-primary/20 rounded-lg p-4 sm:p-6">
+                              <div className="flex items-center gap-2 mb-4">
+                                <div className="w-8 h-8 rounded-full bg-gradient-primary flex items-center justify-center">
+                                  <span className="text-sm font-bold text-white">{index + 1}</span>
+                                </div>
+                                <h3 className="text-lg font-semibold text-charcoal">Child {index + 1}</h3>
+                              </div>
+
+                              <div className="space-y-4">
+                                <div className="space-y-2">
+                                  <Label htmlFor={`childName-${index}`} className="text-sm font-medium text-charcoal">
+                                    What's your kid's legal name? <span className="text-red-500">*</span>
+                                  </Label>
+                                  <Input
+                                    id={`childName-${index}`}
+                                    type="text"
+                                    value={child.legalName}
+                                    onChange={(e) => handleChildInfoChange(index, 'legalName', e.target.value)}
+                                    placeholder="Legal name"
+                                    className="w-full"
+                                    data-testid={`input-child-name-${index}`}
+                                  />
+                                </div>
+
+                                <div className="space-y-2">
+                                  <Label htmlFor={`childBirthday-${index}`} className="text-sm font-medium text-charcoal">
+                                    What's your kid's birthday? <span className="text-red-500">*</span>
+                                  </Label>
+                                  <p className="text-xs text-charcoal/60 mb-1">
+                                    This is important for recommending the best service for your family.
+                                  </p>
+                                  <Input
+                                    id={`childBirthday-${index}`}
+                                    type="date"
+                                    value={child.birthday}
+                                    onChange={(e) => handleChildInfoChange(index, 'birthday', e.target.value)}
+                                    className="w-full"
+                                    data-testid={`input-child-birthday-${index}`}
+                                  />
+                                </div>
+
+                                <div className="space-y-2">
+                                  <Label className="text-sm font-medium text-charcoal">
+                                    Kid's Sex <span className="text-red-500">*</span>
+                                  </Label>
+                                  <RadioGroup
+                                    value={child.sex}
+                                    onValueChange={(value) => handleChildInfoChange(index, 'sex', value)}
+                                    className="flex flex-col space-y-2"
+                                  >
+                                    <div className="flex items-center space-x-2">
+                                      <RadioGroupItem value="male" id={`sex-male-${index}`} data-testid={`radio-sex-male-${index}`} />
+                                      <Label htmlFor={`sex-male-${index}`} className="cursor-pointer font-normal">Male</Label>
+                                    </div>
+                                    <div className="flex items-center space-x-2">
+                                      <RadioGroupItem value="female" id={`sex-female-${index}`} data-testid={`radio-sex-female-${index}`} />
+                                      <Label htmlFor={`sex-female-${index}`} className="cursor-pointer font-normal">Female</Label>
+                                    </div>
+                                    <div className="flex items-center space-x-2">
+                                      <RadioGroupItem value="other" id={`sex-other-${index}`} data-testid={`radio-sex-other-${index}`} />
+                                      <Label htmlFor={`sex-other-${index}`} className="cursor-pointer font-normal">Other</Label>
+                                    </div>
+                                  </RadioGroup>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
 
                     {formData.children.length > 0 && (
-                      <div className="space-y-3">
-                        <Label className="text-sm font-medium text-charcoal">
-                          Age of each child <span className="text-red-500">*</span>
-                        </Label>
+                      <div className="border-t border-gray-200 pt-8">
                         <div className="space-y-3">
-                          {formData.children.map((child, index) => (
-                            <div key={index} className="flex items-center gap-3">
-                              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                                <span className="text-sm font-semibold text-primary">{index + 1}</span>
-                              </div>
-                              <Input
-                                type="text"
-                                value={child.age}
-                                onChange={(e) => handleChildAgeChange(index, e.target.value)}
-                                placeholder="e.g., 3 years old, 6 months, newborn"
-                                className="flex-1"
-                                data-testid={`input-child-age-${index}`}
-                              />
+                          <Label className="text-lg font-semibold text-charcoal">
+                            Are you able to consent to therapy services for your child? <span className="text-red-500">*</span>
+                          </Label>
+                          <p className="text-sm text-charcoal/70">We are legally required to ask this question.</p>
+                          <p className="text-sm text-charcoal/70 italic">
+                            If you're unsure, just select "other" and we'll discuss it during your consult.
+                          </p>
+                          
+                          <RadioGroup
+                            value={formData.consentToTherapy}
+                            onValueChange={(value) => handleInputChange('consentToTherapy', value)}
+                            className="flex flex-col space-y-3 mt-4"
+                          >
+                            <div className="flex items-start space-x-3 p-4 border-2 rounded-lg hover:border-primary/30 transition-all">
+                              <RadioGroupItem value="yes" id="consent-yes" className="mt-1" data-testid="radio-consent-yes" />
+                              <Label htmlFor="consent-yes" className="cursor-pointer font-normal flex-1">
+                                <div>
+                                  <div className="font-semibold">Yes</div>
+                                  <div className="text-xs text-charcoal/60 mt-1">
+                                    By selecting yes, you confirm that you have the legal authority to consent to care for your child and that you have complied with all relevant custodial agreements or court orders. You understand that knowingly providing false information may have legal consequences.
+                                  </div>
+                                </div>
+                              </Label>
                             </div>
-                          ))}
+                            <div className="flex items-start space-x-3 p-4 border-2 rounded-lg hover:border-primary/30 transition-all">
+                              <RadioGroupItem value="no" id="consent-no" className="mt-1" data-testid="radio-consent-no" />
+                              <Label htmlFor="consent-no" className="cursor-pointer font-normal flex-1">
+                                <div className="font-semibold">No</div>
+                              </Label>
+                            </div>
+                            <div className="flex items-start space-x-3 p-4 border-2 rounded-lg hover:border-primary/30 transition-all">
+                              <RadioGroupItem value="other" id="consent-other" className="mt-1" data-testid="radio-consent-other" />
+                              <Label htmlFor="consent-other" className="cursor-pointer font-normal flex-1">
+                                <div className="font-semibold">Other</div>
+                              </Label>
+                            </div>
+                          </RadioGroup>
                         </div>
                       </div>
                     )}
@@ -413,62 +600,17 @@ export default function Consultation() {
                   </div>
                 )}
 
-                {/* Step 3: Contact Information */}
+                {/* Step 3: Additional Details */}
                 {currentStep === 3 && (
                   <div className="space-y-6">
                     <div className="flex items-center gap-3 mb-6">
                       <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full flex items-center justify-center">
-                        <User className="w-6 h-6 text-primary" />
+                        <CheckCircle className="w-6 h-6 text-primary" />
                       </div>
                       <div>
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gradient-primary">Book your session</h2>
-                        <p className="text-sm sm:text-base text-charcoal/70">How can we reach you?</p>
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gradient-primary">Almost done!</h2>
+                        <p className="text-sm sm:text-base text-charcoal/70">Anything else you'd like us to know?</p>
                       </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="name" className="text-sm font-medium text-charcoal">
-                        Your Name <span className="text-red-500">*</span>
-                      </Label>
-                      <Input
-                        id="name"
-                        type="text"
-                        value={formData.name}
-                        onChange={(e) => handleInputChange('name', e.target.value)}
-                        placeholder="Enter your name"
-                        className="w-full"
-                        data-testid="input-name"
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="email" className="text-sm font-medium text-charcoal">
-                        Email Address <span className="text-red-500">*</span>
-                      </Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={(e) => handleInputChange('email', e.target.value)}
-                        placeholder="your.email@example.com"
-                        className="w-full"
-                        data-testid="input-email"
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="phone" className="text-sm font-medium text-charcoal">
-                        Phone Number <span className="text-red-500">*</span>
-                      </Label>
-                      <Input
-                        id="phone"
-                        type="tel"
-                        value={formData.phone}
-                        onChange={(e) => handleInputChange('phone', e.target.value)}
-                        placeholder="9123 4567"
-                        className="w-full"
-                        data-testid="input-phone"
-                      />
                     </div>
 
                     <div className="space-y-2">
@@ -479,8 +621,8 @@ export default function Consultation() {
                         id="additionalDetails"
                         value={formData.additionalDetails}
                         onChange={(e) => handleInputChange('additionalDetails', e.target.value)}
-                        placeholder="Any other information you'd like to share..."
-                        rows={4}
+                        placeholder="Any other information you'd like to share about your family or needs..."
+                        rows={6}
                         className="w-full resize-none"
                         data-testid="textarea-additional-details"
                       />
@@ -504,7 +646,7 @@ export default function Consultation() {
                       </Button>
                       <Button
                         onClick={handleSubmit}
-                        disabled={!canSubmit() || isSubmitting}
+                        disabled={isSubmitting}
                         className="flex-1 bg-gradient-primary text-white hover:shadow-lg glow-primary py-3 text-base sm:text-lg font-semibold"
                         data-testid="button-submit-consultation"
                       >
@@ -515,7 +657,7 @@ export default function Consultation() {
                           </>
                         ) : (
                           <>
-                            Book My Consultation
+                            Submit Request
                             <CheckCircle className="w-5 h-5 ml-2" />
                           </>
                         )}

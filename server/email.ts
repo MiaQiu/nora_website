@@ -39,13 +39,17 @@ export interface BetaWaitlistDetails {
 }
 
 export interface ConsultationDetails {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   phone: string;
   numberOfChildren: string;
   children: Array<{
-    age: string;
+    legalName: string;
+    birthday: string;
+    sex: string;
   }>;
+  consentToTherapy: string;
   familyNeeds: string[];
   additionalDetails?: string;
 }
@@ -272,16 +276,17 @@ This beta waitlist signup was submitted through the Nora website.
   }
 
   async sendConsultationNotification(consultationDetails: ConsultationDetails): Promise<void> {
-    const { name, email, phone, numberOfChildren, children, familyNeeds, additionalDetails } = consultationDetails;
+    const { firstName, lastName, email, phone, numberOfChildren, children, consentToTherapy, familyNeeds, additionalDetails } = consultationDetails;
 
-    const subject = `New Consultation Request - ${name}`;
+    const fullName = `${firstName} ${lastName}`;
+    const subject = `New Consultation Request - ${fullName}`;
 
     const childrenList = children.map((child, index) =>
-      `<li>Child ${index + 1}: ${child.age}</li>`
+      `<li><strong>Child ${index + 1}:</strong> ${child.legalName}, Birthday: ${child.birthday}, Sex: ${child.sex}</li>`
     ).join('\n');
 
     const childrenTextList = children.map((child, index) =>
-      `  ${index + 1}. ${child.age}`
+      `  ${index + 1}. ${child.legalName}, Birthday: ${child.birthday}, Sex: ${child.sex}`
     ).join('\n');
 
     const needsList = familyNeeds.map(need => `<li>${need}</li>`).join('\n');
@@ -290,9 +295,9 @@ This beta waitlist signup was submitted through the Nora website.
     const htmlContent = `
       <h2>New Consultation Request</h2>
 
-      <h3>Contact Information:</h3>
+      <h3>Parent Information:</h3>
       <ul>
-        <li><strong>Name:</strong> ${name}</li>
+        <li><strong>Name:</strong> ${fullName}</li>
         <li><strong>Email:</strong> ${email}</li>
         <li><strong>Phone:</strong> ${phone}</li>
       </ul>
@@ -300,9 +305,10 @@ This beta waitlist signup was submitted through the Nora website.
       <h3>Family Information:</h3>
       <ul>
         <li><strong>Number of Children:</strong> ${numberOfChildren}</li>
+        <li><strong>Consent to Therapy:</strong> ${consentToTherapy}</li>
       </ul>
 
-      <h3>Children Ages:</h3>
+      <h3>Children Details:</h3>
       <ul>
         ${childrenList}
       </ul>
@@ -324,15 +330,16 @@ This beta waitlist signup was submitted through the Nora website.
     const textContent = `
 New Consultation Request
 
-Contact Information:
-- Name: ${name}
+Parent Information:
+- Name: ${fullName}
 - Email: ${email}
 - Phone: ${phone}
 
 Family Information:
 - Number of Children: ${numberOfChildren}
+- Consent to Therapy: ${consentToTherapy}
 
-Children Ages:
+Children Details:
 ${childrenTextList}
 
 What Can We Help With:
